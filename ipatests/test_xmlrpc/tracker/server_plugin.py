@@ -50,7 +50,7 @@ class ServerTracker(Tracker):
                 u"ipaSupportedDomainLevelConfig"
             ],
             ipamaxdomainlevel=[u"1"],
-            ipamindomainlevel=[u"0"],
+            ipamindomainlevel=[u"1"],
         )
         self.exists = True
 
@@ -124,7 +124,7 @@ class ServerTracker(Tracker):
         result = command()
         self.attrs.update(updates)
         self.attrs.update(expected_updates)
-        for key, value in self.attrs.items():
+        for key, value in list(self.attrs.items()):
             if value is None:
                 del self.attrs[key]
 

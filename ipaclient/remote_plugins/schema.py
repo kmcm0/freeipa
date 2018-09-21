@@ -2,29 +2,39 @@
 # Copyright (C) 2016  FreeIPA Contributors see COPYING for license
 #
 
-import collections
-import contextlib
 import errno
-import fcntl
 import json
+import logging
 import os
 import sys
+import tempfile
 import types
 import zipfile
+
+from cryptography import x509 as crypto_x509
 
 import six
 
 from ipaclient.frontend import ClientCommand, ClientMethod
 from ipalib import errors, parameters, plugable
+from ipalib.constants import USER_CACHE_PATH
 from ipalib.errors import SchemaUpToDate
 from ipalib.frontend import Object
 from ipalib.output import Output
 from ipalib.parameters import DefaultFrom, Flag, Password, Str
-from ipaplatform.paths import paths
+from ipapython import ipautil
 from ipapython.ipautil import fsdecode
 from ipapython.dn import DN
 from ipapython.dnsutil import DNSName
-from ipapython.ipa_log_manager import log_mgr
+
+# pylint: disable=no-name-in-module, import-error
+if six.PY3:
+    from collections.abc import Mapping, Sequence
+else:
+    from collections import Mapping, Sequence
+# pylint: enable=no-name-in-module, import-error
+
+logger = logging.getLogger(__name__)
 
 FORMAT = '1'
 
@@ -36,13 +46,14 @@ _TYPES = {
     'DNSName': DNSName,
     'Principal': unicode,
     'NoneType': type(None),
-    'Sequence': collections.Sequence,
+    'Sequence': Sequence,
     'bool': bool,
     'dict': dict,
     'int': int,
     'list': list,
     'tuple': tuple,
     'unicode': unicode,
+    'Certificate': crypto_x509.Certificate,
 }
 
 _PARAMS = {
@@ -56,9 +67,14 @@ _PARAMS = {
     'dict': parameters.Dict,
     'int': parameters.Int,
     'str': parameters.Str,
+    'Certificate': parameters.Certificate,
 }
 
-logger = log_mgr.get_logger(__name__)
+
+def json_default(obj):
+    if isinstance(obj, bytes):
+        return obj.decode('utf-8')
+    raise TypeError
 
 
 class _SchemaCommand(ClientCommand):
@@ -306,7 +322,7 @@ class _SchemaObjectPlugin(_SchemaPlugin):
     schema_key = 'classes'
 
 
-class _SchemaNameSpace(collections.Mapping):
+class _SchemaNameSpace(Mapping):
 
     def __init__(self, schema, name):
         self.name = name
@@ -357,13 +373,12 @@ class Schema(object):
 
     """
     namespaces = {'classes', 'commands', 'topics'}
-    _DIR = os.path.join(paths.USER_CACHE_PATH, 'ipa', 'schema', FORMAT)
+    _DIR = os.path.join(USER_CACHE_PATH, 'ipa', 'schema', FORMAT)
 
     def __init__(self, client, fingerprint=None):
         self._dict = {}
         self._namespaces = {}
         self._help = None
-        self._file = six.StringIO()
 
         for ns in self.namespaces:
             self._dict[ns] = {}
@@ -379,34 +394,20 @@ class Schema(object):
                 # Failed to read the schema from cache. There may be a lot of
                 # causes and not much we can do about it. Just ensure we will
                 # ignore the cache and fetch the schema from server.
-                logger.warning("Failed to read schema: {}".format(e))
+                logger.warning("Failed to read schema: %s", e)
                 fingerprint = None
                 read_failed = True
 
         if fingerprint is None:
             fingerprint, ttl = self._fetch(client, ignore_cache=read_failed)
+            self._help = self._generate_help(self._dict)
             try:
                 self._write_schema(fingerprint)
             except Exception as e:
-                logger.warning("Failed to write schema: {}".format(e))
+                logger.warning("Failed to write schema: %s", e)
 
         self.fingerprint = fingerprint
         self.ttl = ttl
-
-    @contextlib.contextmanager
-    def _open(self, filename, mode):
-        path = os.path.join(self._DIR, filename)
-
-        with open(path, mode) as f:
-            if mode.startswith('r'):
-                fcntl.flock(f, fcntl.LOCK_SH)
-            else:
-                fcntl.flock(f, fcntl.LOCK_EX)
-
-            try:
-                yield f
-            finally:
-                fcntl.flock(f, fcntl.LOCK_UN)
 
     def _fetch(self, client, ignore_cache=False):
         if not client.isconnected():
@@ -443,15 +444,16 @@ class Schema(object):
         return (fp, ttl,)
 
     def _read_schema(self, fingerprint):
-        self._file.truncate(0)
-        with self._open(fingerprint, 'r') as f:
-            self._file.write(f.read())
-
-        with zipfile.ZipFile(self._file, 'r') as schema:
+        # It's more efficient to read zip file members at once than to open
+        # the zip file a couple of times, see #6690.
+        filename = os.path.join(self._DIR, fingerprint)
+        with zipfile.ZipFile(filename, 'r') as schema:
             for name in schema.namelist():
                 ns, _slash, key = name.partition('/')
                 if ns in self.namespaces:
-                    self._dict[ns][key] = None
+                    self._dict[ns][key] = schema.read(name)
+                elif name == '_help':
+                    self._help = schema.read(name)
 
     def __getitem__(self, key):
         try:
@@ -487,35 +489,41 @@ class Schema(object):
             if e.errno != errno.EEXIST:
                 raise
 
-        self._file.truncate(0)
-        with zipfile.ZipFile(self._file, 'w', zipfile.ZIP_DEFLATED) as schema:
+        with tempfile.NamedTemporaryFile('wb', prefix=fingerprint,
+                                         dir=self._DIR, delete=False) as f:
+            try:
+                self._write_schema_data(f)
+                ipautil.flush_sync(f)
+                f.close()
+            except Exception:
+                os.unlink(f.name)
+                raise
+            else:
+                os.rename(f.name, os.path.join(self._DIR, fingerprint))
+
+    def _write_schema_data(self, fileobj):
+        with zipfile.ZipFile(fileobj, 'w', zipfile.ZIP_DEFLATED) as schema:
             for key, value in self._dict.items():
                 if key in self.namespaces:
                     ns = value
                     for member in ns:
                         path = '{}/{}'.format(key, member)
-                        schema.writestr(path, json.dumps(ns[member]))
+                        s = json.dumps(ns[member], default=json_default)
+                        schema.writestr(path, s.encode('utf-8'))
                 else:
-                    schema.writestr(key, json.dumps(value))
+                    schema.writestr(key, json.dumps(value).encode('utf-8'))
 
-            schema.writestr('_help',
-                            json.dumps(self._generate_help(self._dict)))
-
-        self._file.seek(0)
-        with self._open(fingerprint, 'w') as f:
-            f.truncate(0)
-            f.write(self._file.read())
-
-    def _read(self, path):
-        with zipfile.ZipFile(self._file, 'r') as zf:
-            return json.loads(zf.read(path))
+            schema.writestr(
+                '_help',
+                json.dumps(self._help, default=json_default).encode('utf-8')
+            )
 
     def read_namespace_member(self, namespace, member):
         value = self._dict[namespace][member]
 
-        if value is None:
-            path = '{}/{}'.format(namespace, member)
-            value = self._dict[namespace][member] = self._read(path)
+        if isinstance(value, bytes):
+            value = json.loads(value.decode('utf-8'))
+            self._dict[namespace][member] = value
 
         return value
 
@@ -523,8 +531,10 @@ class Schema(object):
         return iter(self._dict[namespace])
 
     def get_help(self, namespace, member):
-        if not self._help:
-            self._help = self._read('_help')
+        if isinstance(self._help, bytes):
+            self._help = json.loads(
+                self._help.decode('utf-8')  # pylint: disable=no-member
+            )
 
         return self._help[namespace][member]
 
@@ -582,7 +592,7 @@ def get_package(server_info, client):
     for plugin_cls in (_SchemaCommandPlugin, _SchemaObjectPlugin):
         for full_name in schema[plugin_cls.schema_key]:
             plugin = plugin_cls(schema, str(full_name))
-            plugin = module.register()(plugin)
+            plugin = module.register()(plugin)  # pylint: disable=no-member
     sys.modules[module_name] = module
 
     for full_name, topic in six.iteritems(schema['topics']):
@@ -595,7 +605,10 @@ def get_package(server_info, client):
             module.__file__ = os.path.join(package_dir, '{}.py'.format(name))
         module.__doc__ = topic.get('doc')
         if 'topic_topic' in topic:
-            module.topic = str(topic['topic_topic']).partition('/')[0]
+            s = topic['topic_topic']
+            if isinstance(s, bytes):
+                s = s.decode('utf-8')
+            module.topic = str(s).partition('/')[0]
         else:
             module.topic = None
 

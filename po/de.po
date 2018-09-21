@@ -1,51 +1,189 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
-#
-# Translators:
-# Fabian Affolter <fab@fedoraproject.org>, 2011
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2011,2014
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2011
 # David Kreitschmann <david@kreitschmann.de>, 2015. #zanata
 # Martin Kosek <mkosek@redhat.com>, 2015. #zanata
 # Tomas Babej <tbabej@redhat.com>, 2015. #zanata
+# David Kreitschmann <david@kreitschmann.de>, 2016. #zanata
 # Martin Bašti <mbasti@redhat.com>, 2016. #zanata
+# Paul Ritter <paul-ritter@gmx.net>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2016-06-17 07:17-0400\n"
-"Last-Translator: Martin Bašti <mbasti@redhat.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/freeipa/language/"
-"de/)\n"
-"Language: de\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2018-04-20 07:50+0000\n"
+"Last-Translator: Paul Ritter <paul-ritter@gmx.net>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-msgid "Failed members"
-msgstr "Fehler bei Mitgliedern"
+#, c-format
+msgid "cannot open configuration file %s\n"
+msgstr "Konfigurationsdatei %s konnte nicht geöffnet werden\n"
 
-msgid "Failed hosts/hostgroups"
-msgstr "Fehler bei Hosts/Hostgruppen"
+#, c-format
+msgid "cannot stat() configuration file %s\n"
+msgstr "Aufruf von »stat« für Konfigurationsdatei %s nicht möglich\n"
 
-msgid "Failed users/groups"
-msgstr "Fehlerhafte Benutzer/Gruppen"
+#, c-format
+msgid "out of memory\n"
+msgstr "Nicht genügend Speicher\n"
 
-msgid "Failed service/service groups"
-msgstr "Fehler bei Diensten/Dienstgruppen"
+#, c-format
+msgid "read error\n"
+msgstr "Lesefehler\n"
 
-msgid "Failed to remove"
-msgstr "Entfernen fehlgeschlagen"
+#, c-format
+msgid "No keys accepted by KDC\n"
+msgstr "KDC akzeptiert keine Schlüssel\n"
 
-msgid "Failed RunAs"
-msgstr "RunAs fehlgeschlagen"
+#, c-format
+msgid "Out of memory \n"
+msgstr "Nicht genügend Speicher\n"
 
-msgid "Failed RunAsGroup"
-msgstr "RunAsGroup fehlgeschlagen"
+#, c-format
+msgid "Unable to initialize ldap library!\n"
+msgstr "ldap-Bibliothek konnte nicht initialisiert werden!\n"
+
+#, c-format
+msgid "Out of Memory!\n"
+msgstr "Nicht genügend Speicher!\n"
+
+msgid "New Principal Password"
+msgstr "Neues Principal-Passwort"
+
+msgid "Verify Principal Password"
+msgstr "Principal-Passwort bestätigen"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "Passwörter stimmen nicht überein!"
+
+msgid "Output only on errors"
+msgstr "Ausgabe nur bei Fehlern"
+
+msgid "Server Name"
+msgstr "Servername"
+
+msgid "LDAP password"
+msgstr "LDAP-Passwort"
+
+#, c-format
+msgid "Kerberos context initialization failed\n"
+msgstr "Initialisierung des Kerberos-Kontexts fehlgschlagen\n"
+
+#, c-format
+msgid "Supported encryption types:\n"
+msgstr "Unterstützte Verschlüsselungstypen:\n"
+
+#, c-format
+msgid "Warning: failed to convert type (#%d)\n"
+msgstr "Warnung: Typ konnte nicht umgewandelt werden (#%d)\n"
+
+#, c-format
+msgid "Out of memory!"
+msgstr "Nicht genügend Speicher!"
+
+#, c-format
+msgid "Unable to initialize connection to ldap server: %s"
+msgstr "Verbindung zum LDAP-Server konnte nicht initialisiert werden: %s"
+
+#, c-format
+msgid "Unable to set LDAP version\n"
+msgstr "LDAP-Version konnte nicht gesetzt werden\n"
+
+#, c-format
+msgid "Bind failed: %s\n"
+msgstr "Bind fehlgeschlagen: %s\n"
+
+#, c-format
+msgid "No values for %s"
+msgstr "Keine Werte für %s"
+
+#, c-format
+msgid "Incorrect password.\n"
+msgstr "Inkorrektes Passwort.\n"
+
+#, c-format
+msgid "Error obtaining initial credentials: %s.\n"
+msgstr "Fehler beim Holen der initialen Anmeldedaten: %s.\n"
+
+#, c-format
+msgid "Unable to generate Kerberos Credential Cache\n"
+msgstr ""
+"Anmeldedaten-Zwischenspeicher für Kerberos konnte nicht erzeugt werden\n"
+
+#, c-format
+msgid "Error storing creds in credential cache: %s.\n"
+msgstr ""
+"Fehler beim Speichern der Anmeldedaten im Anmeldedaten-Zwischenspeicher: "
+"%s.\n"
+
+#, c-format
+msgid "fork() failed\n"
+msgstr "fork() fehlgeschlagen\n"
+
+#, c-format
+msgid "ipa-getkeytab not found\n"
+msgstr "ipa-getkeytab nicht gefunden\n"
+
+#, c-format
+msgid "ipa-getkeytab has bad permissions?\n"
+msgstr "ipa-getkeytab hat falsche Zugriffsrechte?\n"
+
+#, c-format
+msgid "executing ipa-getkeytab failed, errno %d\n"
+msgstr "Ausführen von ipa-getkeytab fehgeschlagen, errno %d\n"
+
+msgid "Print the raw XML-RPC output in GSSAPI mode"
+msgstr "Die rohe XML-RPC-Ausgabe im GSSAPI-Modus anzeigen"
+
+msgid "Quiet mode. Only errors are displayed."
+msgstr "Stiller Modus. Nur Fehler werden ausgegeben."
+
+msgid "Hostname of this server"
+msgstr "Hostname dieses Servers"
+
+msgid "hostname"
+msgstr "Hostname"
+
+msgid "IPA Server to use"
+msgstr "Zu verwendender IPA-Server"
+
+msgid "filename"
+msgstr "Dateiname"
+
+msgid "LDAP password (if not using Kerberos)"
+msgstr "LDAP-Passwort (falls Kerberos nicht verwendet wird)"
+
+msgid "password"
+msgstr "Passwort"
+
+#, c-format
+msgid "Removing principal %s\n"
+msgstr "Principal %s wird entfernt\n"
+
+#, c-format
+msgid "principal not found\n"
+msgstr "Principal nicht gefunden\n"
+
+#, c-format
+msgid "realm not found\n"
+msgstr "Realm nicht gefunden\n"
+
+msgid "Print debugging information"
+msgstr "Ausgabe von Debug-Informationen"
+
+msgid "Debugging output"
+msgstr "Debugging-Ausgabe"
+
+msgid "Remove all principals in this realm"
+msgstr "Alle Principals in diesem Realm entfernen"
+
+msgid "Realm name"
+msgstr "Realm-Name"
 
 msgid "Failed to add"
 msgstr "Hinzufügen fehlgeschlagen"
@@ -65,6 +203,18 @@ msgstr "Nicht widerrufen"
 
 msgid "Error"
 msgstr "Fehler"
+
+msgid "Principal"
+msgstr "Principal"
+
+msgid "Principal for this certificate (e.g. HTTP/test.example.com)"
+msgstr "Principal für dieses Zertifikat (z.B. HTTP/test.example.com)"
+
+msgid "Profile ID"
+msgstr "Profil-ID"
+
+msgid "The principal for this request doesn't exist."
+msgstr "Der Principal für diese Anfrage existiert nicht"
 
 msgid "No option to modify specific record provided."
 msgstr "Keine Option zum Ändern des spezifischen Datensatzes angegeben."
@@ -137,6 +287,9 @@ msgstr "preserve und no-preserve kann nicht gleichzeitig gesetzt sein"
 
 msgid "Invalid credentials"
 msgstr "Ungültige Zugangsdaten"
+
+msgid "Change password"
+msgstr "Passwort ändern"
 
 msgid "Data"
 msgstr "Daten"
@@ -432,9 +585,6 @@ msgstr "Eine Signaturanfrage (CSR) senden."
 msgid "CSR"
 msgstr "CSR"
 
-msgid "Principal"
-msgstr "Principal"
-
 msgid "Service principal for this certificate (e.g. HTTP/test.example.com)"
 msgstr "Dienst-Principal für dieses Zertifikat (z.B. HTTP/test.example.com)"
 
@@ -545,7 +695,7 @@ msgid "Default PAC types"
 msgstr "Standard PAC-Typen"
 
 msgid "Default user authentication types"
-msgstr "Standard Benutzerauthentifizierungstypen"
+msgstr "Standard Authentifizierungsmethoden"
 
 msgid "Modify configuration options."
 msgstr "Konfigurationsoptionen bearbeiten."
@@ -1190,6 +1340,12 @@ msgstr "Umgebungsvariablen anzeigen."
 msgid "Forward to server instead of running locally"
 msgstr "Zum Server weiterleiten, anstatt lokal auszuführen"
 
+msgid ""
+"retrieve and print all attributes from the server. Affects command output."
+msgstr ""
+"Ermittelt alle Attribute des Servers und gibt diese aus. Dies wirkt sich auf "
+"die Befehlsausgabe aus."
+
 msgid "Show all loaded plugins."
 msgstr "Alle geladenen Plugins anzeigen."
 
@@ -1572,9 +1728,6 @@ msgstr "Nach Sudo-Regel suchen."
 msgid "Display Sudo Rule."
 msgstr "Sudo-Regel anzeigen."
 
-msgid "Realm name"
-msgstr "Realm-Name"
-
 msgid "First name"
 msgstr "Vorname"
 
@@ -1641,16 +1794,16 @@ msgid "Job Title"
 msgstr "Tätigkeit"
 
 msgid "Car License"
-msgstr "Führerschein"
+msgstr "Kfz-Kennzeichen"
 
 msgid "Account disabled"
 msgstr "Konto ist deaktiviert"
 
 msgid "User authentication types"
-msgstr "Benutzerauthentifizierungstypen"
+msgstr "Authentifizierungsmethoden"
 
 msgid "Types of supported user authentication"
-msgstr "Typen der unterstützten Benutzerauthentifizierung"
+msgstr "Unterstützte Authentifizierungsmethoden"
 
 msgid "RADIUS proxy configuration"
 msgstr "RADIUS-Proxy Konfiguration"
@@ -1730,12 +1883,6 @@ msgstr "CA ACL löschen."
 msgid "Modify a CA ACL."
 msgstr "CA ACL ändern"
 
-msgid "Principal for this certificate (e.g. HTTP/test.example.com)"
-msgstr "Principal für dieses Zertifikat (z.B. HTTP/test.example.com)"
-
-msgid "Profile ID"
-msgstr "Profil-ID"
-
 msgid "Certificate Profile to use"
 msgstr "Benutze Zertifikatsprofil"
 
@@ -1812,13 +1959,30 @@ msgstr "DNS-Klasse"
 msgid "Username"
 msgstr "Benutzername"
 
+msgid "Failed members"
+msgstr "Fehler bei Mitgliedern"
+
+msgid "Failed hosts/hostgroups"
+msgstr "Fehler bei Hosts/Hostgruppen"
+
+msgid "Failed users/groups"
+msgstr "Fehlerhafte Benutzer/Gruppen"
+
+msgid "Failed service/service groups"
+msgstr "Fehler bei Diensten/Dienstgruppen"
+
+msgid "Failed to remove"
+msgstr "Entfernen fehlgeschlagen"
+
+msgid "Failed RunAs"
+msgstr "RunAs fehlgeschlagen"
+
+msgid "Failed RunAsGroup"
+msgstr "RunAsGroup fehlgeschlagen"
+
 #, python-format
 msgid "Enter %(label)s again to verify: "
 msgstr "Geben Sie %(label)s zur Bestätigung nochmals ein: "
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "Passwörter stimmen nicht überein!"
 
 msgid "No matching entries found"
 msgstr "Keine passenden Einträge gefunden"
@@ -1856,7 +2020,7 @@ msgstr "Keine Datei zum Lesen"
 
 #, python-format
 msgid "%(cver)s client incompatible with %(sver)s server at '%(server)s'"
-msgstr "%(cver)s Client ist inkompatibel mit %(sver)s server auf '%(server)s'"
+msgstr "%(cver)s Client ist inkompatibel mit %(sver)s Server auf '%(server)s'"
 
 #, python-format
 msgid "unknown error %(code)d from %(server)s: %(error)s"
@@ -1884,6 +2048,11 @@ msgstr "Kann nicht zu '%(uri)s' verbinden: %(error)s"
 #, python-format
 msgid "Invalid JSON-RPC request: %(error)s"
 msgstr "Ungültige JSON-RPC-Anfrage: %(error)s"
+
+#, python-format
+msgid "error marshalling data for XML-RPC transport: %(error)s"
+msgstr ""
+"Fehler beim Zusammenstellen der Daten für den XML-RPC-Transport: %(error)s"
 
 #, python-format
 msgid "Missing or invalid HTTP Referer, %(referer)s"
@@ -1919,6 +2088,11 @@ msgid "Session error"
 msgstr "Sitzungsfehler"
 
 #, python-format
+msgid "Principal %(principal)s cannot be authenticated: %(message)s"
+msgstr ""
+"Der Principal %(principal)s kann nicht authentifiziert werden: %(message)s"
+
+#, python-format
 msgid "Insufficient access: %(info)s"
 msgstr "Unzureichender Zugriff: %(info)s"
 
@@ -1944,6 +2118,10 @@ msgstr "'%(name)s' wird benötigt"
 msgid "invalid '%(name)s': %(error)s"
 msgstr "Ungültig '%(name)s': %(error)s"
 
+#, python-format
+msgid "api has no such namespace: '%(name)s'"
+msgstr "Der Namensraum '%(name)s' existiert in der API nicht"
+
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
@@ -1962,11 +2140,21 @@ msgid "Command '%(name)s' has been deprecated"
 msgstr "Befehl '%(name)s' ist veraltet"
 
 #, python-format
+msgid "Domain '%(domain)s' is not a root domain for forest '%(forest)s'"
+msgstr ""
+"Die Domäne '%(domain)s' ist keine Root Domäne für den Forest '%(forest)s'"
+
+#, python-format
 msgid "%(reason)s"
 msgstr "%(reason)s"
 
 msgid "This entry already exists"
 msgstr "Dieser Eintrag existiert bereits"
+
+msgid "You must enroll a host in order to create a host service"
+msgstr ""
+"Sie müssen einen Host registrieren, bevor Sie einen Dienst für diesen Host "
+"anlegen können."
 
 #, python-format
 msgid ""
@@ -2067,6 +2255,18 @@ msgstr ""
 "konvertiert werden"
 
 #, python-format
+msgid "Server removal aborted: %(reason)s."
+msgstr "Entfernen des Servers abgebrochen: %(reason)s."
+
+#, python-format
+msgid "%(operation)s is not supported for %(principal_type)s principals"
+msgstr "%(operation)s wird für %(principal_type)s Principals nicht unterstützt"
+
+#, python-format
+msgid "Request failed with status %(status)s: %(reason)s"
+msgstr "Anfrage mit Status %(status)s fehlgeschlagen: %(reason)s"
+
+#, python-format
 msgid "no command nor help topic '%(topic)s'"
 msgstr "kein Befehl oder Hilfethema '%(topic)s'"
 
@@ -2109,6 +2309,19 @@ msgid "LDAP timeout"
 msgstr "LDAP Timeout"
 
 #, python-format
+msgid "%(task)s LDAP task timeout, Task DN: '%(task_dn)s'"
+msgstr "LDAP Zeitüberschreitung für %(task)s , Task DN: '%(task_dn)s'"
+
+msgid "Configured time limit exceeded"
+msgstr "Vorgegebenes Zeitlimit überschritten"
+
+msgid "Configured size limit exceeded"
+msgstr "Vorgegebene Größenbeschränkung überschritten"
+
+msgid "Configured administrative server limit exceeded"
+msgstr "Vorgegebene administrative Serverbeschränkung überschritten"
+
+#, python-format
 msgid "Certificate operation cannot be completed: %(error)s"
 msgstr "Zertifikat-Operation kann nicht abgeschlossen werden: %(error)s"
 
@@ -2145,8 +2358,29 @@ msgid "%(name)s certificate is not valid"
 msgstr "%(name)s Zertifikat ist ungültig"
 
 #, python-format
+msgid "Schema is up to date (FP '%(fingerprint)s', TTL %(ttl)s s)"
+msgstr "Schema ist aktuell (FP '%(fingerprint)s', TTL %(ttl)s s)"
+
+#, python-format
+msgid "Host '%(hostname)s' does not have corresponding DNS A/AAAA record"
+msgstr "Der Host '%(hostname)s' besitzt keinen zugehörigen DNS A/AAAA Record"
+
+#, python-format
 msgid "DNS check failed: Expected {%(expected)s} got {%(got)s}"
 msgstr "DNS Check fehlerhaft: Erwartet {%(expected)s} bekommen {%(got)s}"
+
+#, python-format
+msgid "%(exception)s"
+msgstr "%(exception)s"
+
+#, python-format
+msgid ""
+"Forest '%(forest)s' has existing trust to forest(s) %(domains)s which "
+"prevents a trust to '%(conflict)s'"
+msgstr ""
+"Der Forest '%(forest)s' besitzt bereits eine Vertrauensstellung zu Forest(s) "
+"%(domains)s und kann daher keine Vertrauensstellung zu '%(conflict)s' "
+"aufbauen"
 
 msgid "Results are truncated, try a more specific search"
 msgstr ""
@@ -2170,6 +2404,15 @@ msgid ""
 msgstr ""
 "API Versionsnummer wurde nicht gesendet, Vorwärtskompatibiltät nicht "
 "garantiert. Nehme API Version %(server_version)s für Server an."
+
+msgid ""
+"DNS forwarder semantics changed since IPA 4.0.\n"
+"You may want to use forward zones (dnsforwardzone-*) instead.\n"
+"For more details read the docs."
+msgstr ""
+"Die DNS-Forwarder Semantiken haben sich seit IPA 4.0 geändert.\n"
+"Nutzen Sie stattdessen Forward Zones (dnsforwardzone-*).\n"
+"Für weitere Details schlagen Sie bitte in der Dokumentation nach."
 
 #, python-format
 msgid ""
@@ -2205,6 +2448,25 @@ msgstr ""
 
 #, python-format
 msgid ""
+"forward zone \"%(fwzone)s\" is not effective because of missing proper NS "
+"delegation in authoritative zone \"%(authzone)s\". Please add NS record "
+"\"%(ns_rec)s\" to parent zone \"%(authzone)s\"."
+msgstr ""
+"Die Forward Zone \"%(fwzone)s\" ist nicht aktiv, da eine ordnungsgemäße NS "
+"Delegation in der autoritativen Zone \"%(authzone)s\" nicht vorhanden ist. "
+"Bitte fügen Sie den NS Record \"%(ns_rec)s\" zur übergeordneten Zone "
+"\"%(authzone)s\" hinzu."
+
+#, python-format
+msgid ""
+"DNS server %(server)s does not support EDNS0 (RFC 6891): %(error)s.\n"
+"If DNSSEC validation is enabled on IPA server(s), please disable it."
+msgstr ""
+"Der DNS server %(server)s unterstützt EDNS0 (RFC 6891) nicht: %(error)s.\n"
+"Falls DNSSEC auf IPA Server(n) aktiviert ist, deaktivieren Sie diese."
+
+#, python-format
+msgid ""
 "DNSSEC validation failed: %(error)s.\n"
 "Please verify your DNSSEC configuration or disable DNSSEC validation on all "
 "IPA servers."
@@ -2216,6 +2478,45 @@ msgstr ""
 #, python-format
 msgid "'%(command)s' is deprecated. %(additional_info)s"
 msgstr "'%(command)s' ist veraltet. %(additional_info)s"
+
+#, python-format
+msgid "%(line)s"
+msgstr "%(line)s"
+
+#, python-format
+msgid "Search result has been truncated: %(reason)s"
+msgstr "Das Suchergebnis wurde gekürzt: %(reason)s"
+
+#, python-format
+msgid ""
+"Your trust to %(domain)s is broken. Please re-create it by running 'ipa "
+"trust-add' again."
+msgstr ""
+"Die Vertrauensstellung zu %(domain)s ist beschädigt. Bitte erneuern Sie sie "
+"durch erneuten Aufruf von 'ipa trust-add'."
+
+#, python-format
+msgid "DNS record(s) of host %(host)s could not be removed. (%(reason)s)"
+msgstr ""
+"DNS Record(s) von Host %(host)s konnten nicht entfernt werden. (%(reason)s)"
+
+#, python-format
+msgid ""
+"No DNS servers in IPA location %(location)s. Without DNS servers location is "
+"not working as expected."
+msgstr ""
+"Keine DNS Server in der IPA Lokation %(location)s. Ohne DNS Servers arbeitet "
+"die Lokation nicht wie erwartet."
+
+#, python-format
+msgid "%(count)d variables"
+msgstr "%(count)d Variablen"
+
+#, python-format
+msgid "%(count)d plugin loaded"
+msgid_plural "%(count)d plugins loaded"
+msgstr[0] "%(count)d Plugin geladen"
+msgstr[1] "%(count)d Plugins geladen"
 
 msgid "A list of LDAP entries"
 msgstr "Eine Liste von LDAP-Einträgen"
@@ -2276,6 +2577,10 @@ msgstr "darf höchstens %(maxlength)d Bytes groß sein"
 msgid "must be exactly %(length)d bytes"
 msgstr "muss genau %(length)d Bytes groß sein"
 
+#, python-format
+msgid "Failure decoding Certificate Signing Request: %s"
+msgstr "Fehler beim Dekodieren der Signaturanfrage für das Zertifikat: %s"
+
 msgid "must be Unicode text"
 msgstr "muss Unicode-Text sein"
 
@@ -2315,6 +2620,16 @@ msgid "must be relative"
 msgstr "muss relativ sein"
 
 #, python-format
+msgid "%(filename)s: file not found"
+msgstr "%(filename)s: Datei nicht gefunden"
+
+msgid "any of the configured servers"
+msgstr "einer der konfigurierten Server"
+
+msgid "Exceeded number of tries to forward a request."
+msgstr "Anzahl der Versuche zur Weiterleitung der Anfrage überschritten"
+
+#, python-format
 msgid "Permission denied: %(file)s"
 msgstr "Zugriff verweigert: %(file)s"
 
@@ -2347,8 +2662,20 @@ msgid "%(port)s is not a valid port"
 msgstr "%(port)s kein gültiger Port"
 
 #, python-format
+msgid "Retrieving CA cert chain failed: %s"
+msgstr "Abruf der Zertifikatkette fehlgeschlagen: %s"
+
+#, python-format
+msgid "request failed with HTTP status %d"
+msgstr "Anfrage fehlgeschlagen, HTTP-Status: %d"
+
+#, python-format
+msgid "Retrieving CA status failed: %s"
+msgstr "Abfrage des CA-Status fehlgeschlagen: %s"
+
+#, python-format
 msgid "objectclass %s not found"
-msgstr "objektklasse %s nicht gefunden"
+msgstr "Objektklasse %s nicht gefunden"
 
 msgid "A list of ACI values"
 msgstr "Liste von ACI-Werten"
@@ -2422,6 +2749,9 @@ msgstr[1] "%(count)d ACIs gefunden"
 #, python-format
 msgid "Renamed ACI to \"%(value)s\""
 msgstr "ACI umbenannt zu \"%(value)s\""
+
+msgid "commands for controlling sudo configuration"
+msgstr "Befehle zum Steuern der sudo-Konfiguration"
 
 msgid ""
 "\n"
@@ -2692,6 +3022,9 @@ msgstr "Manager %(manager)s nicht gefunden"
 msgid "can be at most %(len)d characters"
 msgstr "darf höchstens %(len)d Zeichen lang sein"
 
+msgid "Issuer"
+msgstr "Ausgabestelle"
+
 msgid "CA ACL"
 msgstr "CA ACL"
 
@@ -2721,27 +3054,14 @@ msgstr ""
 "Benutzerkategorie kann nicht auf 'Alle' gesetzt werden wenn es erlaubte "
 "Benutzer gibt"
 
-msgid "service"
-msgstr "Dienst"
-
-#, python-format
-msgid "Failure decoding Certificate Signing Request: %s"
-msgstr "Fehler beim Dekodieren der Signaturanfrage für das Zertifikat: %s"
-
 msgid "CA is not configured"
 msgstr "CA ist nicht konfiguriert"
-
-msgid "Issuer"
-msgstr "Ausgabestelle"
 
 msgid "Not Before"
 msgstr "Nicht vor"
 
 msgid "Not After"
 msgstr "Nicht nach"
-
-msgid "Fingerprint (MD5)"
-msgstr "Fingerabdruck (MD5)"
 
 msgid "Fingerprint (SHA1)"
 msgstr "Fingerabdruck (SHA1)"
@@ -2751,9 +3071,6 @@ msgstr "Seriennummer (hex)"
 
 msgid "Request status"
 msgstr "Anfragestatus"
-
-msgid "The principal for this request doesn't exist."
-msgstr "Der Principal für diese Anfrage existiert nicht"
 
 msgid "Status"
 msgstr "Status"
@@ -2767,21 +3084,106 @@ msgstr "Grund des Widerrufs"
 msgid "7 is not a valid revocation reason"
 msgstr "7 ist kein gültiger Grund für einen Widerruf."
 
+msgid "Stage Users"
+msgstr "Vorbereitete Benutzer"
+
+msgid "Stage User"
+msgstr "Vorbereiteter Benutzer"
+
+msgid "stage user"
+msgstr "Vorbereiteter Benutzer"
+
+msgid "stage users"
+msgstr "Vorbereitete Benutzer"
+
+#, python-format
+msgid "Added stage user \"%(value)s\""
+msgstr "Vorbereiteten Benutzer »%(value)s« hinzugefügt"
+
+msgid "givenname is required"
+msgstr "givenname wird benötigt"
+
+msgid "sn is required"
+msgstr "sn wird benötigt"
+
+#, python-format
+msgid "Deleted stage user \"%(value)s\""
+msgstr "Vorbereiteten Benutzer \"%(value)s\" gelöscht"
+
+#, python-format
+msgid "Modified stage user \"%(value)s\""
+msgstr "Vorbereiteten Benutzer »%(value)s« geändert"
+
+#, python-format
+msgid "%(count)d user matched"
+msgid_plural "%(count)d users matched"
+msgstr[0] "%(count)d passender Benutzer"
+msgstr[1] "%(count)d passende Benutzer"
+
+#, python-format
+msgid "Activate a stage user \"%(value)s\""
+msgstr "Vorbereiteten Benutzer \"%(value)s\" aktivieren."
+
+#, python-format
+msgid "active user with name \"%(user)s\" already exists"
+msgstr "Aktiver Benutzer mit Name \"%(user)s\" existiert bereits"
+
+#, python-format
+msgid "Stage user %s activated"
+msgstr "Vorbereiteten Benutzer %s aktiviert"
+
 msgid "configuration options"
 msgstr "Konfigurationsoptionen"
 
 msgid "Configuration"
 msgstr "Konfiguration"
 
+msgid "IPA master capable of PKINIT"
+msgstr "IPA Master mit Fähigkeit für PKINIT "
+
+msgid "IPA master which can process PKINIT requests"
+msgstr "IPA Master, der PKINIT Anfragen bearbeiten kann"
+
+msgid "Empty domain is not allowed"
+msgstr "Eine leere Domäne ist nicht zulässig"
+
+#, python-format
+msgid "Invalid domain name '%(domain)s': %(e)s"
+msgstr "Ungültiger Domänenname '%(domain)s': %(e)s"
+
+#, python-format
+msgid "Server has no information about domain '%(domain)s'"
+msgstr "Der Server hat keine Informationen über die Domäne '%(domain)s'"
+
+#, python-format
+msgid "Disabled domain '%(domain)s' is not allowed"
+msgstr "Deaktivierte Domäne '%(domain)s' ist nicht zulässig"
+
 msgid "The group doesn't exist"
 msgstr "Die Gruppe existiert nicht"
 
 #, python-format
 msgid "attribute \"%s\" not allowed"
-msgstr "Attribut »%s« ist nicht erlaubt"
+msgstr "Attribut \"%s\" ist nicht erlaubt"
 
 msgid "May not be empty"
 msgstr "Darf nicht leer sein"
+
+msgid "A list of SELinux users delimited by $ expected"
+msgstr "$-getrennte Liste von SELinux Benutzern erwartet"
+
+#, python-format
+msgid "SELinux user '%(user)s' is not valid: %(error)s"
+msgstr "SELinux Benutzer '%(user)s' ist ungültig: %(error)s"
+
+msgid "sudo command"
+msgstr "Sudo-Befehl"
+
+msgid "sudo commands"
+msgstr "Sudo-Befehle"
+
+msgid "Sudo Commands"
+msgstr "Sudo-Befehle"
 
 msgid "delegation"
 msgstr "Delegation"
@@ -2868,6 +3270,12 @@ msgstr "»%(value)s« gefunden"
 #, python-format
 msgid "Host '%(host)s' not found"
 msgstr "Host »%(host)s« nicht gefunden"
+
+msgid "sudo command group"
+msgstr "Sudo-Befehlsgruppe"
+
+msgid "sudo command groups"
+msgstr "Sudo-Befehlsgruppen"
 
 msgid "Domain Level cannot be lowered."
 msgstr "Domain Level kann nicht gesenkt werden."
@@ -3021,10 +3429,6 @@ msgid "Added host \"%(value)s\""
 msgstr "Host \"%(value)s\" hinzugefügt"
 
 #, python-format
-msgid "The host was added but the DNS update failed with: %(exc)s"
-msgstr "Der Host wurde hinzugefügt aber DNS Update ist fehlgeschlagen: %(exc)s"
-
-#, python-format
 msgid "Deleted host \"%(value)s\""
 msgstr "Host \"%(value)s\" gelöscht"
 
@@ -3065,9 +3469,6 @@ msgid "%(count)d hostgroup matched"
 msgid_plural "%(count)d hostgroups matched"
 msgstr[0] "%(count)d Hostgruppe gefunden"
 msgstr[1] "%(count)d Hostgruppen gefunden"
-
-msgid "Your session has expired. Please re-login."
-msgstr "Die Session ist abgelaufen. Bitte neu einloggen."
 
 msgid "Apply"
 msgstr "Anwenden"
@@ -3122,7 +3523,7 @@ msgid "Show Results"
 msgstr "Ergebnisse anzeigen"
 
 msgid "Two factor authentication (password + OTP)"
-msgstr "Zwei-Faktor-Authentifizierung (Passwort + Einmalpasswort)"
+msgstr "Zwei-Faktor-Authentifizierung (Passwort + OTP)"
 
 msgid "About"
 msgstr "Über"
@@ -3204,6 +3605,9 @@ msgstr "Speichern"
 
 msgid "Set"
 msgstr "Setzen"
+
+msgid "Stage"
+msgstr "Vorbereiten"
 
 msgid "Update"
 msgstr "Speichern"
@@ -3360,36 +3764,8 @@ msgstr "Vererbte Einstellungen überschreiben"
 msgid "PAD"
 msgstr "PAD"
 
-msgid ""
-"<i class=\"fa fa-info-circle\"></i> To login with <strong>username and "
-"password</strong>, enter them in the corresponding fields, then click Login."
-msgstr ""
-"<i class=\"fa fa-info-circle\"></i> Zum Login mit <strong>Benutzername und "
-"Passwort</strong> bitte entsprechende Felder ausfüllen und Login drücken."
-
 msgid "Logged In As"
 msgstr "Angemeldet als"
-
-#, python-brace-format
-msgid ""
-"<i class=\"fa fa-info-circle\"></i> To login with <strong>Kerberos</strong>, "
-"please make sure you have valid tickets (obtainable via kinit) and <a "
-"href='http://${host}/ipa/config/unauthorized.html'>configured</a> the "
-"browser correctly, then click Login."
-msgstr ""
-"<i class=\"fa fa-info-circle\"></i> Zum Login mit <strong>Kerberos</strong> "
-"stellen Sie bitte sicher, dass sie ein gültiges Ticket haben (via kinit) und "
-"der Browser richtig <a href='http://${host}/ipa/config/unauthorized."
-"html'>konfiguriert</a> ist. Dann klicken Sie Login."
-
-msgid "Login"
-msgstr "Einloggen"
-
-msgid "Logout"
-msgstr "Ausloggen"
-
-msgid "Logout error"
-msgstr "Fehler beim Ausloggen"
 
 msgid "Sync OTP Token"
 msgstr "OTP Token synchronisieren"
@@ -3460,9 +3836,6 @@ msgstr "Ausgegeben am"
 msgid "Issued To"
 msgstr "Ausgegeben an"
 
-msgid "MD5 Fingerprint"
-msgstr "MD5-Fingerabdruck"
-
 msgid "No Valid Certificate"
 msgstr "Kein gültiges Zertifikat"
 
@@ -3514,14 +3887,14 @@ msgstr "Gruppeneinstellungen"
 msgid "External"
 msgstr "Extern"
 
+msgid "Groups"
+msgstr "Gruppen"
+
 msgid "Change to external group"
 msgstr "In externe Gruppe umwandeln"
 
 msgid "Change to POSIX group"
 msgstr "In POSIX-Gruppe umwandeln"
-
-msgid "Normal"
-msgstr "Normal"
 
 msgid "POSIX"
 msgstr "POSIX"
@@ -3599,10 +3972,10 @@ msgid "Reset One-Time-Password"
 msgstr "Einmalpasswort zurücksetzen"
 
 msgid "Set OTP"
-msgstr "Einmalpasswort setzen"
+msgstr "OTP setzen"
 
 msgid "OTP set"
-msgstr "Einmalpasswort gesetzt"
+msgstr "OTP gesetzt"
 
 msgid "Set One-Time-Password"
 msgstr "Einmalpasswort setzen"
@@ -3620,7 +3993,7 @@ msgid "Kerberos Ticket Policy"
 msgstr "Kerberos-Ticket Richtlinien"
 
 msgid "Add OTP Token"
-msgstr "Einmalpasswort-Token hinzufügen"
+msgstr "OTP-Token hinzufügen"
 
 #, python-brace-format
 msgid ""
@@ -3662,6 +4035,21 @@ msgstr "Zählerbasiert (HOTP)"
 msgid "Time-based (TOTP)"
 msgstr "Zeitbasiert (TOTP)"
 
+msgid "Show/Set key"
+msgstr "Zeige/Setze Schlüssel"
+
+msgid "Modified: key not set"
+msgstr "Geändert: Schlüssel nicht gesetzt"
+
+msgid "Modified"
+msgstr "Geändert"
+
+msgid "New: key not set"
+msgstr "Neu: Schlüssel nicht gesetzt"
+
+msgid "New: key set"
+msgstr "Neu: Schlüssel gesetzt"
+
 msgid "Password Policy"
 msgstr "Passwort-Regeln"
 
@@ -3682,21 +4070,6 @@ msgstr "Öffentliche SSH Schlüssel"
 
 msgid "Set SSH key"
 msgstr "SSH Schlüssel speichern"
-
-msgid "Show/Set key"
-msgstr "Zeige/Setze Schlüssel"
-
-msgid "Modified: key not set"
-msgstr "Geändert: Schlüssel nicht gesetzt"
-
-msgid "Modified"
-msgstr "Geändert"
-
-msgid "New: key not set"
-msgstr "Neu: Schlüssel nicht gesetzt"
-
-msgid "New: key set"
-msgstr "Neu: Schlüssel gesetzt"
 
 msgid "Are you sure you want to activate selected users?"
 msgstr "SInd Sie sicher, dass Sie die ausgewählten Benutzer aktivieren wollen?"
@@ -3721,9 +4094,6 @@ msgstr "${count} user(s) wiederhergestellt"
 
 msgid "User categories"
 msgstr "Benutzerkategorien"
-
-msgid "Groups"
-msgstr "Gruppen"
 
 msgid "Allow"
 msgstr "Erlauben"
@@ -3945,9 +4315,6 @@ msgstr "Automount"
 msgid "DNS"
 msgstr "DNS"
 
-msgid "Host Based Access Control"
-msgstr "Hostbasierte Zugriffskontrolle (HBAC)"
-
 msgid "Identity"
 msgstr "Identität"
 
@@ -3959,9 +4326,6 @@ msgstr "Netzwerkdienste"
 
 msgid "Policy"
 msgstr "Regeln"
-
-msgid "Role Based Access Control"
-msgstr "Rollenbasierte Zugriffskontrolle (RBAC)"
 
 msgid "Sudo"
 msgstr "Sudo"
@@ -4013,16 +4377,6 @@ msgstr "Maximaler Wert ist ${value}"
 msgid "Minimum value is ${value}"
 msgstr "Minimaler Wert ist ${value}"
 
-#, python-format
-msgid "%(count)d variables"
-msgstr "%(count)d Variablen"
-
-#, python-format
-msgid "%(count)d plugin loaded"
-msgid_plural "%(count)d plugins loaded"
-msgstr[0] "%(count)d Plugin geladen"
-msgstr[1] "%(count)d Plugins geladen"
-
 msgid "One time password commands"
 msgstr "Einmalpasswort Befehle"
 
@@ -4053,7 +4407,7 @@ msgid "OTP tokens"
 msgstr "OTP Tokens"
 
 msgid "OTP Tokens"
-msgstr "OTP Tokens"
+msgstr "OTP Token"
 
 msgid "OTP Token"
 msgstr "OTP Token"
@@ -4104,6 +4458,9 @@ msgstr "Die Globale Passwortregel kann nicht gelöscht werden"
 msgid "priority cannot be set on global policy"
 msgstr "Priorität der globalen Regel kann nicht gesetzt werden"
 
+msgid "RADIUS Servers"
+msgstr "Radius Server"
+
 msgid "roles"
 msgstr "Rollen"
 
@@ -4148,6 +4505,9 @@ msgstr "Server"
 msgid "IPA Servers"
 msgstr "IPA-Server"
 
+msgid "service"
+msgstr "Dienst"
+
 msgid "services"
 msgstr "Dienste"
 
@@ -4173,72 +4533,6 @@ msgstr[1] "%(count)d passende Dienste"
 msgid "Disabled service \"%(value)s\""
 msgstr "Dienst »%(value)s« deaktiviert"
 
-msgid "Stage Users"
-msgstr "Vorbereitete Benutzer"
-
-msgid "Stage User"
-msgstr "Vorbereiteter Benutzer"
-
-msgid "stage user"
-msgstr "Vorbereiteter Benutzer"
-
-msgid "stage users"
-msgstr "Vorbereitete Benutzer"
-
-#, python-format
-msgid "Added stage user \"%(value)s\""
-msgstr "Vorbereiteten Benutzer »%(value)s« hinzugefügt"
-
-msgid "givenname is required"
-msgstr "givenname wird benötigt"
-
-msgid "sn is required"
-msgstr "sn wird benötigt"
-
-#, python-format
-msgid "Deleted stage user \"%(value)s\""
-msgstr "Vorbereiteten Benutzer \"%(value)s\" gelöscht"
-
-#, python-format
-msgid "Modified stage user \"%(value)s\""
-msgstr "Vorbereiteten Benutzer »%(value)s« geändert"
-
-#, python-format
-msgid "%(count)d user matched"
-msgid_plural "%(count)d users matched"
-msgstr[0] "%(count)d passender Benutzer"
-msgstr[1] "%(count)d passende Benutzer"
-
-#, python-format
-msgid "Activate a stage user \"%(value)s\""
-msgstr "Vorbereiteten Benutzer \"%(value)s\" aktivieren."
-
-#, python-format
-msgid "active user with name \"%(user)s\" already exists"
-msgstr "Aktiver Benutzer mit Name \"%(user)s\" existiert bereits"
-
-#, python-format
-msgid "Stage user %s activated"
-msgstr "Vorbereiteten Benutzer %s aktiviert"
-
-msgid "commands for controlling sudo configuration"
-msgstr "Befehle zum Steuern der sudo-Konfiguration"
-
-msgid "sudo command"
-msgstr "Sudo-Befehl"
-
-msgid "sudo commands"
-msgstr "Sudo-Befehle"
-
-msgid "Sudo Commands"
-msgstr "Sudo-Befehle"
-
-msgid "sudo command group"
-msgstr "Sudo-Befehlsgruppe"
-
-msgid "sudo command groups"
-msgstr "Sudo-Befehlsgruppen"
-
 msgid "this option has been deprecated."
 msgstr "Diese Option ist veraltet."
 
@@ -4253,6 +4547,76 @@ msgstr "Sudo-Regel"
 
 msgid "users"
 msgstr "Benutzer"
+
+#, python-format
+msgid ""
+" Alternatively, following servers are capable of running this command: "
+"%(masters)s"
+msgstr ""
+"Alternativ sind folgende Server in der Lage den Befehl auszuführen: "
+"%(masters)s"
+
+msgid ""
+"Cannot perform the selected command without Samba 4 support installed. Make "
+"sure you have installed server-trust-ad sub-package of IPA."
+msgstr ""
+"Kann den ausgewählten Befehl nicht ohne Samba 4 Unterstützung ausführen. "
+"Stellen Sie sicher, dass das server-trust-ad Paket von IPA installiert ist."
+
+msgid ""
+"Cannot perform the selected command without Samba 4 instance configured on "
+"this machine. Make sure you have run ipa-adtrust-install on this server."
+msgstr ""
+"Kann den ausgewählten Befehl nicht ohne eine konfigurierte Samba 4 Instanz "
+"auf dieser Maschine ausführen. Stellen Sie sicher, dass ipa-adtrust-install "
+"auf dieser Maschine ausgeführt wurde."
+
+msgid "trust"
+msgstr "Vertrauensstellung"
+
+msgid "trusts"
+msgstr "Vertrauensstellungen"
+
+msgid "Trust"
+msgstr "Vertrauensstellung"
+
+msgid "UPN suffixes"
+msgstr "UPN Suffixe"
+
+msgid "External trust"
+msgstr "Externe Vertrauensstellung"
+
+msgid "missing base_id"
+msgstr "fehlende base_id"
+
+msgid "trust type"
+msgstr "Vertrauensstellungstyp"
+
+msgid "only \"ad\" is supported"
+msgstr "nur \"ad\" ist unterstützt"
+
+msgid ""
+"To establish trust with Active Directory, the domain name and the realm name "
+"of the IPA server must match"
+msgstr ""
+"Zum Aufbau einer Vertrauensstellung mit einem Active Directory müssen "
+"Domänenname und Realm des IPA Servers übereinstimmen"
+
+msgid "unsupported trust type"
+msgstr "nicht unterstützte Vetrauensstellung"
+
+msgid "SID"
+msgstr "SID"
+
+msgid ""
+"This command relies on the existence of the \"editors\" group, but this "
+"group was not found."
+msgstr ""
+"Dieser Befehl erfordert die Existenz der \"editors\" Gruppe, diese wurde "
+"jedoch nicht gefunden."
+
+msgid "Domain enabled"
+msgstr "Domäne aktiviert"
 
 #, python-format
 msgid "Added user \"%(value)s\""
@@ -4310,164 +4674,8 @@ msgstr "Aktuelle Zeit"
 msgid "Account disabled: %(disabled)s"
 msgstr "Konto deaktiviert: %(disabled)s"
 
-#, c-format
-msgid "cannot open configuration file %s\n"
-msgstr "Konfigurationsdatei %s konnte nicht geöffnet werden\n"
-
-#, c-format
-msgid "cannot stat() configuration file %s\n"
-msgstr "Aufruf von »stat« für Konfigurationsdatei %s nicht möglich\n"
-
-#, c-format
-msgid "out of memory\n"
-msgstr "Nicht genügend Speicher\n"
-
-#, c-format
-msgid "read error\n"
-msgstr "Lesefehler\n"
-
-#, c-format
-msgid "No keys accepted by KDC\n"
-msgstr "KDC akzeptiert keine Schlüssel\n"
-
-#, c-format
-msgid "Out of memory \n"
-msgstr "Nicht genügend Speicher\n"
-
-#, c-format
-msgid "Unable to initialize ldap library!\n"
-msgstr "ldap-Bibliothek konnte nicht initialisiert werden!\n"
-
-#, c-format
-msgid "Out of Memory!\n"
-msgstr "Nicht genügend Speicher!\n"
-
-msgid "New Principal Password"
-msgstr "Neues Principal-Passwort"
-
-msgid "Verify Principal Password"
-msgstr "Principal-Passwort bestätigen"
-
-msgid "Output only on errors"
-msgstr "Ausgabe nur bei Fehlern"
-
-msgid "Server Name"
-msgstr "Servername"
-
-msgid "LDAP password"
-msgstr "LDAP-Passwort"
-
-#, c-format
-msgid "Kerberos context initialization failed\n"
-msgstr "Initialisierung des Kerberos-Kontexts fehlgschlagen\n"
-
-#, c-format
-msgid "Supported encryption types:\n"
-msgstr "Unterstützte Verschlüsselungstypen:\n"
-
-#, c-format
-msgid "Warning: failed to convert type (#%d)\n"
-msgstr "Warnung: Typ konnte nicht umgewandelt werden (#%d)\n"
-
-#, c-format
-msgid "Out of memory!"
-msgstr "Nicht genügend Speicher!"
-
-#, c-format
-msgid "Unable to initialize connection to ldap server: %s"
-msgstr "Verbindung zum LDAP-Server konnte nicht initialisiert werden: %s"
-
-#, c-format
-msgid "Unable to set LDAP version\n"
-msgstr "LDAP-Version konnte nicht gesetzt werden\n"
-
-#, c-format
-msgid "Bind failed: %s\n"
-msgstr "Bind fehlgeschlagen: %s\n"
-
-#, c-format
-msgid "No values for %s"
-msgstr "Keine Werte für %s"
-
-#, c-format
-msgid "Incorrect password.\n"
-msgstr "Inkorrektes Passwort.\n"
-
-#, c-format
-msgid "Error obtaining initial credentials: %s.\n"
-msgstr "Fehler beim Holen der initialen Anmeldedaten: %s.\n"
-
-#, c-format
-msgid "Unable to generate Kerberos Credential Cache\n"
-msgstr ""
-"Anmeldedaten-Zwischenspeicher für Kerberos konnte nicht erzeugt werden\n"
-
-#, c-format
-msgid "Error storing creds in credential cache: %s.\n"
-msgstr ""
-"Fehler beim Speichern der Anmeldedaten im Anmeldedaten-Zwischenspeicher: "
-"%s.\n"
-
-#, c-format
-msgid "fork() failed\n"
-msgstr "fork() fehlgeschlagen\n"
-
-#, c-format
-msgid "ipa-getkeytab not found\n"
-msgstr "ipa-getkeytab nicht gefunden\n"
-
-#, c-format
-msgid "ipa-getkeytab has bad permissions?\n"
-msgstr "ipa-getkeytab hat falsche Zugriffsrechte?\n"
-
-#, c-format
-msgid "executing ipa-getkeytab failed, errno %d\n"
-msgstr "Ausführen von ipa-getkeytab fehgeschlagen, errno %d\n"
-
-msgid "Print the raw XML-RPC output in GSSAPI mode"
-msgstr "Die rohe XML-RPC-Ausgabe im GSSAPI-Modus anzeigen"
-
-msgid "Quiet mode. Only errors are displayed."
-msgstr "Stiller Modus. Nur Fehler werden ausgegeben."
-
-msgid "Hostname of this server"
-msgstr "Hostname dieses Servers"
-
-msgid "hostname"
-msgstr "Hostname"
-
-msgid "IPA Server to use"
-msgstr "Zu verwendender IPA-Server"
-
-msgid "filename"
-msgstr "Dateiname"
-
-msgid "LDAP password (if not using Kerberos)"
-msgstr "LDAP-Passwort (falls Kerberos nicht verwendet wird)"
-
-msgid "password"
-msgstr "Passwort"
-
-#, c-format
-msgid "Removing principal %s\n"
-msgstr "Principal %s wird entfernt\n"
-
-#, c-format
-msgid "principal not found\n"
-msgstr "Principal nicht gefunden\n"
-
-#, c-format
-msgid "realm not found\n"
-msgstr "Realm nicht gefunden\n"
-
-msgid "Print debugging information"
-msgstr "Ausgabe von Debug-Informationen"
-
-msgid "Debugging output"
-msgstr "Debugging-Ausgabe"
-
-msgid "Remove all principals in this realm"
-msgstr "Alle Principals in diesem Realm entfernen"
+msgid "Unknown"
+msgstr "Unbekannt"
 
 msgid "Out of memory\n"
 msgstr "Nicht genügend Speicher\n"

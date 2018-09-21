@@ -1,33 +1,26 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
 #
-# Translators:
-# jdennis <jdennis@redhat.com>, 2011
-# Teguh Dwicaksana <dheche@songolimo.net>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:10-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Indonesian (http://www.transifex.com/projects/p/freeipa/"
-"language/id/)\n"
-"Language: id\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Zanata 3.9.3\n"
-
-#, python-format
-msgid "Enter %(label)s again to verify: "
-msgstr "Masukkan %(label)s lagi untuk verifikasi:"
+"PO-Revision-Date: 2015-01-05 01:10+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #, c-format
 msgid "Passwords do not match!"
 msgstr "Kata sandi tidak cocok!"
+
+#, python-format
+msgid "Enter %(label)s again to verify: "
+msgstr "Masukkan %(label)s lagi untuk verifikasi:"
 
 #, python-format
 msgid "unknown error %(code)d from %(server)s: %(error)s"
@@ -100,6 +93,15 @@ msgstr "Operasi sertifikat tidak dapat diselesaikan: %(error)s"
 msgid "Results are truncated, try a more specific search"
 msgstr "Hasil yang terpotong, coba cari dengan lebih spesifik"
 
+#, python-format
+msgid "%(count)d variables"
+msgstr "%(count)d variabel"
+
+#, python-format
+msgid "%(count)d plugin loaded"
+msgid_plural "%(count)d plugins loaded"
+msgstr[0] "%(count)d pengaya telah dimuat"
+
 msgid "incorrect type"
 msgstr "type salah"
 
@@ -141,6 +143,10 @@ msgstr "panjang maksimum yang diperbolehkan %(maxlength)d byte"
 #, python-format
 msgid "must be exactly %(length)d bytes"
 msgstr "harus tepat %(length)d byte"
+
+#, python-format
+msgid "Failure decoding Certificate Signing Request: %s"
+msgstr "Gagal mengurai Permintaan Penandatanganan Sertifikat: %s"
 
 msgid "must be Unicode text"
 msgstr "harus teks Unicode"
@@ -190,8 +196,9 @@ msgid_plural "%(count)d ACIs matched"
 msgstr[0] "%(count)d ACI sesuai"
 
 #, python-format
-msgid "Failure decoding Certificate Signing Request: %s"
-msgstr "Gagal mengurai Permintaan Penandatanganan Sertifikat: %s"
+msgid "%(count)d user matched"
+msgid_plural "%(count)d users matched"
+msgstr[0] "%(count)d pengguna sesuai"
 
 #, python-format
 msgid "Added group \"%(value)s\""
@@ -244,22 +251,8 @@ msgid "%(count)d hostgroup matched"
 msgid_plural "%(count)d hostgroups matched"
 msgstr[0] "%(count)d hostgroup sesuai"
 
-#, python-format
-msgid "%(count)d variables"
-msgstr "%(count)d variabel"
-
-#, python-format
-msgid "%(count)d plugin loaded"
-msgid_plural "%(count)d plugins loaded"
-msgstr[0] "%(count)d pengaya telah dimuat"
-
 msgid "priority cannot be set on global policy"
 msgstr "prioritas tidak dapat ditetapkan pada kebijakan global"
-
-#, python-format
-msgid "%(count)d user matched"
-msgid_plural "%(count)d users matched"
-msgstr[0] "%(count)d pengguna sesuai"
 
 #, python-format
 msgid "Added user \"%(value)s\""

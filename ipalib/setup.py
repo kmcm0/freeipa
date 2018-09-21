@@ -1,4 +1,3 @@
-#!/usr/bin/python2
 # Copyright (C) 2007  Red Hat
 # see file 'COPYING' for use and warranty information
 #
@@ -34,5 +33,17 @@ if __name__ == '__main__':
         package_dir={'ipalib': ''},
         packages=[
             "ipalib",
+            "ipalib.install",
         ],
+        install_requires=[
+            "ipaplatform",
+            "ipapython",
+            "netaddr",
+            "pyasn1",
+            "pyasn1-modules",
+            "six",
+        ],
+        extras_require={
+            "install": ["ipaplatform"],
+        },
     )

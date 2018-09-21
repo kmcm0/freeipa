@@ -1,18 +1,22 @@
 # Abhijeet Kasurde <akasurde@redhat.com>, 2015. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-12-04 03:55-0500\n"
-"Last-Translator: Abhijeet Kasurde <akasurde@redhat.com>\n"
-"Language-Team: Marathi\n"
-"Language: mr\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2015-12-04 03:55+0000\n"
+"Last-Translator: Abhijeet Kasurde <akasurde@redhat.com>\n"
+"Language-Team: Marathi\n"
+"Language: mr\n"
+"X-Generator: Zanata 4.4.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "पासवर्ड जुळत नाही!"
 
 msgid "A string searched in all relevant object attributes"
 msgstr "एक शब्द सर्व संबंधित ऑब्जेक्ट गुणधर्मात शोधला"
@@ -20,10 +24,6 @@ msgstr "एक शब्द सर्व संबंधित ऑब्जे�
 #, python-format
 msgid "Enter %(label)s again to verify: "
 msgstr "सत्यापित करण्यासाठी आपण पुन्हा %(label)s प्रविष्ट करा:"
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "पासवर्ड जुळत नाही!"
 
 msgid "No matching entries found"
 msgstr "कोणतेही जुळणारे नोंदी आढळले"

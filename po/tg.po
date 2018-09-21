@@ -1,24 +1,68 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
 #
-# Translators:
-# Petr Viktorin <encukou@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:12-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Tajik (http://www.transifex.com/projects/p/freeipa/language/"
-"tg/)\n"
-"Language: tg\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2015-01-05 01:12+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Tajik\n"
+"Language: tg\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, c-format
+msgid "out of memory\n"
+msgstr "берун аз хотира\n"
+
+#, c-format
+msgid "read error\n"
+msgstr "хатогии хониш\n"
+
+#, c-format
+msgid "Out of memory \n"
+msgstr "Берун аз хотира \n"
+
+#, c-format
+msgid "Out of Memory!\n"
+msgstr "Берун аз хотира!\n"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "Паролҳо номувофиқанд!"
+
+msgid "Server Name"
+msgstr "Номи сервер"
+
+msgid "LDAP DN"
+msgstr "LDAP DN"
+
+msgid "LDAP password"
+msgstr "Пароли LDAP"
+
+#, c-format
+msgid "Out of memory!"
+msgstr "Берун аз хотира!"
+
+#, c-format
+msgid "Out of memory!\n"
+msgstr "Берун аз хотира!\n"
+
+#, c-format
+msgid "Incorrect password.\n"
+msgstr "Пароли нодуруст.\n"
+
+msgid "hostname"
+msgstr "номи мизбон"
+
+msgid "filename"
+msgstr "номи файл"
+
+msgid "password"
+msgstr "парол"
 
 #, python-format
 msgid "File %(file)s not found"
@@ -26,6 +70,9 @@ msgstr "Файли %(file)s пайдо нашуд."
 
 msgid "Error"
 msgstr "Хатогӣ"
+
+msgid "Principal"
+msgstr "Асосӣ"
 
 msgid "Delete all?"
 msgstr "Ҳамаро нест мекунед?"
@@ -80,9 +127,6 @@ msgstr "Мавзӯъ"
 
 msgid "Serial number"
 msgstr "Рақами силсилавӣ"
-
-msgid "Principal"
-msgstr "Асосӣ"
 
 msgid "Hostname"
 msgstr "Номи мизбон"
@@ -149,10 +193,6 @@ msgstr "Вазифа"
 
 msgid "Username"
 msgstr "Номи корбар"
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "Паролҳо номувофиқанд!"
 
 msgid "Passwords do not match"
 msgstr "Паролҳо номувофиқанд"
@@ -255,11 +295,11 @@ msgstr "Ташкилот"
 msgid "Validity"
 msgstr "Саҳеҳият"
 
-msgid "Host Name"
-msgstr "Номи мизбон"
-
 msgid "Groups"
 msgstr "Гуруҳҳо"
+
+msgid "Host Name"
+msgstr "Номи мизбон"
 
 msgid "Allow"
 msgstr "Иҷозат додан"
@@ -278,52 +318,6 @@ msgstr "Сиёсат"
 
 msgid "Sudo"
 msgstr "Sudo"
-
-#, c-format
-msgid "out of memory\n"
-msgstr "берун аз хотира\n"
-
-#, c-format
-msgid "read error\n"
-msgstr "хатогии хониш\n"
-
-#, c-format
-msgid "Out of memory \n"
-msgstr "Берун аз хотира \n"
-
-#, c-format
-msgid "Out of Memory!\n"
-msgstr "Берун аз хотира!\n"
-
-msgid "Server Name"
-msgstr "Номи сервер"
-
-msgid "LDAP DN"
-msgstr "LDAP DN"
-
-msgid "LDAP password"
-msgstr "Пароли LDAP"
-
-#, c-format
-msgid "Out of memory!"
-msgstr "Берун аз хотира!"
-
-#, c-format
-msgid "Out of memory!\n"
-msgstr "Берун аз хотира!\n"
-
-#, c-format
-msgid "Incorrect password.\n"
-msgstr "Пароли нодуруст.\n"
-
-msgid "hostname"
-msgstr "номи мизбон"
-
-msgid "filename"
-msgstr "номи файл"
-
-msgid "password"
-msgstr "парол"
 
 msgid "Out of memory\n"
 msgstr "Берун аз хотира \n"

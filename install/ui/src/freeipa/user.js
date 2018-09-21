@@ -146,6 +146,7 @@ return {
                 IPA.user.stageuser_sidebar_policy
             ],
             deleter_dialog: {
+                title: '@i18n:objects.user.remove',
                 $factory: IPA.user.deleter_dialog
             }
         },
@@ -192,7 +193,8 @@ return {
                             name: 'krbprincipalname',
                             item_name: 'principal',
                             child_spec: {
-                                $type: 'krb_principal'
+                                $type: 'non_editable_row',
+                                data_name: 'krb-principal'
                             }
                         },
                         {
@@ -215,6 +217,18 @@ return {
                                 result_index: 3
                             },
                             label: '@i18n:objects.cert.certificates'
+                        },
+                        {
+                            $type: 'certmap_multivalued',
+                            name: 'ipacertmapdata',
+                            item_name: 'certmapdata',
+                            child_spec: {
+                                $type: 'non_editable_row',
+                                data_name: 'certmap'
+                            },
+                            tooltip: {
+                                title: '@mc:user_add_certmapdata.doc'
+                            }
                         },
                         {
                             $type: 'checkboxes',
@@ -598,6 +612,7 @@ IPA.user.details_facet = function(spec, no_init) {
             retry: false,
             options: {
                 user: [ pkey ],
+                sizelimit: 0,
                 all: true
             }
         });
@@ -607,6 +622,11 @@ IPA.user.details_facet = function(spec, no_init) {
         return batch;
     };
 
+    that.update_on_success = function(data, text_status, xhr) {
+        that.on_update.notify();
+        that.nofify_update_success();
+        that.refresh();
+    };
 
     if (!no_init) that.init_details_facet();
 
@@ -721,7 +741,7 @@ IPA.user.password_dialog = function(spec) {
     var that = dialogs.command_dialog(spec);
 
     that.is_self_service = function() {
-        var self_service = that.args[0] === IPA.whoami.uid[0];
+        var self_service = that.args[0] === IPA.whoami.data.uid[0];
         return self_service;
     };
 
@@ -881,7 +901,8 @@ IPA.user.self_service_other_user_evaluator = function(spec) {
         that.state = [];
 
         var value = that.adapter.load(data);
-        if (IPA.is_selfservice && IPA.whoami.uid[0] !== value[0]) {
+        if (IPA.is_aduser_selfservice ||
+            (IPA.is_selfservice && IPA.whoami.data.uid[0] !== value[0])) {
             that.state.push('self-service-other');
         }
 

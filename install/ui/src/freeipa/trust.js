@@ -147,8 +147,7 @@ return {
                     fields: [
                         {
                             $type: 'multivalued',
-                            name: 'ipantadditionalsuffixes',
-                            read_only: true
+                            name: 'ipantadditionalsuffixes'
                         }
                     ]
                 },
@@ -332,7 +331,10 @@ return {
                 widget: 'method'
             }
         ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.trust.remove',
+    },
 };};
 
 IPA.trust.adder_dialog = function(spec) {

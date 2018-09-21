@@ -101,7 +101,7 @@ class radiusproxy(LDAPObject):
         'ipatokenradiustimeout', 'ipatokenradiusretries', 'ipatokenusermapattribute'
     ]
     search_attributes = ['cn', 'description', 'ipatokenradiusserver']
-    rdn_is_primary_key = True
+    allow_rename = True
     label = _('RADIUS Servers')
     label_singular = _('RADIUS Server')
 
@@ -116,7 +116,7 @@ class radiusproxy(LDAPObject):
             label=_('Description'),
             doc=_('A description of this RADIUS proxy server'),
         ),
-        Str('ipatokenradiusserver+', validate_radiusserver,
+        Str('ipatokenradiusserver', validate_radiusserver,
             cli_name='server',
             label=_('Server'),
             doc=_('The hostname or IP (with or without port)'),

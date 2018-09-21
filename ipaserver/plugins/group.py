@@ -20,6 +20,8 @@
 
 import six
 
+import logging
+
 from ipalib import api
 from ipalib import Int, Str, Flag
 from ipalib.constants import PATTERN_GROUPUSER_NAME
@@ -48,6 +50,8 @@ from ipapython.dn import DN
 if six.PY3:
     unicode = str
 
+logger = logging.getLogger(__name__)
+
 if api.env.in_server and api.env.context in ['lite', 'server']:
     try:
         import ipaserver.dcerpc
@@ -58,10 +62,10 @@ if api.env.in_server and api.env.context in ['lite', 'server']:
 __doc__ = _("""
 Groups of users
 
-Manage groups of users. By default, new groups are POSIX groups. You
-can add the --nonposix option to the group-add command to mark a new group
-as non-POSIX. You can use the --posix argument with the group-mod command
-to convert a non-POSIX group into a POSIX group. POSIX groups cannot be
+Manage groups of users, groups, or services. By default, new groups are POSIX
+groups. You can add the --nonposix option to the group-add command to mark a
+new group as non-POSIX. You can use the --posix argument with the group-mod
+command to convert a non-POSIX group into a POSIX group. POSIX groups cannot be
 converted to non-POSIX groups.
 
 Every group must have a description.
@@ -70,6 +74,10 @@ POSIX groups must have a Group ID (GID) number. Changing a GID is
 supported but can have an impact on your file permissions. It is not necessary
 to supply a GID when creating a group. IPA will generate one automatically
 if it is not provided.
+
+Groups members can be users, other groups, and Kerberos services. In POSIX
+environments only users will be visible as group members, but nested groups and
+groups of services can be used for IPA management purposes.
 
 EXAMPLES:
 
@@ -96,6 +104,9 @@ EXAMPLES:
 
  Add multiple users to the "localadmins" group:
    ipa group-add-member --users=test1 --users=test2 localadmins
+
+ To add Kerberos services to the "printer admins" group:
+   ipa group-add-member --services=CUPS/some.host printeradmins
 
  Remove a user from the "localadmins" group:
    ipa group-remove-member --users=test2 localadmins
@@ -167,13 +178,13 @@ class group(LDAPObject):
     ]
     uuid_attribute = 'ipauniqueid'
     attribute_members = {
-        'member': ['user', 'group'],
+        'member': ['user', 'group', 'service'],
         'memberof': ['group', 'netgroup', 'role', 'hbacrule', 'sudorule'],
-        'memberindirect': ['user', 'group'],
+        'memberindirect': ['user', 'group', 'service'],
         'memberofindirect': ['group', 'netgroup', 'role', 'hbacrule',
         'sudorule'],
     }
-    rdn_is_primary_key = True
+    allow_rename = True
     managed_permissions = {
         'System: Read Groups': {
             'replaces_global_anonymous_aci': True,
@@ -194,6 +205,13 @@ class group(LDAPObject):
                 'member', 'memberof', 'memberuid', 'memberuser', 'memberhost',
             },
         },
+        'System: Read External Group Membership': {
+            'ipapermbindruletype': 'all',
+            'ipapermright': {'read', 'search', 'compare'},
+            'ipapermdefaultattr': {
+                'ipaexternalmember',
+            },
+        },
         'System: Add Groups': {
             'ipapermright': {'add'},
             'replaces': [
@@ -212,6 +230,16 @@ class group(LDAPObject):
                 '(targetattr = "member")(target = "ldap:///cn=*,cn=groups,cn=accounts,$SUFFIX")(version 3.0;acl "permission:Modify Group membership";allow (write) groupdn = "ldap:///cn=Modify Group membership,cn=permissions,cn=pbac,$SUFFIX";)',
                 '(targetfilter = "(!(cn=admins))")(targetattr = "member")(target = "ldap:///cn=*,cn=groups,cn=accounts,$SUFFIX")(version 3.0;acl "permission:Modify Group membership";allow (write) groupdn = "ldap:///cn=Modify Group membership,cn=permissions,cn=pbac,$SUFFIX";)',
             ],
+            'default_privileges': {
+                'Group Administrators', 'Modify Group membership'
+            },
+        },
+        'System: Modify External Group Membership': {
+            'ipapermright': {'write'},
+            'ipapermtargetfilter': [
+                '(objectclass=ipaexternalgroup)',
+            ],
+            'ipapermdefaultattr': {'ipaexternalmember'},
             'default_privileges': {
                 'Group Administrators', 'Modify Group membership'
             },
@@ -349,7 +377,16 @@ class group_del(LDAPDelete):
     def post_callback(self, ldap, dn, *keys, **options):
         assert isinstance(dn, DN)
         try:
+            # A user removing a group may have no rights to remove
+            # an associated policy. Make sure we log an explanation
+            # in the Apache logs for this.
             api.Command['pwpolicy_del'](keys[-1])
+        except errors.ACIError:
+            logger.warning(
+                "While removing group %s, user lacked permissions "
+                "to remove corresponding password policy. This is "
+                "not an issue and can be ignored.", keys[-1]
+            )
         except errors.NotFound:
             pass
 
@@ -422,7 +459,7 @@ class group_mod(LDAPUpdate):
         # using --setattr.
         if call_func.__name__ == 'update_entry':
             if isinstance(exc, errors.ObjectclassViolation):
-                if 'gidNumber' in exc.message and 'posixGroup' in exc.message:
+                if 'gidNumber' in str(exc) and 'posixGroup' in str(exc):
                     raise errors.RequirementError(name='gidnumber')
         raise exc
 
@@ -642,17 +679,27 @@ class group_detach(LDAPQuery):
         try:
             user_attrs = ldap.get_entry(user_dn)
         except errors.NotFound:
-            self.obj.handle_not_found(*keys)
-        is_managed = self.obj.has_objectclass(user_attrs['objectclass'], 'mepmanagedentry')
+            raise self.obj.handle_not_found(*keys)
+        is_managed = self.obj.has_objectclass(
+            user_attrs['objectclass'], 'mepmanagedentry'
+        )
         if (not ldap.can_write(user_dn, "objectclass") or
-            not (ldap.can_write(user_dn, "mepManagedEntry")) and is_managed):
-            raise errors.ACIError(info=_('not allowed to modify user entries'))
+                not ldap.can_write(user_dn, "mepManagedEntry")
+                and is_managed):
+            raise errors.ACIError(
+                info=_('not allowed to modify user entries')
+            )
 
         group_attrs = ldap.get_entry(group_dn)
-        is_managed = self.obj.has_objectclass(group_attrs['objectclass'], 'mepmanagedby')
+        is_managed = self.obj.has_objectclass(
+            group_attrs['objectclass'], 'mepmanagedby'
+        )
         if (not ldap.can_write(group_dn, "objectclass") or
-            not (ldap.can_write(group_dn, "mepManagedBy")) and is_managed):
-            raise errors.ACIError(info=_('not allowed to modify group entries'))
+                not ldap.can_write(group_dn, "mepManagedBy")
+                and is_managed):
+            raise errors.ACIError(
+                info=_('not allowed to modify group entries')
+            )
 
         objectclasses = user_attrs['objectclass']
         try:

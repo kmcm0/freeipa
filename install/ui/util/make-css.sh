@@ -18,8 +18,9 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+set -o errexit
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-lesscpy -x $DIR/../less/ipa.less > $DIR/../css/ipa.css
+py3-lesscpy -x $DIR/../less/ipa.less > $DIR/../css/ipa.css
 exit $?

@@ -19,9 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""
-Plugins not accessible directly through the CLI, commands used internally
-"""
 from ipalib import Command
 from ipalib import Str
 from ipalib.frontend import Local
@@ -30,13 +27,15 @@ from ipalib.text import _
 from ipalib.util import json_serialize
 from ipalib.plugable import Registry
 
+__doc__ = _("""
+Plugins not accessible directly through the CLI, commands used internally
+""")
+
 register = Registry()
 
 @register()
 class json_metadata(Command):
-    """
-    Export plugin meta-data for the webUI.
-    """
+    __doc__ = _('Export plugin meta-data for the webUI.')
     NO_CLI = True
 
 
@@ -149,12 +148,13 @@ class json_metadata(Command):
 
 @register()
 class i18n_messages(Command):
+    __doc__ = _('Internationalization messages')
     NO_CLI = True
 
     messages = {
         "ajax": {
             "401": {
-                "message": _("Your session has expired. Please re-login."),
+                "message": _("Your session has expired. Please log in again."),
             },
         },
         "actions": {
@@ -219,6 +219,8 @@ class i18n_messages(Command):
             "apply": _("Apply"),
             "back": _("Back"),
             "cancel": _("Cancel"),
+            "clear": _("Clear"),
+            "clear_title": _("Clear all fields on the page."),
             "close": _("Close"),
             "disable": _("Disable"),
             "download": _("Download"),
@@ -230,13 +232,17 @@ class i18n_messages(Command):
             "get": _("Get"),
             "hide": _("Hide"),
             "issue": _("Issue"),
+            "match": _("Match"),
+            "match_title": _("Match users according to certificate."),
+            "migrate": _("Migrate"),
             "ok": _("OK"),
             "refresh": _("Refresh"),
             "refresh_title": _("Reload current settings from the server."),
             "remove": _("Delete"),
             "remove_hold": _("Remove hold"),
             "reset": _("Reset"),
-            "reset_password_and_login": _("Reset Password and Login"),
+            "reset_password": _("Reset Password"),
+            "reset_password_and_login": _("Reset Password and Log in"),
             "restore": _("Restore"),
             "retry": _("Retry"),
             "revert": _("Revert"),
@@ -249,6 +255,10 @@ class i18n_messages(Command):
             "unapply": ("Un-apply"),
             "update": _("Update"),
             "view": _("View"),
+        },
+        "customization": {
+            "customization": _("Customization"),
+            "table_pagination": _("Pagination Size"),
         },
         "details": {
             "collapse_all": _("Collapse All"),
@@ -277,7 +287,7 @@ class i18n_messages(Command):
             "prospective": _("Prospective"),
             "redirection": _("Redirection"),
             "remove_empty": _("Select entries to be removed."),
-            "remove_title": _("Remove ${entity}"),
+            "remove_title_default": _("Remove"),
             "result": _("Result"),
             "show_details": _("Show details"),
             "success": _("Success"),
@@ -332,23 +342,85 @@ class i18n_messages(Command):
             "pad": _("PAD"),
         },
         "login": {
-            "form_auth": _("<i class=\"fa fa-info-circle\"></i> To login with <strong>username and password</strong>, enter them in the corresponding fields, then click Login."),
+            "authenticating": _("Authenticating"),
+            "cert_auth_failed": _(
+                "Authentication with personal certificate failed"),
+            "cert_msg": _(
+                "<i class=\"fa fa-info-circle\"></i> To log in with "
+                "<strong>certificate</strong>, please make sure you have "
+                "valid personal certificate. "
+            ),
+            "continue_msg": _("Continue to next page"),
+            "form_auth": _(
+                "<i class=\"fa fa-info-circle\"></i> To log in with "
+                "<strong>username and password</strong>, enter them in the "
+                "corresponding fields, then click 'Log in'."),
+            "form_auth_failed": _("Login failed due to an unknown reason"),
             "header": _("Logged In As"),
-            "krb_auth_msg": _("<i class=\"fa fa-info-circle\"></i> To login with <strong>Kerberos</strong>, please make sure you have valid tickets (obtainable via kinit) and <a href='http://${host}/ipa/config/unauthorized.html'>configured</a> the browser correctly, then click Login."),
-            "login": _("Login"),
-            "logout": _("Logout"),
-            "logout_error": _("Logout error"),
+            "krb_auth_failed": _("Authentication with Kerberos failed"),
+            "krb_auth_msg": _(
+                "<i class=\"fa fa-info-circle\"></i> To log in with "
+                "<strong>Kerberos</strong>, please make sure you have valid "
+                "tickets (obtainable via kinit) and <a href='http://${host}/"
+                "ipa/config/ssbrowser.html'>configured</a> the browser "
+                "correctly, then click 'Log in'."),
+            "loading": _("Loading"),
+            "krbprincipal_expired": _(
+                "Kerberos Principal you entered is expired"),
+            "loading_md": _("Loading data"),
+            "login": _("Log in"),
+            "login_certificate": _("Log In Using Certificate"),
+            "login_certificate_desc": _("Log in using personal certificate"),
+            "logout": _("Log out"),
+            "logout_error": _("Log out error"),
             "password": _("Password"),
+            "password_and_otp": _("Password or Password+One-Time-Password"),
+            "redirect_msg": _("You will be redirected in ${count}s"),
             "sync_otp_token": _("Sync OTP Token"),
+            "synchronizing": _("Synchronizing"),
             "username": _("Username"),
+            "user_locked": _("The user account you entered is locked"),
         },
         "measurement_units": {
             "number_of_passwords": _("number of passwords"),
             "seconds": _("seconds"),
         },
+        "migration": {
+            "migrating": _("Migrating"),
+            "migration_error_msg": _(
+                "There was a problem with your request. Please, try again "
+                "later."),
+            "migration_failure_msg": _(
+                "Password migration was not successful"),
+            "migration_info_msg": _(
+                "<h1>Password Migration</h1><p>If you have been sent here by "
+                "your administrator, your personal information is being "
+                "migrated to a new identity management solution (IPA).</p><p>"
+                "Please, enter your credentials in the form to complete the "
+                "process. Upon successful login your kerberos account will be "
+                "activated.</p>"),
+            "migration_invalid_password": _(
+                "The password or username you entered is incorrect"),
+            "migration_success": _("Password migration was successful"),
+        },
         "objects": {
             "aci": {
                 "attribute": _("Attribute"),
+            },
+            "acidelegation": {
+                "remove": _("Remove delegations"),
+            },
+            "acipermission": {
+                "remove": _("Remove permissions"),
+            },
+            "aciprivilege": {
+                "remove": _("Remove privileges"),
+            },
+            "acirole": {
+                "remove": _("Remove roles"),
+            },
+            "aciselfservice": {
+                "remove": _("Remove self service permissions"),
             },
             "automember": {
                 "add_condition": _("Add Condition into ${pkey}"),
@@ -361,18 +433,25 @@ class i18n_messages(Command):
                 "hostgrouprule": _("Host group rule"),
                 "hostgrouprules": _("Host group rules"),
                 "inclusive": _("Inclusive"),
+                "remove": _("Remove auto membership rules"),
                 "usergrouprule": _("User group rule"),
                 "usergrouprules": _("User group rules"),
             },
             "automountkey": {
+                "remove": _("Remove automount keys"),
             },
             "automountlocation": {
-                "identity": _("Automount Location Settings")
+                "identity": _("Automount Location Settings"),
+                "remove": _("Remove automount locations"),
             },
             "automountmap": {
                 "map_type": _("Map Type"),
                 "direct": _("Direct"),
                 "indirect": _("Indirect"),
+                "remove": _("Remove automount maps"),
+            },
+            "ca": {
+                "remove": _("Remove certificate authorities"),
             },
             "caacl": {
                 "all": _("All"),
@@ -384,12 +463,16 @@ class i18n_messages(Command):
                 "ipaenabledflag": _("Rule status"),
                 "no_ca_msg": _("If no CAs are specified, requests to the default CA are allowed."),
                 "profile": _("Profiles"),
+                "remove": _("Remove CA ACLs"),
                 "specified_cas": _("Specified CAs"),
                 "specified_hosts": _("Specified Hosts and Groups"),
                 "specified_profiles": _("Specified Profiles"),
                 "specified_services": _("Specified Services and Groups"),
                 "specified_users": _("Specified Users and Groups"),
                 "who": _("Permitted to have certificates issued"),
+            },
+            "caprofile": {
+                "remove": _("Remove certificate profiles"),
             },
             "cert": {
                 "aa_compromise": _("AA Compromise"),
@@ -426,7 +509,6 @@ class i18n_messages(Command):
                 "issued_on": _("Issued On"),
                 "issued_to": _("Issued To"),
                 "key_compromise": _("Key Compromise"),
-                "md5_fingerprint": _("MD5 Fingerprint"),
                 "missing": _("No Valid Certificate"),
                 "new_certificate": _("New Certificate"),
                 "new_cert_format": _("Certificate in base64 or PEM format"),
@@ -464,6 +546,27 @@ class i18n_messages(Command):
                 "view_certificate": _("Certificate for ${entity} ${primary_key}"),
                 "view_certificate_btn": _("View Certificate"),
             },
+            "certmap_match": {
+                "cert_data": _("Certificate Data"),
+                "cert_for_match": _("Certificate For Match"),
+                "facet_label": _("Certificate Mapping Match"),
+                "domain": _("Domain"),
+                "matched_users": _("Matched Users"),
+                "userlogin": _("User Login"),
+            },
+            "certmap": {
+                "adder_title": _("Add Certificate Mapping Data"),
+                "data_label": _("Certificate mapping data"),
+                "certificate": _("Certificate"),
+                "conf_str": _("Configuration string"),
+                "deleter_content": _("Do you want to remove certificate mapping data ${data}?"),
+                "deleter_title": _("Remove Certificate Mapping Data"),
+                "issuer": _("Issuer"),
+                "issuer_subject": _("Issuer and subject"),
+                "remove": _("Remove certificate identity mapping rules"),
+                "subject": _("Subject"),
+                "version": _("Version"),
+            },
             "config": {
                 "group": _("Group Options"),
                 "search": _("Search Options"),
@@ -481,6 +584,9 @@ class i18n_messages(Command):
                 "update_dns": _("Update System DNS Records"),
                 "update_dns_dialog_msg": _("Do you want to update system DNS records?"),
                 "updated_dns": _("System DNS records updated"),
+            },
+            "dnsforwardzone": {
+                "remove": _("Remove DNS forward zones"),
             },
             "dnsrecord": {
                 "data": _("Data"),
@@ -506,6 +612,7 @@ class i18n_messages(Command):
                 "identity": _("DNS Zone Settings"),
                 "add_permission":_("Add Permission"),
                 "add_permission_confirm":_("Are you sure you want to add permission for DNS Zone ${object}?"),
+                "remove": _("Remove DNS zones"),
                 "remove_permission": _("Remove Permission"),
                 "remove_permission_confirm": _("Are you sure you want to remove permission for DNS Zone ${object}?"),
                 "skip_dns_check": _("Skip DNS check"),
@@ -522,11 +629,15 @@ class i18n_messages(Command):
             "group": {
                 "details": _("Group Settings"),
                 "external": _("External"),
+                "groups": _("Groups"),
+                "group_categories": _("Group categories"),
                 "make_external": _("Change to external group"),
                 "make_posix": _("Change to POSIX group"),
                 "nonposix": _("Non-POSIX"),
                 "posix": _("POSIX"),
+                "remove": _("Remove user groups"),
                 "type": _("Group Type"),
+                "user_groups": _("User Groups"),
             },
             "hbacrule": {
                 "any_host": _("Any Host"),
@@ -534,6 +645,7 @@ class i18n_messages(Command):
                 "anyone": _("Anyone"),
                 "host": _("Accessing"),
                 "ipaenabledflag": _("Rule status"),
+                "remove": _("Remove HBAC rules"),
                 "service": _("Via Service"),
                 "specified_hosts": _("Specified Hosts and Groups"),
                 "specified_services": _("Specified Services and Groups"),
@@ -541,8 +653,10 @@ class i18n_messages(Command):
                 "user": _("Who"),
             },
             "hbacsvc": {
+                "remove": _("Remove HBAC services"),
             },
             "hbacsvcgroup": {
+                "remove": _("Remove HBAC service groups"),
                 "services": _("Services"),
             },
             "hbactest": {
@@ -580,6 +694,7 @@ class i18n_messages(Command):
                 "password_set_button": _("Set OTP"),
                 "password_set_success": _("OTP set"),
                 "password_set_title": _("Set One-Time-Password"),
+                "remove": _("Remove hosts"),
                 "status": _("Status"),
                 "unprovision": _("Unprovision"),
                 "unprovision_confirmation": _("Are you sure you want to unprovision this host?"),
@@ -587,12 +702,15 @@ class i18n_messages(Command):
                 "unprovisioned": _("Host unprovisioned"),
             },
             "hostgroup": {
+                "host_group": _("Host Groups"),
                 "identity": _("Host Group Settings"),
+                "remove": _("Remove host groups"),
             },
             "idoverrideuser": {
                 "anchor_label": _("User to override"),
                 "anchor_tooltip": _("Enter trusted or IPA user login. Note: search doesn't list users from trusted domains."),
                 "anchor_tooltip_ad": _("Enter trusted user login."),
+                "profile": _("Profile"),
             },
             "idoverridegroup": {
                 "anchor_label": _("Group to override"),
@@ -609,6 +727,9 @@ class i18n_messages(Command):
                 "apply_hosts_title": _("Apply ID view ${primary_key} on ${entity}"),
                 "ipaassignedidview": _("Assigned ID View"),
                 "overrides_tab": _("${primary_key} overrides:"),
+                "remove": _("Remove ID views"),
+                "remove_users": _("Remove user ID overrides"),
+                "remove_groups": _("Remove group ID overrides"),
                 "unapply_hostgroups": _("Un-apply from host groups"),
                 "unapply_hostgroups_all_title": _("Un-apply ID Views from hosts of hostgroups"),
                 "unapply_hostgroups_title": _("Un-apply ID View ${primary_key} from hosts of ${entity}"),
@@ -629,6 +750,8 @@ class i18n_messages(Command):
                 "hostgroups": _("Host Groups"),
                 "hosts": _("Hosts"),
                 "identity": _("Netgroup Settings"),
+                "netgroups": _("Netgroups"),
+                "remove": _("Remove netgroups"),
                 "specified_hosts": _("Specified Hosts and Groups"),
                 "specified_users": _("Specified Users and Groups"),
                 "user": _("User"),
@@ -643,6 +766,7 @@ class i18n_messages(Command):
                 "details": _("OTP Token Settings"),
                 "disable": _("Disable token"),
                 "enable": _("Enable token"),
+                "remove": _("Remove OTP tokens"),
                 "show_qr": _("Show QR code"),
                 "show_uri": _("Show configuration uri"),
                 "type_hotp": _("Counter-based (HOTP)"),
@@ -659,8 +783,18 @@ class i18n_messages(Command):
             "privilege": {
                 "identity": _("Privilege Settings"),
             },
+            "publickey": {
+                "set_dialog_help": _("Public key:"),
+                "set_dialog_title": _("Set public key"),
+                "show_set_key": _("Show/Set key"),
+                "status_mod_ns": _("Modified: key not set"),
+                "status_mod_s": _("Modified"),
+                "status_new_ns": _("New: key not set"),
+                "status_new_s": _("New: key set"),
+            },
             "pwpolicy": {
                 "identity": _("Password Policy"),
+                "remove": _("Remove password policies"),
             },
             "idrange": {
                 "details": _("Range Settings"),
@@ -669,6 +803,7 @@ class i18n_messages(Command):
                 "ipaidrangesize": _("Range size"),
                 "ipanttrusteddomainsid": _("Domain SID"),
                 "ipasecondarybaserid": _("Secondary RID base"),
+                "remove": _("Remove ID ranges"),
                 "type": _("Range type"),
                 "type_ad": _("Active Directory domain"),
                 "type_ad_posix": _("Active Directory domain with POSIX attributes"),
@@ -679,6 +814,7 @@ class i18n_messages(Command):
             },
             "radiusproxy": {
                 "details": _("RADIUS Proxy Server Settings"),
+                "remove": _("Remove RADIUS servers"),
             },
             "realmdomains": {
                 "identity": _("Realm Domains"),
@@ -695,6 +831,7 @@ class i18n_messages(Command):
                 "any_host": _("Any Host"),
                 "anyone": _("Anyone"),
                 "host": _("Host"),
+                "remove": _("Remove selinux user maps"),
                 "specified_hosts": _("Specified Hosts and Groups"),
                 "specified_users": _("Specified Users and Groups"),
                 "user": _("User"),
@@ -704,8 +841,8 @@ class i18n_messages(Command):
                 "label_singular": _("Server Role"),
             },
             "servers": {
-                "ca_warning_message": _("It is strongly recommended to keep the CA services installed on more than one server."),
-                "ca_warning_title": _("Warning: Only One CA Server Detected"),
+                "svc_warning_title": _("Warning: Consider service replication"),
+                "svc_warning_message": _("It is strongly recommended to keep the following services installed on more than one server:"),
                 "remove_server": _("Delete Server"),
                 "remove_server_msg": _("Deleting a server removes it permanently from the topology. Note that this is a non-reversible action.")
             },
@@ -716,6 +853,7 @@ class i18n_messages(Command):
                 "host": _("Host Name"),
                 "missing": _("Kerberos Key Not Present"),
                 "provisioning": _("Provisioning"),
+                "remove": _("Remove services"),
                 "service": _("Service"),
                 "status": _("Status"),
                 "unprovision": _("Unprovision"),
@@ -740,6 +878,8 @@ class i18n_messages(Command):
                 "activate_success": _("${count} user(s) activated"),
                 "label": _("Stage users"),
                 "preserved_label": _("Preserved users"),
+                "preserved_remove": _("Remove preserved users"),
+                "remove": _("Remove stage users"),
                 "stage_confirm": _("Are you sure you want to stage selected users?"),
                 "stage_success": _("${count} users(s) staged"),
                 "stage_one_confirm": _("Are you sure you want to stage ${object}?"),
@@ -750,9 +890,11 @@ class i18n_messages(Command):
             },
             "sudocmd": {
                 "groups": _("Groups"),
+                "remove": _("Remove sudo commands"),
             },
             "sudocmdgroup": {
                 "commands": _("Commands"),
+                "remove": _("Remove sudo command groups"),
             },
             "sudorule": {
                 "allow": _("Allow"),
@@ -768,6 +910,7 @@ class i18n_messages(Command):
                 "option_added": _("Option added"),
                 "option_removed": _("${count} option(s) removed"),
                 "options": _("Options"),
+                "remove": _("Remove sudo rules"),
                 "runas": _("As Whom"),
                 "specified_commands": _("Specified Commands and Groups"),
                 "specified_groups": _("Specified Groups"),
@@ -775,11 +918,20 @@ class i18n_messages(Command):
                 "specified_users": _("Specified Users and Groups"),
                 "user": _("Who"),
             },
+            "sudooptions": {
+                "remove": _("Remove sudo options"),
+            },
             "topology": {
                 "autogenerated": _("Autogenerated"),
                 "segment_details": _("Segment details"),
                 "replication_config": _("Replication configuration"),
                 "insufficient_domain_level" : _("Managed topology requires minimal domain level ${domainlevel}"),
+            },
+            "topologylocation": {
+                "remove": _("Remove IPA locations"),
+            },
+            "topologysegment": {
+                "remove": _("Remove topology segments"),
             },
             "trust": {
                 "account": _("Account"),
@@ -792,6 +944,7 @@ class i18n_messages(Command):
                 "ipantflatname": _("Domain NetBIOS name"),
                 "ipanttrusteddomainsid": _("Domain Security Identifier"),
                 "preshared_password": _("Pre-shared password"),
+                "remove": _("Remove trusts"),
                 "trustdirection": _("Trust direction"),
                 "truststatus": _("Trust status"),
                 "trusttype": _("Trust type"),
@@ -814,10 +967,40 @@ class i18n_messages(Command):
                 "mode_delete": _("delete"),
                 "mode_preserve": _("preserve"),
                 "noprivate": _("No private group"),
+                "remove": _("Remove users"),
                 "status_confirmation": _("Are you sure you want to ${action} the user?<br/>The change will take effect immediately."),
                 "status_link": _("Click to ${action}"),
                 "unlock": _("Unlock"),
                 "unlock_confirm": _("Are you sure you want to unlock user ${object}?"),
+            },
+            "vault": {
+                "add_warn_arch_ret": _(
+                    "Secrets can be added/retrieved to vault only by using "
+                    "vault-archive and vault-retrieve from CLI."
+                    ),
+                "add_warn_standard": _(
+                    "Content of 'standard' vaults can be seen by users with "
+                    "higher privileges (admins)."
+                    ),
+                "asymmetric_type": _("Asymmetric"),
+                "config_title": _("Vaults Config"),
+                "group": _("Group"),
+                "members": _("Members"),
+                "my_vaults_title": _("My User Vaults"),
+                "owners": _("Owners"),
+                "service": _("Service"),
+                "service_vaults_title": _("Service Vaults"),
+                "shared": _("Shared"),
+                "shared_vaults_title": _("Shared Vaults"),
+                "standard_type": _("Standard"),
+                "symmetric_type": _("Symmetric"),
+                "type": _("Vault Type"),
+                "type_tooltip": _(
+                    "Only standard vaults can be created in WebUI, use CLI "
+                    "for other types of vaults."
+                    ),
+                "user": _("User"),
+                "user_vaults_title": _("User Vaults"),
             },
         },
         "password": {
@@ -825,7 +1008,8 @@ class i18n_messages(Command):
             "current_password_required": _("Current password is required"),
             "expires_in": _("Your password expires in ${days} days."),
             "first_otp": _("First OTP"),
-            "invalid_password": _("The password or username you entered is incorrect."),
+            "invalid_password": _(
+                "The password or username you entered is incorrect"),
             "new_password": _("New Password"),
             "new_password_required": _("New password is required"),
             "otp": _("OTP"),
@@ -837,6 +1021,8 @@ class i18n_messages(Command):
             "password": _("Password"),
             "password_and_otp": _("Password or Password+One-Time-Password"),
             "password_change_complete": _("Password change complete"),
+            "password_expired": _(
+                "Your password has expired. Please enter a new password."),
             "password_must_match": _("Passwords must match"),
             "reset_failure": _("Password reset was not successful."),
             "reset_password": _("Reset Password"),
@@ -844,6 +1030,13 @@ class i18n_messages(Command):
             "second_otp": _("Second OTP"),
             "token_id": _("Token ID"),
             "verify_password": _("Verify Password"),
+        },
+        "profile-menu": {
+            "about": _("About"),
+            "configuration": _("Customization"),
+            "logout": _("Log out"),
+            "password_reset": _("Change password"),
+            "profile": _("Profile"),
         },
         "search": {
             "delete_confirm": _("Are you sure you want to delete selected entries?"),
@@ -860,6 +1053,188 @@ class i18n_messages(Command):
             "truncated": _("Query returned more results than the configured size limit. Displaying the first ${counter} results."),
             "unselect_all": _("Unselect All"),
         },
+        "ssbrowser-page": {
+            "header": _(
+                "<h1>Browser Kerberos Setup</h1>\n"
+                "\n"
+            ),
+            "firefox-header": _(
+                "<h2>Firefox</h2>\n"
+                "\n"
+                "<p>\n"
+                "            You can configure Firefox to use Kerberos for "
+                "Single Sign-on. The following instructions will guide you in "
+                "configuring your web browser to send your Kerberos "
+                "credentials to the appropriate Key Distribution Center which "
+                "enables Single Sign-on.\n"
+                "</p>\n"
+                "\n"
+            ),
+            "firefox-actions": _(
+                "<ol>\n"
+                "<li>\n"
+                "<p>\n"
+                "<a href=\"ca.crt\" id=\"ca-link\" class=\"btn btn-default\">"
+                "Import Certificate Authority certificate</a>\n"
+                "</p>\n"
+                "<p>\n"
+                "                    Make sure you select <b>all three</b> "
+                "checkboxes.\n"
+                "</p>\n"
+                "</li>\n"
+                "<li>\n"
+                "                In the address bar of Firefox, type <code>"
+                "about:config</code> to display the list of current "
+                "configuration options.\n"
+                "</li>\n"
+                "<li>\n"
+                "                In the Filter field, type <code>negotiate"
+                "</code> to restrict the list of options.\n"
+                "</li>\n"
+                "<li>\n"
+                "                Double-click the <code>network.negotiate-auth"
+                ".trusted-uris</code> entry to display the Enter string value "
+                "dialog box.\n"
+                "</li>\n"
+                "<li>\n"
+                "                Enter the name of the domain against which "
+                "you want to authenticate, for example, <code class=\""
+                "example-domain\">.example.com.</code>\n"
+                "</li>\n"
+                "<li><a href=\"../ui/index.html\" id=\"return-link\" class=\""
+                "btn btn-default\">Return to Web UI</a></li>\n"
+                "</ol>\n"
+                "\n"
+            ),
+            "chrome-header": _(
+                "<h2>Chrome</h2>\n"
+                "\n"
+                "<p>\n"
+                "            You can configure Chrome to use Kerberos for "
+                "Single Sign-on. The following instructions will guide you in "
+                "configuring your web browser to send your Kerberos "
+                "credentials to the appropriate Key Distribution Center which "
+                "enables Single Sign-on.\n"
+                "</p>\n"
+                "\n"
+            ),
+            "chrome-certificate": _(
+                "<h3>Import CA Certificate</h3>\n"
+                "<ol>\n"
+                "<li>\n"
+                "                Download the <a href=\"ca.crt\">CA "
+                "certificate</a>. Alternatively, if the host is also an IdM "
+                "client, you can find the certificate in /etc/ipa/ca.crt.\n"
+                "</li>\n"
+                "<li>\n"
+                "                Click the menu button with the <em>Customize "
+                "and control Google Chrome</em> tooltip, which is by default "
+                "in the top right-hand corner of Chrome, and click <em>"
+                "Settings</em>.\n"
+                "</li>\n"
+                "<li>\n"
+                "                Click <em>Show advanced settings</em> to "
+                "display more options, and then click the <em>Manage "
+                "certificates</em> button located under the HTTPS/SSL heading."
+                "\n"
+                "</li>\n"
+                "<li>\n"
+                "                In the <em>Authorities</em> tab, click the "
+                "<em>Import</em> button at the bottom.\n"
+                "</li>\n"
+                "<li>Select the CA certificate file that you downloaded in the"
+                " first step.</li>\n"
+                "</ol>\n"
+                "\n"
+            ),
+            "chrome-spnego": _(
+                "<h3>\n"
+                "            Enable SPNEGO (Simple and Protected GSSAPI "
+                "Negotiation Mechanism) to Use Kerberos Authentication\n"
+                "            in Chrome\n"
+                "</h3>\n"
+                "<ol>\n"
+                "<li>\n"
+                "                Make sure you have the necessary directory "
+                "created by running:\n"
+                "<div><code>\n"
+                "                    [root@client]# mkdir -p /etc/opt/chrome/"
+                "policies/managed/\n"
+                "</code></div>\n"
+                "</li>\n"
+                "<li>\n"
+                "                Create a new <code>/etc/opt/chrome/policies/"
+                "managed/mydomain.json</code> file with write privileges "
+                "limited to the system administrator or root, and include the "
+                "following line:\n"
+                "<div><code>\n"
+                "                    { \"AuthServerWhitelist\": \"*<span "
+                "class=\"example-domain\">.example.com.</span>\" }\n"
+                "</code></div>\n"
+                "<div>\n"
+                "                    You can do this by running:\n"
+                "</div>\n"
+                "<div><code>\n"
+                "                    [root@server]# echo \'{ \""
+                "AuthServerWhitelist\": \"*<span class=\"example-domain\">"
+                ".example.com.</span>\" }' > /etc/opt/chrome/policies/managed/"
+                "mydomain.json\n"
+                "</code></div>\n"
+                "</li>\n"
+                "</ol>\n"
+                "<ol>\n"
+                "<p>\n"
+                "<strong>Note:</strong> If using Chromium, use <code>/etc/"
+                "chromium/policies/managed/</code> instead of <code>/etc/opt/"
+                "chrome/policies/managed/</code> for the two SPNEGO Chrome "
+                "configuration steps above.\n"
+                "</p>\n"
+                "</ol>\n"
+                "\n"
+            ),
+            "ie-header": _(
+                "<h2>Internet Explorer</h2>\n"
+                "<p><strong>WARNING:</strong> Internet Explorer is no longer a"
+                " supported browser.</p>\n"
+                "<p>\n"
+                "            Once you are able to log into the workstation "
+                "with your kerberos key you are now able to use that ticket in"
+                " Internet Explorer.\n"
+                "</p>\n"
+                "<p>\n"
+            ),
+            "ie-actions": _(
+                "<strong>Log into the Windows machine using an account of your"
+                " Kerberos realm (administrative domain)</strong>\n"
+                "</p>\n"
+                "<p>\n"
+                "<strong>In Internet Explorer, click Tools, and then click "
+                "Internet Options.</strong>\n"
+                "</p>\n"
+                "<div>\n"
+                "<ol>\n"
+                "<li>Click the Security tab</li>\n"
+                "<li>Click Local intranet</li>\n"
+                "<li>Click Sites </li>\n"
+                "<li>Click Advanced </li>\n"
+                "<li>Add your domain to the list</li>\n"
+                "</ol>\n"
+                "<ol>\n"
+                "<li>Click the Security tab</li>\n"
+                "<li>Click Local intranet</li>\n"
+                "<li>Click Custom Level</li>\n"
+                "<li>Select Automatic logon only in Intranet zone</li>\n"
+                "</ol>\n"
+                "\n"
+                "<ol>\n"
+                "<li> Visit a kerberized web site using IE (You must use the "
+                "fully-qualified Domain Name in the URL)</li>\n"
+                "<li><strong> You are all set.</strong></li>\n"
+                "</ol>\n"
+                "</div>\n"
+                "\n"
+            ),
+        },
         "status": {
             "disable": _("Disable"),
             "disabled": _("Disabled"),
@@ -875,17 +1250,34 @@ class i18n_messages(Command):
             "automount": _("Automount"),
             "cert": _("Certificates"),
             "dns": _("DNS"),
-            "hbac": _("Host Based Access Control"),
+            "hbac": _("Host-Based Access Control"),
             "identity": _("Identity"),
             "ipaserver": _("IPA Server"),
             "network_services": _("Network Services"),
             "policy": _("Policy"),
-            "role": _("Role Based Access Control"),
+            "role": _("Role-Based Access Control"),
             "sudo": _("Sudo"),
             "topology": _("Topology"),
             "trust": _("Trusts"),
         },
         "true": _("True"),
+        "unauthorized-page": _(
+            "<h1>Unable to verify your Kerberos credentials</h1>\n"
+            "<p>\n"
+            "            Please make sure that you have valid Kerberos "
+            "tickets (obtainable via <strong>kinit</strong>), and that you"
+            " have configured your browser correctly.\n"
+            "</p>\n"
+            "\n"
+            "<h2>Browser configuration</h2>\n"
+            "\n"
+            "<div id=\"first-time\">\n"
+            "<p>\n"
+            "                If this is your first time, please <a href="
+            "\"ssbrowser.html\">configure your browser</a>.\n"
+            "</p>\n"
+            "</div>\n"
+        ),
         "widget": {
             "api_browser": _("API Browser"),
             "first": _("First"),
@@ -910,6 +1302,7 @@ class i18n_messages(Command):
                 "min_value": _("Minimum value is ${value}"),
                 "net_address": _("Not a valid network address (examples: 2001:db8::/64, 192.0.2.0/24)"),
                 "parse": _("Parse error"),
+                "positive_number": _("Must be a positive number"),
                 "port": _("'${port}' is not a valid port"),
                 "required": _("Required field"),
                 "unsupported": _("Unsupported value"),

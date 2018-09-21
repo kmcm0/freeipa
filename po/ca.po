@@ -1,24 +1,30 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
-#
-# Translators:
-# Jordi Mas <jmas@softcatala.org>, 2013
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:08-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/freeipa/language/"
-"ca/)\n"
-"Language: ca\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2018-02-24 10:56+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
+"Language-Team: Catalan\n"
+"Language: ca\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "Server Name"
+msgstr "Nom del servidor"
+
+msgid "filename"
+msgstr "nomdelfitxer"
+
+msgid "password"
+msgstr "contrasenya"
+
+msgid "Debugging output"
+msgstr "Sortida de depuració"
 
 msgid "Error"
 msgstr "Error"
@@ -174,7 +180,7 @@ msgid "Home directory"
 msgstr "Directori de l'usuari"
 
 msgid "Login shell"
-msgstr "Intèrpret d'ordres de l'inici de sessió"
+msgstr "Shell d'inici de sessió"
 
 msgid "Continue"
 msgstr "Continua"
@@ -377,12 +383,6 @@ msgstr "Cerca"
 msgid "False"
 msgstr "Fals"
 
-msgid "Login"
-msgstr "Entra"
-
-msgid "Logout"
-msgstr "Surt"
-
 msgid "seconds"
 msgstr "segons"
 
@@ -437,9 +437,6 @@ msgstr "Emès a nom de"
 msgid "Key Compromise"
 msgstr "Clau en compromís"
 
-msgid "MD5 Fingerprint"
-msgstr "Empremta digital MD5"
-
 msgid "Note"
 msgstr "Nota"
 
@@ -470,8 +467,8 @@ msgstr "Tipus de registre"
 msgid "External"
 msgstr "Extern"
 
-msgid "Normal"
-msgstr "Normal"
+msgid "Groups"
+msgstr "Grups"
 
 msgid "Who"
 msgstr "Qui"
@@ -494,14 +491,11 @@ msgstr "No coincideix"
 msgid "Host Name"
 msgstr "Nom de l'ordinador"
 
-msgid "Active Directory domain"
-msgstr "Domini d'Active Directory"
-
 msgid "Modified"
 msgstr "Modificat"
 
-msgid "Groups"
-msgstr "Grups"
+msgid "Active Directory domain"
+msgstr "Domini d'Active Directory"
 
 msgid "Allow"
 msgstr "Permet"
@@ -554,26 +548,14 @@ msgstr "serveis"
 msgid "users"
 msgstr "usuaris"
 
-msgid "Unknown"
-msgstr "Desconegut"
-
 msgid "Trust"
 msgstr "Confiança"
 
 msgid "Time now"
 msgstr "L'hora actual"
 
-msgid "Server Name"
-msgstr "Nom del servidor"
-
-msgid "filename"
-msgstr "nomdelfitxer"
-
-msgid "password"
-msgstr "contrasenya"
-
-msgid "Debugging output"
-msgstr "Sortida de depuració"
+msgid "Unknown"
+msgstr "Desconegut"
 
 msgid "Out of memory\n"
 msgstr "Sense memòria\n"

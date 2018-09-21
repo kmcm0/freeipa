@@ -1,4 +1,3 @@
-#!/usr/bin/python2
 # Copyright (C) 2007  Red Hat
 # see file 'COPYING' for use and warranty information
 #
@@ -34,27 +33,51 @@ if __name__ == '__main__':
         package_dir={'ipatests': ''},
         packages=[
             "ipatests",
-            "ipatests.pytest_plugins",
+            "ipatests.pytest_ipa",
+            "ipatests.pytest_ipa.integration",
             "ipatests.test_cmdline",
             "ipatests.test_install",
             "ipatests.test_integration",
+            "ipatests.test_ipaclient",
             "ipatests.test_ipalib",
+            "ipatests.test_ipaplatform",
             "ipatests.test_ipapython",
             "ipatests.test_ipaserver",
             "ipatests.test_ipaserver.test_install",
-            "ipatests.test_pkcs10",
             "ipatests.test_webui",
             "ipatests.test_xmlrpc",
             "ipatests.test_xmlrpc.tracker"
         ],
         scripts=['ipa-run-tests', 'ipa-test-config', 'ipa-test-task'],
         package_data={
-            'ipatests': ['pytest.ini'],
+            'ipatests': ['prci_definitions/*'],
             'ipatests.test_install': ['*.update'],
             'ipatests.test_integration': ['scripts/*'],
+            'ipatests.test_ipaclient': ['data/*/*/*'],
             'ipatests.test_ipalib': ['data/*'],
-            'ipatests.test_pkcs10': ['*.csr'],
+            'ipatests.test_ipaplatform': ['data/*'],
             "ipatests.test_ipaserver": ['data/*'],
             'ipatests.test_xmlrpc': ['data/*'],
+        },
+        install_requires=[
+            "cryptography",
+            "dnspython",
+            "gssapi",
+            "ipaclient",
+            "ipalib",
+            "ipaplatform",
+            "ipapython",
+            "polib",
+            "pytest",
+            "pytest_multihost",
+            "python-ldap",
+            "six",
+        ],
+        extras_require={
+            "integration": ["dbus-python", "pyyaml", "ipaserver"],
+            "ipaserver": ["ipaserver"],
+            "webui": ["selenium", "pyyaml", "ipaserver"],
+            "xmlrpc": ["ipaserver"],
+            ":python_version<'3'": ["mock"],
         }
     )

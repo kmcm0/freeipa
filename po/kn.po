@@ -1,34 +1,31 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
 #
-# Translators:
-# Chandru <gundachandru@gmail.com>, 2010
-# jdennis <jdennis@redhat.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:10-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Kannada (http://www.transifex.com/projects/p/freeipa/language/"
-"kn/)\n"
-"Language: kn\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2015-01-05 01:10+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Kannada\n"
+"Language: kn\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=2; plural=(n!=1)\n"
 
-msgid "Failed members"
-msgstr "ವಿಫಲಗೊಂಡ ಸದಸ್ಯರು"
+#, c-format
+msgid "Passwords do not match!"
+msgstr "ಗುಪ್ತಪದಗಳು ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ!"
 
 msgid "Unrevoked"
 msgstr "ರದ್ದು ಮಾಡಲಾಗಿಲ್ಲ"
 
 msgid "Error"
 msgstr "ದೋಷ"
+
+msgid "Principal"
+msgstr "Principal"
 
 msgid "Password"
 msgstr "ಗುಪ್ತಪದ"
@@ -122,9 +119,6 @@ msgstr "ಅನುಕ್ರಮ ಸಂಖ್ಯೆ"
 
 msgid "Serial number in decimal or if prefixed with 0x in hexadecimal"
 msgstr "ಕ್ರಮ ಸಂಖ್ಯೆ ಡೆಸಿಮಲ್‌ನಲ್ಲಿ ಅಥವಾ 0x ಮೊದಲು ಸೇರಿಸಿದ್ದಲ್ಲಿ ಹೆಕ್ಸಾಡೆಸಿಮಲ್‌ನಲ್ಲಿ"
-
-msgid "Principal"
-msgstr "Principal"
 
 msgid "Service principal for this certificate (e.g. HTTP/test.example.com)"
 msgstr "ಈ ಪ್ರಮಾಣಪತ್ರಕ್ಕಾಗಿ Service principal (e.g. HTTP/test.example.com)"
@@ -405,13 +399,12 @@ msgstr "ಕೇರಿ ವಿಳಾಸ"
 msgid "SOA class"
 msgstr "SOA class"
 
+msgid "Failed members"
+msgstr "ವಿಫಲಗೊಂಡ ಸದಸ್ಯರು"
+
 #, python-format
 msgid "Enter %(label)s again to verify: "
 msgstr "ಮತ್ತೊಮ್ಮೆ ಪರಿಶೀಲಿಸಲು %(label)s ಎಂಟರ್ ಮಾಡಿ:"
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "ಗುಪ್ತಪದಗಳು ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತಿಲ್ಲ!"
 
 #, python-format
 msgid "unknown error %(code)d from %(server)s: %(error)s"
@@ -518,6 +511,10 @@ msgstr "ಪ್ರಮಾಣಪತ್ರದ ಕಾರ್ಯಾಚರಣೆಯನ�
 msgid "Results are truncated, try a more specific search"
 msgstr "ಫಲಿತಾಂಶಗಳು ಕತ್ತರಿಸಲ್ಪಟ್ಟಿವೆ, ಹೆಚ್ಚ್ಹು ನಿರ್ದಿಷ್ಟವಾದ ಶೋಧನೆ ಪ್ರಯತ್ನಿಸಿ"
 
+#, python-format
+msgid "%(count)d variables"
+msgstr "%(count)d ವೇರಿಯೇಬಲ್‌ಗಳು"
+
 msgid "incorrect type"
 msgstr "ಸರಿಯಲ್ಲದ ಬಗೆ"
 
@@ -559,6 +556,10 @@ msgstr "ಗರಿಷ್ಠವಾಗಿ %(maxlength)d ಬೈಟ್ಸ್ ಆಗ�
 #, python-format
 msgid "must be exactly %(length)d bytes"
 msgstr "ನಿಖರವಾಗಿ %(length)d ಬೈಟ್ಸ್ ಆಗಿರಲೇಬೇಕು"
+
+#, python-format
+msgid "Failure decoding Certificate Signing Request: %s"
+msgstr "ಪ್ರಮಾಣಪತ್ರದ ಸಹಿಯ ಕೋರಿಕೆಯ ಡಿಕೋಡಿಂಗ್‌ನ ವಿಫಲತೆ: %s"
 
 msgid "must be Unicode text"
 msgstr "ಯುನಿಕೋಡ್ ಪಠ್ಯ ಆಗಿರಲೇಬೇಕು"
@@ -613,10 +614,6 @@ msgstr "ಮ್ಯಾಪ್‌ಗಳ ಆಟೋಮೌಂಟ್"
 msgid "Automount Keys"
 msgstr "ಕೀಗಳ ಆಟೋಮೌಂಟ್"
 
-#, python-format
-msgid "Failure decoding Certificate Signing Request: %s"
-msgstr "ಪ್ರಮಾಣಪತ್ರದ ಸಹಿಯ ಕೋರಿಕೆಯ ಡಿಕೋಡಿಂಗ್‌ನ ವಿಫಲತೆ: %s"
-
 msgid "Request status"
 msgstr "ಬೇಡಿಕೆ ಸ್ಥಿತಿ"
 
@@ -668,15 +665,11 @@ msgstr "\"%(value)s\" ಹೋಸ್ಟ್‌ಗ್ರೂಪನ್ನು ಬದಲ
 msgid "Groups"
 msgstr "ಗುಂಪುಗಳು"
 
-msgid "DNS"
-msgstr "DNS"
-
-#, python-format
-msgid "%(count)d variables"
-msgstr "%(count)d ವೇರಿಯೇಬಲ್‌ಗಳು"
-
 msgid "Netgroups"
 msgstr "ನೆಟ್‌ಗ್ರೂಪ್‌ಗಳು"
+
+msgid "DNS"
+msgstr "DNS"
 
 msgid "priority cannot be set on global policy"
 msgstr "ಗ್ಲೋಬಲ್ ಪಾಲಿಸಿಯಲ್ಲಿ ಆದ್ಯತೆಯನ್ನು ಸೆಟ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ"

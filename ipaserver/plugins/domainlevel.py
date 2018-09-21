@@ -48,6 +48,30 @@ def get_domainlevel_range(master_entry):
         return DomainLevelRange(0, 0)
 
 
+def check_conflict_entries(ldap, api, desired_value):
+    """
+    Check if conflict entries exist in topology subtree
+    """
+
+    container_dn = DN(
+        ('cn', 'ipa'),
+        ('cn', 'etc'),
+        api.env.basedn
+    )
+    conflict = "(nsds5replconflict=*)"
+    subentry = "(|(objectclass=ldapsubentry)(objectclass=*))"
+    try:
+        ldap.get_entries(
+            filter="(& %s %s)" % (conflict, subentry),
+            base_dn=container_dn,
+            scope=ldap.SCOPE_SUBTREE)
+        message = _("Domain Level cannot be raised to {0}, "
+                    "existing replication conflicts have to be resolved."
+                    ).format(desired_value)
+        raise errors.InvalidDomainLevelError(reason=message)
+    except errors.NotFound:
+        pass
+
 def get_master_entries(ldap, api):
     """
     Returns list of LDAPEntries representing IPA masters.
@@ -128,8 +152,12 @@ class domainlevel_set(Command):
             if supported.min > desired_value or supported.max < desired_value:
                 message = _("Domain Level cannot be raised to {0}, server {1} "
                             "does not support it."
-                            .format(desired_value, master['cn'][0]))
+                            ).format(desired_value, master['cn'][0])
                 raise errors.InvalidDomainLevelError(reason=message)
+
+        # Check if conflict entries exist in topology subtree
+        # should be resolved first
+        check_conflict_entries(ldap, self.api, desired_value)
 
         current_entry.single_value['ipaDomainLevel'] = desired_value
         ldap.update_entry(current_entry)

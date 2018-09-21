@@ -87,7 +87,11 @@ return {
             ],
             policies: [
                 mod_user.stageuser_sidebar_policy
-            ]
+            ],
+            deleter_dialog: {
+                title: '@i18n:objects.stageuser.remove',
+                $factory: IPA.search_deleter_dialog,
+            },
         },
         {
             $type: 'details',
@@ -145,6 +149,18 @@ return {
                             $type: 'sshkeys',
                             name: 'ipasshpubkey',
                             label: '@i18n:objects.sshkeystore.keys'
+                        },
+                        {
+                            $type: 'certmap_multivalued',
+                            name: 'ipacertmapdata',
+                            item_name: 'certmapdata',
+                            child_spec: {
+                                $type: 'non_editable_row',
+                                data_name: 'certmap'
+                            },
+                            tooltip: {
+                                title: '@mc:stageuser_add_certmapdata.doc'
+                            }
                         },
                         {
                             $type: 'checkboxes',
@@ -317,7 +333,11 @@ stageuser.search_preserved_facet_spec = {
     ],
     policies: [
         mod_user.stageuser_sidebar_policy
-    ]
+    ],
+    deleter_dialog: {
+        title: '@i18n:objects.stageuser.preserved_remove',
+        $factory: IPA.search_deleter_dialog,
+    },
 };
 
 mod_user.entity_spec.policies = mod_user.entity_spec.policies || {};

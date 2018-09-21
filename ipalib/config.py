@@ -28,6 +28,7 @@ of the process.
 
 For the per-request thread-local information, see `ipalib.request`.
 """
+from __future__ import absolute_import
 
 import os
 from os import path
@@ -39,10 +40,15 @@ from six.moves.urllib.parse import urlparse, urlunparse
 from six.moves.configparser import RawConfigParser, ParsingError
 # pylint: enable=import-error
 
+from ipaplatform.tasks import tasks
 from ipapython.dn import DN
 from ipalib.base import check_name
-from ipalib.constants import CONFIG_SECTION
-from ipalib.constants import OVERRIDE_ERROR, SET_ERROR, DEL_ERROR
+from ipalib.constants import (
+    CONFIG_SECTION,
+    OVERRIDE_ERROR, SET_ERROR, DEL_ERROR,
+    TLS_VERSIONS
+)
+from ipalib import errors
 
 if six.PY3:
     unicode = str
@@ -239,10 +245,12 @@ class Env(object):
                 SET_ERROR % (self.__class__.__name__, key, value)
             )
         check_name(key)
+        # pylint: disable=no-member
         if key in self.__d:
             raise AttributeError(OVERRIDE_ERROR %
                 (self.__class__.__name__, key, self.__d[key], value)
             )
+        # pylint: enable=no-member
         assert not hasattr(self, key)
         if isinstance(value, six.string_types):
             value = value.strip()
@@ -260,15 +268,18 @@ class Env(object):
                 value = int(value)
             elif key == 'basedn':
                 value = DN(value)
-        assert type(value) in (unicode, int, float, bool, type(None), DN)
+        if type(value) not in (unicode, int, float, bool, type(None), DN):
+            raise TypeError(key, value)
         object.__setattr__(self, key, value)
+        # pylint: disable=unsupported-assignment-operation, no-member
         self.__d[key] = value
+        # pylint: enable=unsupported-assignment-operation, no-member
 
     def __getitem__(self, key):
         """
         Return the value corresponding to ``key``.
         """
-        return self.__d[key]
+        return self.__d[key]  # pylint: disable=no-member
 
     def __delattr__(self, name):
         """
@@ -291,19 +302,19 @@ class Env(object):
         """
         Return True if instance contains ``key``; otherwise return False.
         """
-        return key in self.__d
+        return key in self.__d  # pylint: disable=no-member
 
     def __len__(self):
         """
         Return number of variables currently set.
         """
-        return len(self.__d)
+        return len(self.__d)  # pylint: disable=no-member
 
     def __iter__(self):
         """
         Iterate through keys in ascending order.
         """
-        for key in sorted(self.__d):
+        for key in sorted(self.__d):  # pylint: disable=no-member
             yield key
 
     def _merge(self, **kw):
@@ -359,17 +370,17 @@ class Env(object):
         :param config_file: Path of the configuration file to load.
         """
         if not path.isfile(config_file):
-            return
+            return None
         parser = RawConfigParser()
         try:
             parser.read(config_file)
         except ParsingError:
-            return
+            return None
         if not parser.has_section(CONFIG_SECTION):
             parser.add_section(CONFIG_SECTION)
         items = parser.items(CONFIG_SECTION)
         if len(items) == 0:
-            return (0, 0)
+            return 0, 0
         i = 0
         for (key, value) in items:
             if key not in self:
@@ -377,7 +388,7 @@ class Env(object):
                 i += 1
         if 'config_loaded' not in self: # we loaded at least 1 file
             self['config_loaded'] = True
-        return (i, len(items))
+        return i, len(items)
 
     def _join(self, key, *parts):
         """
@@ -392,8 +403,11 @@ class Env(object):
         """
         if key in self and self[key] is not None:
             return path.join(self[key], *parts)
+        else:
+            return None
 
     def __doing(self, name):
+        # pylint: disable=no-member
         if name in self.__done:
             raise Exception(
                 '%s.%s() already called' % (self.__class__.__name__, name)
@@ -401,11 +415,11 @@ class Env(object):
         self.__done.add(name)
 
     def __do_if_not_done(self, name):
-        if name not in self.__done:
+        if name not in self.__done:  # pylint: disable=no-member
             getattr(self, name)()
 
     def _isdone(self, name):
-        return name in self.__done
+        return name in self.__done  # pylint: disable=no-member
 
     def _bootstrap(self, **overrides):
         """
@@ -438,6 +452,7 @@ class Env(object):
         self.script = path.abspath(sys.argv[0])
         self.bin = path.dirname(self.script)
         self.home = os.environ.get('HOME', None)
+        self.fips_mode = tasks.is_fips_enabled()
 
         # Merge in overrides:
         self._merge(**overrides)
@@ -460,8 +475,23 @@ class Env(object):
             self.context = 'default'
 
         # Set confdir:
+        self.env_confdir = os.environ.get('IPA_CONFDIR')
+
+        if 'confdir' in self and self.env_confdir is not None:
+            raise errors.EnvironmentError(
+                    "IPA_CONFDIR env cannot be set because explicit confdir "
+                    "is used")
+
         if 'confdir' not in self:
-            if self.in_tree:
+            if self.env_confdir is not None:
+                if (not path.isabs(self.env_confdir)
+                        or not path.isdir(self.env_confdir)):
+                    raise errors.EnvironmentError(
+                        "IPA_CONFDIR env var must be an absolute path to an "
+                        "existing directory, got '{}'.".format(
+                            self.env_confdir))
+                self.confdir = self.env_confdir
+            elif self.in_tree:
                 self.confdir = self.dot_ipa
             else:
                 self.confdir = path.join('/', 'etc', 'ipa')
@@ -473,6 +503,20 @@ class Env(object):
         # Set conf_default (default base config used in all contexts):
         if 'conf_default' not in self:
             self.conf_default = self._join('confdir', 'default.conf')
+
+        if 'nss_dir' not in self:
+            self.nss_dir = self._join('confdir', 'nssdb')
+
+        if 'tls_ca_cert' not in self:
+            self.tls_ca_cert = self._join('confdir', 'ca.crt')
+
+        # having tls_ca_cert an absolute path could help us extending this
+        # in the future for different certificate providers simply by adding
+        # a prefix to the path
+        if not path.isabs(self.tls_ca_cert):
+            raise errors.EnvironmentError(
+                "tls_ca_cert has to be an absolute path to a CA certificate, "
+                "got '{}'".format(self.tls_ca_cert))
 
         # Set plugins_on_demand:
         if 'plugins_on_demand' not in self:
@@ -516,7 +560,8 @@ class Env(object):
         self.__do_if_not_done('_bootstrap')
 
         # Merge in context config file and then default config file:
-        if self.__d.get('mode', None) != 'dummy':
+        mode = self.__d.get('mode')  # pylint: disable=no-member
+        if mode != 'dummy':
             self._merge_from_file(self.conf)
             self._merge_from_file(self.conf_default)
 
@@ -534,6 +579,32 @@ class Env(object):
         # Set log file:
         if 'log' not in self:
             self.log = self._join('logdir', '%s.log' % self.context)
+
+        # Workaround for ipa-server-install --uninstall. When no config file
+        # is available, we set realm, domain, and basedn to RFC 2606 reserved
+        # suffix to suppress attribute errors during uninstallation.
+        if (self.in_server and self.context == 'installer' and
+                not getattr(self, 'config_loaded', False)):
+            if 'realm' not in self:
+                self.realm = 'UNCONFIGURED.INVALID'
+            if 'domain' not in self:
+                self.domain = self.realm.lower()
+
+        if 'basedn' not in self and 'domain' in self:
+            self.basedn = DN(*(('dc', dc) for dc in self.domain.split('.')))
+
+        # Derive xmlrpc_uri from server
+        # (Note that this is done before deriving jsonrpc_uri from xmlrpc_uri
+        # and server from jsonrpc_uri so that when only server or xmlrpc_uri
+        # is specified, all 3 keys have a value.)
+        if 'xmlrpc_uri' not in self and 'server' in self:
+            # pylint: disable=no-member, access-member-before-definition
+            self.xmlrpc_uri = 'https://{}/ipa/xml'.format(self.server)
+
+        # Derive ldap_uri from server
+        if 'ldap_uri' not in self and 'server' in self:
+            # pylint: disable=no-member, access-member-before-definition
+            self.ldap_uri = 'ldap://{}'.format(self.server)
 
         # Derive jsonrpc_uri from xmlrpc_uri
         if 'jsonrpc_uri' not in self:
@@ -558,6 +629,26 @@ class Env(object):
                 self.server = parsed.netloc
 
         self._merge(**defaults)
+
+        # set the best known TLS version if min/max versions are not set
+        if 'tls_version_min' not in self:
+            self.tls_version_min = TLS_VERSIONS[-1]
+        elif self.tls_version_min not in TLS_VERSIONS:
+            raise errors.EnvironmentError(
+                "Unknown TLS version '{ver}' set in tls_version_min."
+                .format(ver=self.tls_version_min))
+
+        if 'tls_version_max' not in self:
+            self.tls_version_max = TLS_VERSIONS[-1]
+        elif self.tls_version_max not in TLS_VERSIONS:
+            raise errors.EnvironmentError(
+                "Unknown TLS version '{ver}' set in tls_version_max."
+                .format(ver=self.tls_version_max))
+
+        if self.tls_version_max < self.tls_version_min:
+            raise errors.EnvironmentError(
+                "tls_version_min is set to a higher TLS version than "
+                "tls_version_max.")
 
     def _finalize(self, **lastchance):
         """

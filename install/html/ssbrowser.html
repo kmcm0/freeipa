@@ -5,24 +5,53 @@
     <title>IPA: Identity Policy Audit</title>
     <script type="text/javascript" src="../ui/js/libs/loader.js"></script>
     <script type="text/javascript">
+        var dojoConfig = {
+            baseUrl: "../ui/js",
+            has: {
+                'dojo-firebug': false,
+                'dojo-debug-messages': true
+            },
+            parseOnLoad: false,
+            async: true,
+            packages: [
+                {
+                    name:'dojo',
+                    location:'dojo'
+                },
+                {
+                    name: 'freeipa',
+                    location: 'freeipa'
+                }
+            ]
+        };
         (function() {
-            function loaded() {
-                $(document).ready(function() {
-                    var domain = '.' + (IPA_DOMAIN || 'example.com');
-                    $('.example-domain').text(domain);
-                });
-            }
-
             var styles = [
                 '../ui/css/patternfly.css',
                 '../ui/css/ipa.css'
             ];
             var scripts = [
                 '../ui/js/libs/jquery.js',
-                'krb.js',
-                'ffconfig.js'
+                '../ui/js/dojo/dojo.js'
             ];
-            ipa_loader.scripts(scripts, loaded);
+            ipa_loader.scripts(scripts, function() {
+                require([
+                    'dojo/dom',
+                    'freeipa/text',
+                    'dojo/domReady!'],
+                    function(dom, text) {
+                        msg = "".concat(
+                            text.get('@i18n:ssbrowser-page.header'),
+                            text.get('@i18n:ssbrowser-page.firefox-header'),
+                            text.get('@i18n:ssbrowser-page.firefox-actions'),
+                            text.get('@i18n:ssbrowser-page.chrome-header'),
+                            text.get('@i18n:ssbrowser-page.chrome-certificate'),
+                            text.get('@i18n:ssbrowser-page.chrome-spnego'),
+                            text.get('@i18n:ssbrowser-page.ie-header'),
+                            text.get('@i18n:ssbrowser-page.ie-actions'),
+                        )
+                        dom.byId('ssbrowser-msg').innerHTML=msg;
+                    });
+            });
             ipa_loader.styles(styles);
         })();
     </script>
@@ -40,7 +69,8 @@
     <div class="container-fluid">
     <div class="row">
     <div class="col-sm-12">
-    <div class="ssbrowser">
+    <div class="ssbrowser" id="ssbrowser-msg">
+    <noscript>
         <h1>Browser Kerberos Setup</h1>
 
         <h2>Firefox</h2>
@@ -51,7 +81,12 @@
 
         <ol>
             <li>
-                Import <a href="ca.crt">CA certificate</a>. Make sure you checked all three checkboxes.
+                <p>
+                    <a href="ca.crt" id="ca-link" class="btn btn-default">Import Certificate Authority certificate</a>
+                </p>
+                <p>
+                    Make sure you select <b>all three</b> checkboxes.
+                </p>
             </li>
             <li>
                 In the address bar of Firefox, type <code>about:config</code> to display the list of current configuration options.
@@ -65,7 +100,7 @@
             <li>
                 Enter the name of the domain against which you want to authenticate, for example, <code class="example-domain">.example.com.</code>
             </li>
-            <li><strong> You are all set. </strong></li>
+            <li><a href="../ui/index.html" id="return-link" class="btn btn-default">Return to Web UI</a></li>
         </ol>
 
         <h2>Chrome</h2>
@@ -127,7 +162,7 @@
             Once you are able to log into the workstation with your kerberos key you are now able to use that ticket in Internet Explorer.
         </p>
         <p>
-            <strong>Login to the Windows machine using an account of your Kerberos realm (administrative domain)</strong>
+            <strong>Log into the Windows machine using an account of your Kerberos realm (administrative domain)</strong>
         </p>
         <p>
             <strong>In Internet Explorer, click Tools, and then click Internet Options.</strong>
@@ -153,6 +188,7 @@
             </ol>
         </div>
 
+    </noscript>
     </div>
     </div>
     </div>

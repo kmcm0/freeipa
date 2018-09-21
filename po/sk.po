@@ -1,18 +1,30 @@
 # Martin Bašti <mbasti@redhat.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2016-08-05 07:53-0400\n"
-"Last-Translator: Martin Bašti <mbasti@redhat.com>\n"
-"Language-Team: Slovak\n"
-"Language: sk\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2016-10-25 08:44+0000\n"
+"Last-Translator: Martin Bašti <mbasti@redhat.com>\n"
+"Language-Team: Slovak\n"
+"Language: sk\n"
+"X-Generator: Zanata 4.4.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2\n"
+
+#, c-format
+msgid "Unable to set LDAP_OPT_X_TLS_CERTIFICATE\n"
+msgstr "Nie je možné nastaviť LDAP_OPT_X_TLS_CERTIFICATE\n"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "Heslá sa nezhodujú!"
+
+#, c-format
+msgid "Incorrect password.\n"
+msgstr "Nesprávne heslo.\n"
 
 msgid "Failed to add"
 msgstr "Zlyhalo pridanie"
@@ -61,6 +73,9 @@ msgstr "Preskočené %(key)s"
 #, python-format
 msgid "Profile configuration stored in file '%(file)s'"
 msgstr "Konfigurácia profilu bola uložená do súboru '%(file)s'"
+
+msgid "Profile ID"
+msgstr "ID profilu"
 
 msgid "Please choose a type of DNS resource record to be added"
 msgstr "Prosím vyberte typ DNS záznamu"
@@ -811,9 +826,6 @@ msgstr "Odstrániť CA ACL."
 msgid "Disable a CA ACL."
 msgstr "Deaktivovať CA ACL."
 
-msgid "Profile ID"
-msgstr "ID profilu"
-
 msgid "Delete a Certificate Profile."
 msgstr "Odstrániť certifikačný profil"
 
@@ -843,10 +855,6 @@ msgstr "Odtrániť  jeden alebo viac certifikátov z používateľskej položky"
 
 msgid "Username"
 msgstr "Používateľské meno"
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "Heslá sa nezhodujú!"
 
 msgid "No matching entries found"
 msgstr "Nenašli sa žiadne zhodné položky"
@@ -1219,9 +1227,6 @@ msgstr "neplatný formát IP adresy"
 msgid "%(port)s is not a valid port"
 msgstr "%(port)s nie je platný port"
 
-msgid "improperly formatted DER-encoded certificate"
-msgstr "nesprávne naformátovaný DER-zakódovaný certifikát"
-
 #, python-format
 msgid "request failed with HTTP status %d"
 msgstr "požiadavka zlyhala s HTTP stavom %d"
@@ -1233,12 +1238,6 @@ msgstr "Získanie CA stavu zlyhalo: %s"
 #, python-format
 msgid "objectclass %s not found"
 msgstr "objectclass %s nenájdená"
-
-msgid "trusted domain object not found"
-msgstr "trust doménový objekt nenájdený"
-
-msgid "trusted domain user not found"
-msgstr "trust doménový užívateľ nenájdený"
 
 #, python-format
 msgid "invalid DN (%s)"
@@ -1332,6 +1331,9 @@ msgstr "ID autority"
 msgid "Dogtag Authority ID"
 msgstr "ID Dogtag autority"
 
+msgid "Base-64 encoded certificate."
+msgstr "Base-64 zakódovaný certifikát."
+
 msgid "IPA CA cannot be deleted"
 msgstr "IPA CA nemôže byť odstránené"
 
@@ -1345,9 +1347,6 @@ msgstr "Odstránené CA ACL \"%(value)s\""
 #, python-format
 msgid "Disabled CA ACL \"%(value)s\""
 msgstr "Deaktivované CA ACL \"%(value)s\""
-
-msgid "Base-64 encoded certificate."
-msgstr "Base-64 zakódovaný certifikát."
 
 msgid "Serial number (hex)"
 msgstr "Sériové číslo (hexadecimálne)"
@@ -1385,6 +1384,12 @@ msgstr "konfiguračné voľby"
 
 msgid "Configuration"
 msgstr "Konfigurácia"
+
+msgid "sudo commands"
+msgstr "sudo príkazy"
+
+msgid "Sudo Commands"
+msgstr "Sudo príkazy"
 
 msgid "invalid IP network format"
 msgstr "neplatný formát IP siete"
@@ -1626,9 +1631,6 @@ msgstr "hodnota"
 msgid "IPA object"
 msgstr "IPA objekt"
 
-msgid "Your session has expired. Please re-login."
-msgstr "Vaše prihlásenie vypršalo. Prosím znovu sa prihláste."
-
 msgid "Apply"
 msgstr "Použiť"
 
@@ -1821,12 +1823,6 @@ msgstr "MS-PAC"
 
 msgid "Override inherited settings"
 msgstr "Potlačiť zdedené nastavenia"
-
-msgid "Logout"
-msgstr "Odhlásiť sa"
-
-msgid "Logout error"
-msgstr "Chyba odhlasovania"
 
 msgid "Sync OTP Token"
 msgstr "Synchronizovať OTP Token"
@@ -2047,6 +2043,9 @@ msgstr "Preskočiť DNS kontrolu"
 msgid "Group Settings"
 msgstr "Nastavenia skupiny"
 
+msgid "Groups"
+msgstr "Skupiny"
+
 msgid "POSIX"
 msgstr "POSIX"
 
@@ -2106,6 +2105,12 @@ msgstr "Nastavenia oprávnenia"
 
 msgid "Privilege Settings"
 msgstr "Nastavenia privilégia"
+
+msgid "Show/Set key"
+msgstr "Zobraziť/Nastaviť kľúč"
+
+msgid "Modified"
+msgstr "Modifikované"
 
 msgid "Password Policy"
 msgstr "Politika hesiel"
@@ -2167,12 +2172,6 @@ msgstr "Verejný SSH kľuč"
 msgid "Set SSH key"
 msgstr "Nastaviť SSH kľúč"
 
-msgid "Show/Set key"
-msgstr "Zobraziť/Nastaviť kľúč"
-
-msgid "Modified"
-msgstr "Modifikované"
-
 msgid "Stage users"
 msgstr "Predpripravení používatelia"
 
@@ -2192,9 +2191,6 @@ msgstr "${count} používateľov obnovených"
 
 msgid "User categories"
 msgstr "Kategórie používateľov"
-
-msgid "Groups"
-msgstr "Skupiny"
 
 msgid "Allow"
 msgstr "Povoliť"
@@ -2237,7 +2233,7 @@ msgid "Account Status"
 msgstr "Stav účtu"
 
 msgid "Active users"
-msgstr "Aktívny používatelia"
+msgstr "Aktívni používatelia"
 
 msgid "Contact Settings"
 msgstr "Nastavenia kontaktných údajov"
@@ -2367,9 +2363,6 @@ msgstr "Automount"
 msgid "DNS"
 msgstr "DNS"
 
-msgid "Host Based Access Control"
-msgstr "Host Based Access Control"
-
 msgid "Identity"
 msgstr "Identita"
 
@@ -2381,9 +2374,6 @@ msgstr "Sieťové služby"
 
 msgid "Policy"
 msgstr "Politika"
-
-msgid "Role Based Access Control"
-msgstr "Kontrola prístupu podľa rolí (RBAC)"
 
 msgid "Next"
 msgstr "Ďalšie"
@@ -2675,12 +2665,6 @@ msgstr "Base-64 zakódovaný certifikát služby"
 msgid "Disabled service \"%(value)s\""
 msgstr "Deaktivovaná služba \"%(value)s\""
 
-msgid "sudo commands"
-msgstr "sudo príkazy"
-
-msgid "Sudo Commands"
-msgstr "Sudo príkazy"
-
 msgid "sudo rules"
 msgstr "sudo pravidlá"
 
@@ -2710,10 +2694,8 @@ msgstr "Certifikáty boli pridané k používateľovi \"%(value)s\""
 msgid "Removed certificates from user \"%(value)s\""
 msgstr "Certifikáty boli odstránené používateľovi  \"%(value)s\""
 
-#, c-format
-msgid "Unable to set LDAP_OPT_X_TLS_CERTIFICATE\n"
-msgstr "Nie je možné nastaviť LDAP_OPT_X_TLS_CERTIFICATE\n"
+msgid "trusted domain object not found"
+msgstr "trust doménový objekt nenájdený"
 
-#, c-format
-msgid "Incorrect password.\n"
-msgstr "Nesprávne heslo.\n"
+msgid "trusted domain user not found"
+msgstr "trust doménový užívateľ nenájdený"

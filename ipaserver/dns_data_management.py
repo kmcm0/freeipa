@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import logging
+
 import six
 
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from dns import (
     rdata,
     rdataclass,
@@ -20,10 +22,11 @@ from time import sleep, time
 from ipalib import errors
 from ipalib.dns import record_name_format
 from ipapython.dnsutil import DNSName, resolve_rrsets
-from ipapython.ipa_log_manager import root_logger
 
 if six.PY3:
     unicode=str
+
+logger = logging.getLogger(__name__)
 
 
 IPA_DEFAULT_MASTER_SRV_REC = (
@@ -52,6 +55,8 @@ IPA_DEFAULT_NTP_SRV_REC = (
     (DNSName("_ntp._udp"), 123),
 )
 
+CA_RECORDS_DNS_TIMEOUT = 30  # timeout in seconds
+
 
 class IPADomainIsNotManagedByIPAError(Exception):
     pass
@@ -63,11 +68,11 @@ class IPASystemRecords(object):
     PRIORITY_HIGH = 0
     PRIORITY_LOW = 50
 
-    def __init__(self, api_instance):
+    def __init__(self, api_instance, all_servers=False):
         self.api_instance = api_instance
         self.domain_abs = DNSName(self.api_instance.env.domain).make_absolute()
-        self.servers_data = {}
-        self.__init_data()
+        self.servers_data = OrderedDict()
+        self.__init_data(all_servers=all_servers)
 
     def reload_data(self):
         """
@@ -87,12 +92,16 @@ class IPASystemRecords(object):
     def __get_location_suffix(self, location):
         return location + DNSName('_locations') + self.domain_abs
 
-    def __init_data(self):
-        self.servers_data = {}
+    def __init_data(self, all_servers=False):
+        self.servers_data.clear()
 
-        servers_result = self.api_instance.Command.server_find(
-            no_members=False)['result']
-        for s in servers_result:
+        kwargs = dict(no_members=False)
+        if not all_servers:
+            # only active, fully installed masters]
+            kwargs["servrole"] = u"IPA master"
+        servers = self.api_instance.Command.server_find(**kwargs)
+
+        for s in servers['result']:
             weight, location, roles = self.__get_server_attrs(s)
             self.servers_data[s['cn'][0]] = {
                 'weight': weight,
@@ -131,7 +140,7 @@ class IPASystemRecords(object):
         assert isinstance(hostname, DNSName) and hostname.is_absolute()
         r_name = DNSName('ipa-ca') + self.domain_abs
         rrsets = []
-        end_time = time() + 120  # timeout in seconds
+        end_time = time() + CA_RECORDS_DNS_TIMEOUT
         while time() < end_time:
             try:
                 rrsets = resolve_rrsets(hostname, (rdatatype.A, rdatatype.AAAA))
@@ -142,8 +151,8 @@ class IPASystemRecords(object):
             sleep(5)
 
         if not rrsets:
-            root_logger.error('unable to resolve host name %s to IP address, '
-                              'ipa-ca DNS record will be incomplete', hostname)
+            logger.error('unable to resolve host name %s to IP address, '
+                         'ipa-ca DNS record will be incomplete', hostname)
             return
 
         for rrset in rrsets:
@@ -319,7 +328,7 @@ class IPASystemRecords(object):
 
         zone_obj = zone.Zone(self.domain_abs, relativize=False)
         if servers is None:
-            servers = self.servers_data.keys()
+            servers = list(self.servers_data)
 
         for server in servers:
             self._add_base_dns_records_for_server(zone_obj, server,
@@ -342,9 +351,7 @@ class IPASystemRecords(object):
         """
         zone_obj = zone.Zone(self.domain_abs, relativize=False)
         if servers is None:
-            servers_result = self.api_instance.Command.server_find(
-                pkey_only=True)['result']
-            servers = [s['cn'][0] for s in servers_result]
+            servers = list(self.servers_data)
 
         locations_result = self.api_instance.Command.location_find()['result']
         locations = [l['idnsname'][0] for l in locations_result]

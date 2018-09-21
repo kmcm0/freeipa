@@ -81,7 +81,8 @@ return {
                             name: 'krbprincipalname',
                             item_name: 'principal',
                             child_spec: {
-                                $type: 'krb_principal'
+                                $type: 'non_editable_row',
+                                data_name: 'krb-principal'
                             }
                         },
                         {
@@ -133,11 +134,11 @@ return {
                             add_field_label: '@i18n:authtype.auth_indicator',
                             options: [
                                 {
-                                    label: '@i18n:authtype.otp',
+                                    label: 'otp',
                                     value: 'otp'
                                 },
                                 {
-                                    label: '@i18n:authtype.type_radius',
+                                    label: 'radius',
                                     value: 'radius'
                                 }
                             ],
@@ -200,6 +201,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_read_keys_user',
                             name: 'ipaallowedtoperform_read_keys_user',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_retrieve_keytab',
                             remove_method: 'disallow_retrieve_keytab',
                             add_title: '@i18n:keytab.add_retrive',
@@ -216,6 +218,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_read_keys_group',
                             name: 'ipaallowedtoperform_read_keys_group',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_retrieve_keytab',
                             remove_method: 'disallow_retrieve_keytab',
                             add_title: '@i18n:keytab.add_retrive',
@@ -232,6 +235,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_read_keys_host',
                             name: 'ipaallowedtoperform_read_keys_host',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_retrieve_keytab',
                             remove_method: 'disallow_retrieve_keytab',
                             add_title: '@i18n:keytab.add_retrive',
@@ -248,6 +252,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_read_keys_hostgroup',
                             name: 'ipaallowedtoperform_read_keys_hostgroup',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_retrieve_keytab',
                             remove_method: 'disallow_retrieve_keytab',
                             add_title: '@i18n:keytab.add_retrive',
@@ -271,6 +276,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_write_keys_user',
                             name: 'ipaallowedtoperform_write_keys_user',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_create_keytab',
                             remove_method: 'disallow_create_keytab',
                             add_title: '@i18n:keytab.add_create',
@@ -287,6 +293,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_write_keys_group',
                             name: 'ipaallowedtoperform_write_keys_group',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_create_keytab',
                             remove_method: 'disallow_create_keytab',
                             add_title: '@i18n:keytab.add_create',
@@ -303,6 +310,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_write_keys_host',
                             name: 'ipaallowedtoperform_write_keys_host',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_create_keytab',
                             remove_method: 'disallow_create_keytab',
                             add_title: '@i18n:keytab.add_create',
@@ -319,6 +327,7 @@ return {
                             $type: 'association_table',
                             id: 'service_ipaallowedtoperform_write_keys_hostgroup',
                             name: 'ipaallowedtoperform_write_keys_hostgroup',
+                            flags: ['w_if_no_aci'],
                             add_method: 'allow_create_keytab',
                             remove_method: 'disallow_create_keytab',
                             add_title: '@i18n:keytab.add_create',
@@ -398,6 +407,7 @@ return {
                         other_entity: 'host',
                         other_field: 'fqdn',
                         label: '@i18n:objects.service.host',
+                        editable: true,
                         required: true,
                         z_index: 1
                     },
@@ -405,11 +415,19 @@ return {
                         $type: 'checkbox',
                         name: 'force',
                         metadata: '@mc-opt:service_add:force'
+                    },
+                    {
+                        $type: 'checkbox',
+                        name: 'skip_host_check',
+                        metadata: '@mc-opt:service_add:skip_host_check'
                     }
                 ]
             }
         ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.service.remove',
+    },
 };};
 
 
@@ -429,6 +447,7 @@ IPA.service.search_facet = function(spec) {
     that.get_records_map = function(data) {
 
         var records_map = $.ordered_map();
+        var pkeys_map = $.ordered_map();
 
         var result = data.result.result;
         var pkey_name = that.managed_entity.metadata.primary_key ||
@@ -442,11 +461,16 @@ IPA.service.search_facet = function(spec) {
                 pkey = adapter.load(record, that.alternative_pkey)[0];
             }
             if (that.filter_records(records_map, pkey, record)) {
-                records_map.put(pkey, record);
+                var compound_pkey = pkey + i;
+                records_map.put(compound_pkey, record);
+                pkeys_map.put(compound_pkey, pkey);
             }
         }
 
-        return records_map;
+        return {
+            records_map: records_map,
+            pkeys_map: pkeys_map
+        };
     };
 
     return that;
@@ -475,6 +499,7 @@ IPA.service.details_facet = function(spec, no_init) {
             retry: false,
             options: {
                 service: [ pkey ],
+                sizelimit: 0,
                 all: true
             }
         });
@@ -482,6 +507,12 @@ IPA.service.details_facet = function(spec, no_init) {
         batch.add_command(certificates);
 
         return batch;
+    };
+
+    that.update_on_success = function(data, text_status, xhr) {
+        that.on_update.notify();
+        that.nofify_update_success();
+        that.refresh();
     };
 
     if (!no_init) that.init_details_facet();
@@ -521,6 +552,9 @@ IPA.service_adder_dialog = function(spec) {
 
         field = that.fields.get_field('force');
         record['force'] = field.save();
+
+        field = that.fields.get_field('skip_host_check');
+        record['skip_host_check'] = field.save();
     };
 
     init();

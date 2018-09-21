@@ -101,7 +101,7 @@ class privilege(LDAPObject):
     reverse_members = {
         'member': ['permission'],
     }
-    rdn_is_primary_key = True
+    allow_rename = True
     managed_permissions = {
         'System: Read Privileges': {
             'replaces_global_anonymous_aci': True,
@@ -192,9 +192,7 @@ class privilege_add_member(LDAPAddMember):
 
 @register()
 class privilege_remove_member(LDAPRemoveMember):
-    """
-    Remove members from a privilege
-    """
+    __doc__ = _('Remove members from a privilege')
     NO_CLI=True
 
 
@@ -244,7 +242,8 @@ class privilege_remove_permission(LDAPRemoveReverseMember):
             type=dict,
             doc=_('Members that could not be added'),
         ),
-        output.Output('completed',
+        output.Output(
+            'completed',
             type=int,
             doc=_('Number of permissions removed'),
         ),

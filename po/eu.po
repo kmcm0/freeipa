@@ -1,24 +1,45 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
 #
-# Translators:
-# Asier Iturralde Sarasola <asier.iturralde@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:08-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Basque (http://www.transifex.com/projects/p/freeipa/language/"
-"eu/)\n"
-"Language: eu\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2015-01-05 01:08+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Basque\n"
+"Language: eu\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "Pasahitzak ez datoz bat!"
+
+msgid "LDAP password"
+msgstr "LDAP pasahitza"
+
+#, c-format
+msgid "Incorrect password.\n"
+msgstr "Pasahitz okerra.\n"
+
+#, c-format
+msgid "ipa-getkeytab not found\n"
+msgstr "ez da ipa-getkeytab aurkitu\n"
+
+msgid "hostname"
+msgstr "ostalari-izena"
+
+msgid "IPA Server to use"
+msgstr "Erabili beharreko IPA zerbitzaria"
+
+msgid "filename"
+msgstr "fitxategi-izena"
+
+msgid "password"
+msgstr "pasahitza"
 
 msgid "Error"
 msgstr "Errorea"
@@ -278,10 +299,6 @@ msgstr "Fax-zenbakia"
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#, c-format
-msgid "Passwords do not match!"
-msgstr "Pasahitzak ez datoz bat!"
-
 msgid "Command name"
 msgstr "Komandoaren izena"
 
@@ -340,9 +357,6 @@ msgstr "sarrerak"
 msgid "Rename the %(ldap_obj_name)s object"
 msgstr "%(ldap_obj_name)s objektua berrizendatu"
 
-msgid "Fingerprint (MD5)"
-msgstr "Hatz-marka (MD5)"
-
 msgid "Fingerprint (SHA1)"
 msgstr "Hatz-marka (SHA1)"
 
@@ -354,6 +368,9 @@ msgstr "Konfigurazioa"
 
 msgid "The group doesn't exist"
 msgstr "Taldea ez da existitzen"
+
+msgid "Sudo Commands"
+msgstr "Sudo komandoak"
 
 msgid "invalid IP network format"
 msgstr "IP sare formatu baliogabea"
@@ -434,9 +451,6 @@ msgstr "Atributua"
 msgid "Fingerprints"
 msgstr "Hatz-markak"
 
-msgid "MD5 Fingerprint"
-msgstr "MD5 hatz-marka"
-
 msgid "New Certificate"
 msgstr "Ziurtagiri berria"
 
@@ -449,14 +463,14 @@ msgstr "SHA1 hatz-marka"
 msgid "Group Settings"
 msgstr "Taldearen ezarpenak"
 
+msgid "Groups"
+msgstr "Taldeak"
+
 msgid "Host Name"
 msgstr "Ostalari-izena"
 
 msgid "Set OTP"
 msgstr "Ezarri OTP"
-
-msgid "Groups"
-msgstr "Taldeak"
 
 msgid "Allow"
 msgstr "Onartu"
@@ -514,9 +528,6 @@ msgstr "\"%(value)s\" zerbitzua gehituta"
 msgid "Deleted service \"%(value)s\""
 msgstr "\"%(value)s\" zerbitzua ezabatuta"
 
-msgid "Sudo Commands"
-msgstr "Sudo komandoak"
-
 #, python-format
 msgid "Added user \"%(value)s\""
 msgstr "\"%(value)s\" erabiltzailea gehituta"
@@ -528,26 +539,3 @@ msgstr "\"%(value)s\" erabiltzailea ezabatuta"
 #, python-format
 msgid "Modified user \"%(value)s\""
 msgstr "\"%(value)s\" erabiltzailea aldatuta"
-
-msgid "LDAP password"
-msgstr "LDAP pasahitza"
-
-#, c-format
-msgid "Incorrect password.\n"
-msgstr "Pasahitz okerra.\n"
-
-#, c-format
-msgid "ipa-getkeytab not found\n"
-msgstr "ez da ipa-getkeytab aurkitu\n"
-
-msgid "hostname"
-msgstr "ostalari-izena"
-
-msgid "IPA Server to use"
-msgstr "Erabili beharreko IPA zerbitzaria"
-
-msgid "filename"
-msgstr "fitxategi-izena"
-
-msgid "password"
-msgstr "pasahitza"

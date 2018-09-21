@@ -98,7 +98,10 @@ var spec = {
     ],
     adder_dialog: {
         fields: [ 'cn' ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.sudorule.remove',
+    },
 };
 
     add_sudorule_details_facet_widgets(spec.facets[1]);
@@ -163,7 +166,10 @@ return {
                 name: 'description'
             }
         ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.sudocmd.remove',
+    },
 };};
 
 
@@ -223,7 +229,10 @@ return {
                 name: 'description'
             }
         ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.sudocmdgroup.remove',
+    },
 };};
 
 /**
@@ -855,19 +864,17 @@ IPA.sudo.options_section = function(spec) {
 
     that.show_remove_dialog = function() {
 
-        var label = IPA.get_command_option('sudorule_add_option', 'ipasudoopt').label;
         var values = that.table.get_selected_values();
 
         if (!values.length) {
             var message = text.get('@i18n:dialogs.remove_empty');
-            alert(message);
+            window.alert(message);
             return;
         }
 
         var pkey = that.facet.get_pkey();
 
-        var title = text.get('@i18n:dialogs.remove_title');
-        title = title.replace('${entity}', label);
+        var title = text.get('@i18n:objects.sudooptions.remove');
 
         var dialog = IPA.deleter_dialog({
             title: title,

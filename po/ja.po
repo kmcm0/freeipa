@@ -1,25 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
 #
-# Translators:
-# Tomoyuki KATO <tomo@dream.daynight.jp>, 2012
-# carrotsoft <www.carrotsoft@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2015-01-05 01:10-0500\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/freeipa/"
-"language/ja/)\n"
-"Language: ja\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2015-01-05 01:10+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"X-Generator: Zanata 4.4.5\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "パスワードが違います。"
 
 msgid "ACI name"
 msgstr "ACI 名"
@@ -184,10 +181,6 @@ msgstr "ユーザーを変更します。"
 msgid "Enter %(label)s again to verify: "
 msgstr "確認のため再び %(label)s を入力してください: "
 
-#, c-format
-msgid "Passwords do not match!"
-msgstr "パスワードが違います。"
-
 #, python-format
 msgid "unknown error %(code)d from %(server)s: %(error)s"
 msgstr "%(server)s から未知のエラー %(code)d: %(error)s"
@@ -293,11 +286,17 @@ msgstr "名前 \"%s\" の ACI が見つかりませんでした"
 msgid "ACIs"
 msgstr "ACI"
 
-msgid "Fingerprint (MD5)"
-msgstr "フィンガープリント (MD5)"
-
 msgid "Fingerprint (SHA1)"
 msgstr "フィンガープリント (SHA1)"
+
+msgid "sudo command"
+msgstr "sudo コマンド"
+
+msgid "sudo commands"
+msgstr "sudo コマンド"
+
+msgid "Sudo Commands"
+msgstr "sudo コマンド"
 
 #, python-format
 msgid "%s record"
@@ -433,15 +432,6 @@ msgstr "パスワードポリシー"
 
 msgid "roles"
 msgstr "役割"
-
-msgid "sudo command"
-msgstr "sudo コマンド"
-
-msgid "sudo commands"
-msgstr "sudo コマンド"
-
-msgid "Sudo Commands"
-msgstr "sudo コマンド"
 
 msgid "sudo rules"
 msgstr "sudo ルール"

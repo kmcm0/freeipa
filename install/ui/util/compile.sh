@@ -18,6 +18,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+set -o errexit
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RDIR=$DIR/../release
@@ -104,5 +105,7 @@ if [[ ! $OUTPUT_FILE ]] ; then
     OUTPUT_FILE=$RDIR/$RELEASE/$LAYER.js
 fi
 
-# compile using uglify.js
-$DIR/uglifyjs/uglify $RDIR/$RELEASE/$LAYER.js $OUTPUT_FILE
+# compile using uglifyjs
+echo "Minimizing: $RDIR/$RELEASE/$LAYER.js"
+echo "Target file: $OUTPUT_FILE"
+uglifyjs $RDIR/$RELEASE/$LAYER.js > $OUTPUT_FILE

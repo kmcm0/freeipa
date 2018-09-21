@@ -35,6 +35,20 @@ if six.PY3:
 pytestmark = pytest.mark.tier0
 
 
+# pytest >= 2.10 supports yield based fixtures with pytest.fixture. In
+# pytest < 2.10 pytest.yield_fixture is required. But that function
+# also raises a deprecation warning in pytest >= 3.0.
+PYTEST_VERSION = tuple(int(p) for p in pytest.__version__.split('.'))
+
+if PYTEST_VERSION < (2, 10):
+    yield_fixture = pytest.yield_fixture
+else:
+    yield_fixture = pytest.fixture
+
+
+pattern_type = type(re.compile(""))
+
+
 class Prop(object):
     def __init__(self, *ops):
         self.__ops = frozenset(ops)
@@ -72,13 +86,13 @@ class test_Fuzzy(object):
         assert inst.regex == '(foo|bar)'
         assert inst.type is unicode
         assert inst.test is None
-        assert isinstance(inst.re, re._pattern_type)
+        assert isinstance(inst.re, pattern_type)
 
         inst = self.klass('(foo|bar)', type=str)
         assert inst.regex == '(foo|bar)'
         assert inst.type is str
         assert inst.test is None
-        assert isinstance(inst.re, re._pattern_type)
+        assert isinstance(inst.re, pattern_type)
 
         t = lambda other: other > 500
 
@@ -140,8 +154,10 @@ class test_Fuzzy(object):
 
 def test_assert_deepequal():
     f = util.assert_deepequal
-    # pylint: disable=no-member
-    pretty = pytest.config.getoption("pretty_print")
+    try:  # pylint: disable=no-member
+        pretty = pytest.config.getoption("pretty_print")
+    except (AttributeError, ValueError):
+        pretty = False
 
     # LEN and KEYS formats use special function to pretty print structures
     # depending on a pytest environment settings
@@ -182,12 +198,12 @@ def test_assert_deepequal():
     # Test with good compound values:
     a = [
         u'hello',
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18,
     ]
     b = [
         u'hello',
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18,
     ]
     f(a, b)
@@ -195,7 +211,7 @@ def test_assert_deepequal():
     # Test with bad compound values:
     b = [
         b'hello',
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
@@ -205,17 +221,17 @@ def test_assert_deepequal():
 
     b = [
         u'hello',
-        dict(naughty=b'nurse'),
+        dict(profession=b'nurse'),
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
     assert str(e) == TYPE % (
-        'foo', unicode, bytes, u'nurse', b'nurse', (1, 'naughty')
+        'foo', unicode, bytes, u'nurse', b'nurse', (1, 'profession')
     )
 
     b = [
         u'hello',
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18.0,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
@@ -226,7 +242,7 @@ def test_assert_deepequal():
     # List length mismatch
     b = [
         u'hello',
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18,
         19
     ]
@@ -236,7 +252,7 @@ def test_assert_deepequal():
     )
 
     b = [
-        dict(naughty=u'nurse'),
+        dict(profession=u'nurse'),
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
@@ -253,36 +269,39 @@ def test_assert_deepequal():
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
-    assert str(e) == KEYS % ('foo',
-        ['naughty'], [],
-        exp_str(dict(naughty=u'nurse')), got_str(dict()),
+    assert str(e) == KEYS % (
+        'foo',
+        ['profession'], [],
+        exp_str(dict(profession=u'nurse')), got_str(dict()),
         (1,)
     )
 
     # Extra
     b = [
         u'hello',
-        dict(naughty=u'nurse', barely=u'legal'),
+        dict(profession=u'nurse', status=u'RN'),
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
-    assert str(e) == KEYS % ('foo',
-        [], ['barely'],
-        exp_str(dict(naughty=u'nurse')),
-        got_str(dict(naughty=u'nurse', barely=u'legal')),
+    assert str(e) == KEYS % (
+        'foo',
+        [], ['status'],
+        exp_str(dict(profession=u'nurse')),
+        got_str(dict(profession=u'nurse', status=u'RN')),
         (1,)
     )
 
     # Missing + Extra
     b = [
         u'hello',
-        dict(barely=u'legal'),
+        dict(status=u'RN'),
         18,
     ]
     e = raises(AssertionError, f, a, b, 'foo')
-    assert str(e) == KEYS % ('foo',
-        ['naughty'], ['barely'],
-        exp_str(dict(naughty=u'nurse')), got_str(dict(barely=u'legal')),
+    assert str(e) == KEYS % (
+        'foo',
+        ['profession'], ['status'],
+        exp_str(dict(profession=u'nurse')), got_str(dict(status=u'RN')),
         (1,)
     )
 

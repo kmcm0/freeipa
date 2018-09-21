@@ -38,6 +38,10 @@ return {
     facets: [
         {
             $type: 'search',
+            tab_label: '@i18n:objects.hostgroup.host_group',
+            facet_groups: [IPA.group.search_facet_group],
+            tabs_in_sidebar: true,
+            disable_facet_tabs: false,
             columns: [
                 'cn',
                 'description'
@@ -93,7 +97,10 @@ return {
                 name: 'description'
             }
         ]
-    }
+    },
+    deleter_dialog: {
+        title: '@i18n:objects.hostgroup.remove',
+    },
 };};
 
 

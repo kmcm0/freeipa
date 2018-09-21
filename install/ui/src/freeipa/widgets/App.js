@@ -222,6 +222,10 @@ define(['dojo/_base/declare',
             }
         },
 
+        disable_user_menu_item: function(name) {
+            this.user_menu.disable_item(name);
+        },
+
         on_menu_item_click: function(item) {
             this.collapse_menu();
         },
@@ -234,6 +238,8 @@ define(['dojo/_base/declare',
                 this.emit('logout-click');
             } else if (item.name == 'password_reset') {
                 this.emit('password-reset-click');
+            } else if (item.name == 'configuration') {
+                this.emit('configuration-click');
             } else if (item.name == 'about') {
                 this.emit('about-click');
             }
@@ -253,20 +259,28 @@ define(['dojo/_base/declare',
                 items: [
                     {
                         name: 'profile',
-                        label: 'Profile',
+                        label: text.get('@i18n:profile-menu.profile',
+                                        'Profile'),
                         icon: 'fa-user'
                     },
                     {
                         name: 'password_reset',
-                        label: 'Change password',
+                        label: text.get('@i18n:profile-menu.password_reset',
+                                        'Change password'),
                         icon: 'fa-key'
                     },
                     {
                         'class': 'divider'
                     },
                     {
+                        name: 'configuration',
+                        label: text.get('@i18n:profile-menu.configuration',
+                                        'Customization'),
+                        icon: 'fa-gear'
+                    },
+                    {
                         name: 'about',
-                        label: 'About',
+                        label: text.get('@i18n:profile-menu.about', 'About'),
                         icon: 'fa-question'
                     },
                     {
@@ -274,7 +288,8 @@ define(['dojo/_base/declare',
                     },
                     {
                         name: 'logout',
-                        label: 'Logout',
+                        label: text.get('@i18n:profile-menu.logout',
+                                        'Log out'),
                         icon: 'fa-sign-out'
                     }
                 ]

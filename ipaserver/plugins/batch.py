@@ -18,7 +18,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""
+import logging
+
+import six
+
+from ipalib import api, errors
+from ipalib import Command
+from ipalib.frontend import Local
+from ipalib.parameters import Str, Dict
+from ipalib.output import Output
+from ipalib.text import _
+from ipalib.request import context
+from ipalib.plugable import Registry
+from ipapython.version import API_VERSION
+
+__doc__ = _("""
 Plugin to make multiple ipa calls via one remote procedure call
 
 To run this code in the lite-server
@@ -43,27 +57,18 @@ The format of the response is nested the same way.  At the top you will see
 
 And then a nested response for each IPA command method sent in the request
 
-"""
-
-import six
-
-from ipalib import api, errors
-from ipalib import Command
-from ipalib.frontend import Local
-from ipalib.parameters import Str, Dict
-from ipalib.output import Output
-from ipalib.text import _
-from ipalib.request import context
-from ipalib.plugable import Registry
-from ipapython.version import API_VERSION
+""")
 
 if six.PY3:
     unicode = str
+
+logger = logging.getLogger(__name__)
 
 register = Registry()
 
 @register()
 class batch(Command):
+    __doc__ = _('Make multiple ipa calls via one remote procedure call')
     NO_CLI = True
 
     takes_args = (
@@ -120,7 +125,7 @@ class batch(Command):
                 newkw.setdefault('version', options['version'])
 
                 result = api.Command[name](*a, **newkw)
-                self.info(
+                logger.info(
                     '%s: batch: %s(%s): SUCCESS',
                     getattr(context, 'principal', 'UNKNOWN'),
                     name,
@@ -130,13 +135,13 @@ class batch(Command):
             except Exception as e:
                 if isinstance(e, errors.RequirementError) or \
                     isinstance(e, errors.CommandError):
-                    self.info(
+                    logger.info(
                         '%s: batch: %s',
                         context.principal,  # pylint: disable=no-member
                         e.__class__.__name__
                     )
                 else:
-                    self.info(
+                    logger.info(
                         '%s: batch: %s(%s): %s',
                         context.principal, name,  # pylint: disable=no-member
                         ', '.join(api.Command[name]._repr_iter(**params)),

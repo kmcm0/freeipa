@@ -285,13 +285,17 @@ define(['dojo/_base/declare',
          */
         display_caps_warning: function(display) {
 
-            this.caps_warning = display;
             var val_summary = this.get_widget('validation');
             if (display) {
-                val_summary.add_warning('caps', this.caps_warning_msg);
+                if (!this.caps_warning) {
+                    val_summary.add_warning('caps', this.caps_warning_msg);
+                }
             } else {
-                val_summary.remove('caps');
+                if (this.caps_warning) {
+                    val_summary.remove('caps');
+                }
             }
+            this.caps_warning = display;
         },
 
         bind_validation: function(summary, field) {
@@ -327,6 +331,11 @@ define(['dojo/_base/declare',
         password_enabled: function() {
             return auth.current.auth_methods.indexOf('password') > -1;
         },
+
+        certificate_enabled: function() {
+            return auth.current.auth_methods.indexOf('certificate') > -1;
+        },
+
 
         postscript: function(args) {
             this.create_fields();

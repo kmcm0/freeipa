@@ -17,35 +17,36 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import absolute_import
+
 import base64
-import binascii
+import logging
+import time
+
 import ldap
 import os
 import shutil
-import tempfile
 import traceback
 import dbus
-import pwd
 
 from pki.client import PKIConnection
 import pki.system
 
-from ipalib import errors
-
+from ipalib import api, errors, x509
+from ipalib.install import certmonger
+from ipalib.constants import CA_DBUS_TIMEOUT
 from ipaplatform import services
 from ipaplatform.constants import constants
 from ipaplatform.paths import paths
-from ipapython import certmonger
+from ipapython import directivesetter
 from ipapython import ipaldap
 from ipapython import ipautil
 from ipapython.dn import DN
 from ipaserver.install import service
-from ipaserver.install import installutils
 from ipaserver.install import replication
 from ipaserver.install.installutils import stopped_service
-from ipapython.ipa_log_manager import log_mgr
 
-HTTPD_USER = constants.HTTPD_USER
+logger = logging.getLogger(__name__)
 
 
 def get_security_domain():
@@ -53,7 +54,11 @@ def get_security_domain():
     Get the security domain from the REST interface on the local Dogtag CA
     This function will succeed if the local dogtag CA is up.
     """
-    connection = PKIConnection()
+    connection = PKIConnection(
+        protocol='https',
+        hostname=api.env.ca_host,
+        port='8443'
+    )
     domain_client = pki.system.SecurityDomainClient(connection)
     info = domain_client.get_security_domain_info()
     return info
@@ -74,27 +79,6 @@ def is_installing_replica(sys_type):
         return False
 
 
-def export_kra_agent_pem():
-    """
-    Export ipaCert with private key for client authentication.
-    """
-    fd, filename = tempfile.mkstemp(dir=paths.HTTPD_ALIAS_DIR)
-    os.close(fd)
-
-    args = ["/usr/bin/pki",
-            "-d", paths.HTTPD_ALIAS_DIR,
-            "-C", paths.ALIAS_PWDFILE_TXT,
-            "client-cert-show", "ipaCert",
-            "--client-cert", filename]
-    ipautil.run(args)
-
-    pent = pwd.getpwnam(HTTPD_USER)
-    os.chown(filename, 0, pent.pw_gid)
-    os.chmod(filename, 0o440)
-
-    os.rename(filename, paths.KRA_AGENT_PEM)
-
-
 class DogtagInstance(service.Service):
     """
     This is the base class for a Dogtag 10+ instance, which uses a
@@ -107,30 +91,41 @@ class DogtagInstance(service.Service):
     tracking_reqs = None
     server_cert_name = None
 
+    ipaca_groups = DN(('ou', 'groups'), ('o', 'ipaca'))
+    ipaca_people = DN(('ou', 'people'), ('o', 'ipaca'))
+    groups_aci = (
+        b'(targetfilter="(objectClass=groupOfUniqueNames)")'
+        b'(targetattr="cn || description || objectclass || uniquemember")'
+        b'(version 3.0; acl "Allow users from o=ipaca to read groups"; '
+        b'allow (read, search, compare) '
+        b'userdn="ldap:///uid=*,ou=people,o=ipaca";)'
+    )
+
     def __init__(self, realm, subsystem, service_desc, host_name=None,
-                 dm_password=None, ldapi=True,
-                 nss_db=paths.PKI_TOMCAT_ALIAS_DIR):
+                 nss_db=paths.PKI_TOMCAT_ALIAS_DIR, service_prefix=None,
+                 config=None):
         """Initializer"""
 
         super(DogtagInstance, self).__init__(
             'pki-tomcatd',
             service_desc=service_desc,
-            dm_password=dm_password,
-            ldapi=ldapi
+            realm_name=realm,
+            service_user=constants.PKI_USER,
+            service_prefix=service_prefix
         )
 
-        self.realm = realm
         self.admin_password = None
         self.fqdn = host_name
         self.pkcs12_info = None
         self.clone = False
 
-        self.basedn = DN(('o', 'ipa%s' % subsystem.lower()))
+        self.basedn = DN(('o', 'ipaca'))
         self.admin_user = "admin"
-        self.admin_dn = DN(('uid', self.admin_user),
-                           ('ou', 'people'), ('o', 'ipaca'))
+        self.admin_dn = DN(
+            ('uid', self.admin_user), self.ipaca_people
+        )
         self.admin_groups = None
-        self.agent_db = tempfile.mkdtemp(prefix="tmp-")
+        self.tmp_agent_db = None
         self.subsystem = subsystem
         self.security_domain_name = "IPA"
         # replication parameters
@@ -138,11 +133,7 @@ class DogtagInstance(service.Service):
         self.master_replication_port = None
         self.subject_base = None
         self.nss_db = nss_db
-
-        self.log = log_mgr.get_logger(self)
-
-    def __del__(self):
-        shutil.rmtree(self.agent_db, ignore_errors=True)
+        self.config = config  # Path to CS.cfg
 
     def is_installed(self):
         """
@@ -153,103 +144,92 @@ class DogtagInstance(service.Service):
         return os.path.exists(os.path.join(
             paths.VAR_LIB_PKI_TOMCAT_DIR, self.subsystem.lower()))
 
-    def spawn_instance(self, cfg_file, nolog_list=None):
+    def spawn_instance(self, cfg_file, nolog_list=()):
         """
         Create and configure a new Dogtag instance using pkispawn.
         Passes in a configuration file with IPA-specific
         parameters.
         """
         subsystem = self.subsystem
-
-        # Define the things we don't want logged
-        if nolog_list is None:
-            nolog_list = []
-        nolog = tuple(nolog_list) + (self.admin_password, self.dm_password)
-
         args = [paths.PKISPAWN,
                 "-s", subsystem,
                 "-f", cfg_file]
 
         with open(cfg_file) as f:
-            self.log.debug(
+            logger.debug(
                 'Contents of pkispawn configuration file (%s):\n%s',
-                cfg_file, ipautil.nolog_replace(f.read(), nolog))
+                cfg_file, ipautil.nolog_replace(f.read(), nolog_list))
 
         try:
-            ipautil.run(args, nolog=nolog)
+            ipautil.run(args, nolog=nolog_list)
         except ipautil.CalledProcessError as e:
             self.handle_setup_error(e)
 
+    def clean_pkispawn_files(self):
+        if self.tmp_agent_db is not None:
+            shutil.rmtree(self.tmp_agent_db, ignore_errors=True)
+
+        shutil.rmtree('/root/.dogtag/pki-tomcat/{subsystem}/'
+                      .format(subsystem=self.subsystem.lower()),
+                      ignore_errors=True)
+
     def restart_instance(self):
-        try:
-            self.restart('pki-tomcat')
-        except Exception:
-            self.log.debug(traceback.format_exc())
-            self.log.critical(
-                "Failed to restart the Dogtag instance."
-                "See the installation log for details.")
+        self.restart('pki-tomcat')
 
     def start_instance(self):
-        try:
-            self.start('pki-tomcat')
-        except Exception:
-            self.log.debug(traceback.format_exc())
-            self.log.critical(
-                "Failed to restart the Dogtag instance."
-                "See the installation log for details.")
+        self.start('pki-tomcat')
 
     def stop_instance(self):
         try:
             self.stop('pki-tomcat')
         except Exception:
-            self.log.debug(traceback.format_exc())
-            self.log.critical(
-                "Failed to restart the Dogtag instance."
+            logger.debug("%s", traceback.format_exc())
+            logger.critical(
+                "Failed to stop the Dogtag instance."
                 "See the installation log for details.")
 
-    def enable_client_auth_to_db(self, config):
+    def enable_client_auth_to_db(self):
         """
         Enable client auth connection to the internal db.
-        Path to CS.cfg config file passed in.
         """
 
         with stopped_service('pki-tomcatd', 'pki-tomcat'):
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'authz.instance.DirAclAuthz.ldap.ldapauth.authtype',
                 'SslClientAuth', quotes=False, separator='=')
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'authz.instance.DirAclAuthz.ldap.ldapauth.clientCertNickname',
                 'subsystemCert cert-pki-ca', quotes=False, separator='=')
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'authz.instance.DirAclAuthz.ldap.ldapconn.port', '636',
                 quotes=False, separator='=')
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'authz.instance.DirAclAuthz.ldap.ldapconn.secureConn',
                 'true', quotes=False, separator='=')
 
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'internaldb.ldapauth.authtype',
                 'SslClientAuth', quotes=False, separator='=')
 
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'internaldb.ldapauth.clientCertNickname',
                 'subsystemCert cert-pki-ca', quotes=False, separator='=')
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'internaldb.ldapconn.port', '636', quotes=False, separator='=')
-            installutils.set_directive(
-                config,
+            directivesetter.set_directive(
+                self.config,
                 'internaldb.ldapconn.secureConn', 'true', quotes=False,
                 separator='=')
             # Remove internaldb password as is not needed anymore
-            installutils.set_directive(paths.PKI_TOMCAT_PASSWORD_CONF,
-                                       'internaldb', None)
+            directivesetter.set_directive(paths.PKI_TOMCAT_PASSWORD_CONF,
+                                       'internaldb', None, separator='=')
 
     def uninstall(self):
         if self.is_installed():
@@ -260,12 +240,14 @@ class DogtagInstance(service.Service):
                          "-i", 'pki-tomcat',
                          "-s", self.subsystem])
         except ipautil.CalledProcessError as e:
-            self.log.critical("failed to uninstall %s instance %s",
-                              self.subsystem, e)
+            logger.critical("failed to uninstall %s instance %s",
+                            self.subsystem, e)
 
     def http_proxy(self):
         """ Update the http proxy file  """
-        template_filename = ipautil.SHARE_DIR + "ipa-pki-proxy.conf"
+        template_filename = (
+            os.path.join(paths.USR_SHARE_IPA_DIR,
+                         "ipa-pki-proxy.conf.template"))
         sub_dict = dict(
             DOGTAG_PORT=8009,
             CLONE='' if self.clone else '#',
@@ -289,18 +271,23 @@ class DogtagInstance(service.Service):
         obj = bus.get_object('org.fedorahosted.certmonger',
                              '/org/fedorahosted/certmonger')
         iface = dbus.Interface(obj, 'org.fedorahosted.certmonger')
-        path = iface.find_ca_by_nickname('dogtag-ipa-ca-renew-agent')
-        if not path:
-            iface.add_known_ca(
-                'dogtag-ipa-ca-renew-agent',
-                paths.DOGTAG_IPA_CA_RENEW_AGENT_SUBMIT,
-                dbus.Array([], dbus.Signature('s')))
+        for suffix, args in [('', ''), ('-reuse', ' --reuse-existing')]:
+            name = 'dogtag-ipa-ca-renew-agent' + suffix
+            path = iface.find_ca_by_nickname(name)
+            if not path:
+                command = paths.DOGTAG_IPA_CA_RENEW_AGENT_SUBMIT + args
+                iface.add_known_ca(
+                    name,
+                    command,
+                    dbus.Array([], dbus.Signature('s')),
+                    # Give dogtag extra time to generate cert
+                    timeout=CA_DBUS_TIMEOUT)
 
     def __get_pin(self):
         try:
             return certmonger.get_pin('internal')
         except IOError as e:
-            self.log.debug(
+            logger.debug(
                 'Unable to determine PIN for the Dogtag instance: %s', e)
             raise RuntimeError(e)
 
@@ -308,19 +295,18 @@ class DogtagInstance(service.Service):
         """ Configure certmonger to renew system certs """
         pin = self.__get_pin()
 
-        for nickname, profile in self.tracking_reqs:
+        for nickname in self.tracking_reqs:
             try:
-                certmonger.dogtag_start_tracking(
+                certmonger.start_tracking(
+                    certpath=self.nss_db,
                     ca='dogtag-ipa-ca-renew-agent',
                     nickname=nickname,
                     pin=pin,
-                    pinfile=None,
-                    secdir=self.nss_db,
                     pre_command='stop_pkicad',
                     post_command='renew_ca_cert "%s"' % nickname,
-                    profile=profile)
+                )
             except RuntimeError as e:
-                self.log.error(
+                logger.error(
                     "certmonger failed to start tracking certificate: %s", e)
 
     def track_servercert(self):
@@ -331,30 +317,29 @@ class DogtagInstance(service.Service):
         """
         pin = self.__get_pin()
         try:
-            certmonger.dogtag_start_tracking(
-                ca='dogtag-ipa-renew-agent',
+            certmonger.start_tracking(
+                certpath=self.nss_db,
+                ca='dogtag-ipa-ca-renew-agent',
                 nickname=self.server_cert_name,
                 pin=pin,
-                pinfile=None,
-                secdir=self.nss_db,
                 pre_command='stop_pkicad',
                 post_command='renew_ca_cert "%s"' % self.server_cert_name)
         except RuntimeError as e:
-            self.log.error(
-                "certmonger failed to start tracking certificate: %s" % e)
+            logger.error(
+                "certmonger failed to start tracking certificate: %s", e)
 
     def stop_tracking_certificates(self, stop_certmonger=True):
         """Stop tracking our certificates. Called on uninstall.
         """
-        self.print_msg(
+        logger.debug(
             "Configuring certmonger to stop tracking system certificates "
-            "for %s" % self.subsystem)
+            "for %s", self.subsystem)
 
         cmonger = services.knownservices.certmonger
         services.knownservices.messagebus.start()
         cmonger.start()
 
-        nicknames = [nickname for nickname, _profile in self.tracking_reqs]
+        nicknames = list(self.tracking_reqs)
         if self.server_cert_name is not None:
             nicknames.append(self.server_cert_name)
 
@@ -363,28 +348,29 @@ class DogtagInstance(service.Service):
                 certmonger.stop_tracking(
                     self.nss_db, nickname=nickname)
             except RuntimeError as e:
-                self.log.error(
+                logger.error(
                     "certmonger failed to stop tracking certificate: %s", e)
 
         if stop_certmonger:
             cmonger.stop()
 
-    @staticmethod
-    def update_cert_cs_cfg(directive, cert, cs_cfg):
+    def update_cert_cs_cfg(self, directive, cert):
         """
         When renewing a Dogtag subsystem certificate the configuration file
         needs to get the new certificate as well.
 
         ``directive`` is the directive to update in CS.cfg
-        cert is a DER-encoded certificate.
+        cert is IPACertificate.
         cs_cfg is the path to the CS.cfg file
         """
 
         with stopped_service('pki-tomcatd', 'pki-tomcat'):
-            installutils.set_directive(
-                cs_cfg,
+            directivesetter.set_directive(
+                self.config,
                 directive,
-                base64.b64encode(cert),
+                # the cert must be only the base64 string without headers
+                (base64.b64encode(cert.public_bytes(x509.Encoding.DER))
+                 .decode('ascii')),
                 quotes=False,
                 separator='=')
 
@@ -393,12 +379,13 @@ class DogtagInstance(service.Service):
         Get the certificate for the admin user by checking the ldap entry
         for the user.  There should be only one certificate per user.
         """
-        self.log.debug('Trying to find the certificate for the admin user')
+        logger.debug('Trying to find the certificate for the admin user')
         conn = None
 
         try:
-            conn = ipaldap.IPAdmin(self.fqdn, ldapi=True, realm=self.realm)
-            conn.do_external_bind('root')
+            ldap_uri = ipaldap.get_ldap_uri(protocol='ldapi', realm=self.realm)
+            conn = ipaldap.LDAPClient(ldap_uri)
+            conn.external_bind()
 
             entry_attrs = conn.get_entry(self.admin_dn, ['usercertificate'])
             admin_cert = entry_attrs.get('usercertificate')[0]
@@ -408,47 +395,47 @@ class DogtagInstance(service.Service):
             if conn is not None:
                 conn.unbind()
 
-        return base64.b64encode(admin_cert)
+        return admin_cert
 
     def handle_setup_error(self, e):
-        self.log.critical("Failed to configure %s instance: %s"
-                          % (self.subsystem, e))
-        self.log.critical("See the installation logs and the following "
-                          "files/directories for more information:")
-        self.log.critical("  %s" % paths.TOMCAT_TOPLEVEL_DIR)
+        logger.critical("Failed to configure %s instance: %s",
+                        self.subsystem, e)
+        logger.critical("See the installation logs and the following "
+                        "files/directories for more information:")
+        logger.critical("  %s", paths.TOMCAT_TOPLEVEL_DIR)
 
         raise RuntimeError("%s configuration failed." % self.subsystem)
 
-    def __add_admin_to_group(self, group):
-        dn = DN(('cn', group), ('ou', 'groups'), ('o', 'ipaca'))
-        entry = self.admin_conn.get_entry(dn)
-        members = entry.get('uniqueMember', [])
-        members.append(self.admin_dn)
-        mod = [(ldap.MOD_REPLACE, 'uniqueMember', members)]
+    def add_ipaca_aci(self):
+        """Add ACI to allow ipaca users to read their own group information
+
+        Dogtag users aren't allowed to enumerate their own groups. The
+        setup_admin() method needs the permission to wait, until all group
+        information has been replicated.
+        """
+        dn = self.ipaca_groups
+        mod = [(ldap.MOD_ADD, 'aci', [self.groups_aci])]
         try:
-            self.admin_conn.modify_s(dn, mod)
+            api.Backend.ldap2.modify_s(dn, mod)
         except ldap.TYPE_OR_VALUE_EXISTS:
-            # already there
-            pass
+            logger.debug("%s already has ACI to read group information", dn)
+        else:
+            logger.debug("Added ACI to read groups to %s", dn)
 
     def setup_admin(self):
         self.admin_user = "admin-%s" % self.fqdn
-        self.admin_password = binascii.hexlify(os.urandom(16))
-
-        if not self.admin_conn:
-            self.ldap_connect()
-
-        self.admin_dn = DN(('uid', self.admin_user),
-                           ('ou', 'people'), ('o', 'ipaca'))
-
+        self.admin_password = ipautil.ipa_generate_password()
+        self.admin_dn = DN(
+            ('uid', self.admin_user), self.ipaca_people
+        )
         # remove user if left-over exists
         try:
-            entry = self.admin_conn.delete_entry(self.admin_dn)
+            api.Backend.ldap2.delete_entry(self.admin_dn)
         except errors.NotFound:
             pass
 
         # add user
-        entry = self.admin_conn.make_entry(
+        entry = api.Backend.ldap2.make_entry(
             self.admin_dn,
             objectclass=["top", "person", "organizationalPerson",
                          "inetOrgPerson", "cmsuser"],
@@ -460,39 +447,91 @@ class DogtagInstance(service.Service):
             userPassword=[self.admin_password],
             userstate=['1']
         )
-        self.admin_conn.add_entry(entry)
+        api.Backend.ldap2.add_entry(entry)
 
+        wait_groups = []
         for group in self.admin_groups:
-            self.__add_admin_to_group(group)
+            group_dn = DN(('cn', group), self.ipaca_groups)
+            mod = [(ldap.MOD_ADD, 'uniqueMember', [self.admin_dn])]
+            try:
+                api.Backend.ldap2.modify_s(group_dn, mod)
+            except ldap.TYPE_OR_VALUE_EXISTS:
+                # already there
+                return None
+            else:
+                wait_groups.append(group_dn)
 
         # Now wait until the other server gets replicated this data
-        master_conn = ipaldap.IPAdmin(self.master_host,
-                                      port=389,
-                                      protocol='ldap')
-        master_conn.do_sasl_gssapi_bind()
-        replication.wait_for_entry(master_conn, entry)
-        del master_conn
+        ldap_uri = ipaldap.get_ldap_uri(self.master_host)
+        master_conn = ipaldap.LDAPClient(ldap_uri, start_tls=True)
+        logger.debug(
+            "Waiting for %s to appear on %s", self.admin_dn, master_conn
+        )
+        deadline = time.time() + api.env.replication_wait_timeout
+        while time.time() < deadline:
+            time.sleep(1)
+            try:
+                master_conn.simple_bind(self.admin_dn, self.admin_password)
+            except errors.ACIError:
+                # user not replicated yet
+                pass
+            else:
+                logger.debug("Successfully logged in as %s", self.admin_dn)
+                break
+        else:
+            logger.error(
+                "Unable to log in as %s on %s", self.admin_dn, master_conn
+            )
+            raise errors.NotFound(
+                reason="{} did not replicate to {}".format(
+                    self.admin_dn, master_conn
+                )
+            )
+
+        # wait for group membership
+        for group_dn in wait_groups:
+            replication.wait_for_entry(
+                master_conn,
+                group_dn,
+                timeout=api.env.replication_wait_timeout,
+                attr='uniqueMember',
+                attrvalue=self.admin_dn
+            )
 
     def __remove_admin_from_group(self, group):
-        dn = DN(('cn', group), ('ou', 'groups'), ('o', 'ipaca'))
+        dn = DN(('cn', group), self.ipaca_groups)
         mod = [(ldap.MOD_DELETE, 'uniqueMember', self.admin_dn)]
         try:
-            self.admin_conn.modify_s(dn, mod)
+            api.Backend.ldap2.modify_s(dn, mod)
         except ldap.NO_SUCH_ATTRIBUTE:
             # already removed
             pass
 
     def teardown_admin(self):
-
-        if not self.admin_conn:
-            self.ldap_connect()
-
         for group in self.admin_groups:
             self.__remove_admin_from_group(group)
-        self.admin_conn.delete_entry(self.admin_dn)
+        api.Backend.ldap2.delete_entry(self.admin_dn)
 
     def _use_ldaps_during_spawn(self, config, ds_cacert=paths.IPA_CA_CRT):
+        """
+        config is a RawConfigParser object
+        cs_cacert is path to a PEM CA certificate
+        """
         config.set(self.subsystem, "pki_ds_ldaps_port", "636")
         config.set(self.subsystem, "pki_ds_secure_connection", "True")
         config.set(self.subsystem, "pki_ds_secure_connection_ca_pem_file",
                    ds_cacert)
+
+    def backup_config(self):
+        """
+        Create a backup copy of CS.cfg
+        """
+        config = self.config
+        bak = config + '.ipabkp'
+        if services.knownservices['pki_tomcatd'].is_running('pki-tomcat'):
+            raise RuntimeError(
+                "Dogtag must be stopped when creating backup of %s" % config)
+        shutil.copy(config, bak)
+        # shutil.copy() doesn't copy owner
+        s = os.stat(config)
+        os.chown(bak, s.st_uid, s.st_gid)

@@ -2,11 +2,17 @@
 # Copyright (C) 2015  FreeIPA Contributors see COPYING for license
 #
 
+from __future__ import absolute_import
+
+import logging
+
 from ipalib import api
 from ipaplatform.paths import paths
 from ipapython import admintool
 from ipaserver.install import installutils
 from ipaserver.install import server
+
+logger = logging.getLogger(__name__)
 
 
 class ServerUpgrade(admintool.AdminTool):
@@ -29,6 +35,8 @@ class ServerUpgrade(admintool.AdminTool):
     def validate_options(self):
         super(ServerUpgrade, self).validate_options(needs_root=True)
 
+        installutils.check_server_configuration()
+
         if self.options.force:
             self.options.skip_version_check = True
 
@@ -38,7 +46,7 @@ class ServerUpgrade(admintool.AdminTool):
     def run(self):
         super(ServerUpgrade, self).run()
 
-        api.bootstrap(in_server=True, context='updates')
+        api.bootstrap(in_server=True, context='updates', confdir=paths.ETC_IPA)
         api.finalize()
 
         try:
@@ -50,7 +58,7 @@ class ServerUpgrade(admintool.AdminTool):
     def handle_error(self, exception):
         if not isinstance(exception, SystemExit):
             # do not log this message when ipa is not installed
-            self.log.error("IPA server upgrade failed: Inspect "
-                              "/var/log/ipaupgrade.log and run command "
-                              "ipa-server-upgrade manually.")
+            logger.error("IPA server upgrade failed: Inspect "
+                         "/var/log/ipaupgrade.log and run command "
+                         "ipa-server-upgrade manually.")
         return installutils.handle_error(exception, self.log_file_name)

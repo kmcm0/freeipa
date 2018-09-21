@@ -75,14 +75,14 @@ The following restrictions apply to profiles managed by FreeIPA:
 register = Registry()
 
 
-def ca_enabled_check():
+def ca_enabled_check(_api):
     """Raise NotFound if CA is not enabled.
 
     This function is defined in multiple plugins to avoid circular imports
     (cert depends on certprofile, so we cannot import cert here).
 
     """
-    if not api.Command.ca_is_enabled()['result']:
+    if not _api.Command.ca_is_enabled()['result']:
         raise errors.NotFound(reason=_('CA is not configured'))
 
 
@@ -191,7 +191,7 @@ class certprofile_find(LDAPSearch):
     )
 
     def execute(self, *args, **kwargs):
-        ca_enabled_check()
+        ca_enabled_check(self.api)
         return super(certprofile_find, self).execute(*args, **kwargs)
 
 
@@ -206,7 +206,7 @@ class certprofile_show(LDAPRetrieve):
     )
 
     def execute(self, *keys, **options):
-        ca_enabled_check()
+        ca_enabled_check(self.api)
         result = super(certprofile_show, self).execute(*keys, **options)
 
         if 'out' in options:
@@ -233,17 +233,28 @@ class certprofile_import(LDAPCreate):
     PROFILE_ID_PATTERN = re.compile('^profileId=([a-zA-Z]\w*)', re.MULTILINE)
 
     def pre_callback(self, ldap, dn, entry, entry_attrs, *keys, **options):
-        ca_enabled_check()
+        ca_enabled_check(self.api)
         context.profile = options['file']
 
-        match = self.PROFILE_ID_PATTERN.search(options['file'])
-        if match is None:
+        matches = self.PROFILE_ID_PATTERN.findall(options['file'])
+        if len(matches) == 0:
             # no profileId found, use CLI value as profileId.
             context.profile = u'profileId=%s\n%s' % (keys[0], context.profile)
-        elif keys[0] != match.group(1):
-            raise errors.ValidationError(name='file',
-                error=_("Profile ID '%(cli_value)s' does not match profile data '%(file_value)s'")
-                    % {'cli_value': keys[0], 'file_value': match.group(1)}
+        elif len(matches) > 1:
+            raise errors.ValidationError(
+                name='file',
+                error=_(
+                    "Profile data specifies profileId multiple times: "
+                    "%(values)s"
+                ) % dict(values=matches)
+            )
+        elif keys[0] != matches[0]:
+            raise errors.ValidationError(
+                name='file',
+                error=_(
+                    "Profile ID '%(cli_value)s' "
+                    "does not match profile data '%(file_value)s'"
+                ) % dict(cli_value=keys[0], file_value=matches[0])
             )
         return dn
 
@@ -271,7 +282,7 @@ class certprofile_del(LDAPDelete):
     msg_summary = _('Deleted profile "%(value)s"')
 
     def pre_callback(self, ldap, dn, *keys, **options):
-        ca_enabled_check()
+        ca_enabled_check(self.api)
 
         if keys[0] in [p.profile_id for p in INCLUDED_PROFILES]:
             raise errors.ValidationError(name='profile_id',
@@ -304,12 +315,17 @@ class certprofile_mod(LDAPUpdate):
     )
 
     def pre_callback(self, ldap, dn, entry_attrs, attrs_list, *keys, **options):
-        ca_enabled_check()
+        ca_enabled_check(self.api)
         # Once a profile id is set it cannot be changed
         if 'cn' in entry_attrs:
             raise errors.ProtectedEntryError(label='certprofile', key=keys[0],
                 reason=_('Certificate profiles cannot be renamed'))
         if 'file' in options:
+            # ensure operator has permission to update a certprofile
+            if not ldap.can_write(dn, 'ipacertprofilestoreissued'):
+                raise errors.ACIError(info=_(
+                    "Insufficient privilege to modify a certificate profile."))
+
             with self.api.Backend.ra_certprofile as profile_api:
                 profile_api.disable_profile(keys[0])
                 try:

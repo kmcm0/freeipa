@@ -2,31 +2,35 @@
 # Copyright (C) 2015  FreeIPA Contributors see COPYING for license
 #
 
+import logging
+
 from ipalib import Command
 from ipalib.request import context
 from ipalib.plugable import Registry
-from ipaserver.session import get_session_mgr
+from ipalib.text import _
+
+__doc__ = _("""
+Session Support for IPA
+""")
+
+logger = logging.getLogger(__name__)
 
 register = Registry()
 
 
 @register()
 class session_logout(Command):
-    '''
-    RPC command used to log the current user out of their session.
-    '''
+    __doc__ = _('RPC command used to log the current user out of their'
+                ' session.')
     NO_CLI = True
 
     def execute(self, *args, **options):
-        session_data = getattr(context, 'session_data', None)
-        if session_data is None:
-            self.debug('session logout command: no session_data found')
+        ccache_name = getattr(context, 'ccache_name', None)
+        if ccache_name is None:
+            logger.debug('session logout command: no ccache_name found')
         else:
-            session_id = session_data.get('session_id')
-            self.debug('session logout command: session_id=%s', session_id)
+            delattr(context, 'ccache_name')
 
-            # Notifiy registered listeners
-            session_mgr = get_session_mgr()
-            session_mgr.auth_mgr.logout(session_data)
+        setattr(context, 'logout_cookie', 'MagBearerToken=')
 
         return dict(result=None)

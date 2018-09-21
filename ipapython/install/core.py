@@ -14,13 +14,14 @@ import sys
 
 import six
 
-from ipapython.ipa_log_manager import root_logger
-
 from . import util
 from .util import from_
 
-__all__ = ['InvalidStateError', 'KnobValueError', 'Property', 'Knob',
-           'Configurable', 'Group', 'Component', 'Composite']
+__all__ = ['InvalidStateError', 'KnobValueError', 'Property', 'knob',
+           'Configurable', 'group', 'Component', 'Composite']
+
+NoneType = type(None)
+builtin_type = type
 
 # Configurable states
 _VALIDATE_PENDING = 'VALIDATE_PENDING'
@@ -110,9 +111,8 @@ class KnobBase(PropertyBase):
     sensitive = False
     deprecated = False
     description = None
-    cli_name = None
-    cli_short_name = None
-    cli_aliases = None
+    cli_names = (None,)
+    cli_deprecated_names = ()
     cli_metavar = None
 
     def __init__(self, outer):
@@ -120,6 +120,15 @@ class KnobBase(PropertyBase):
 
     def validate(self, value):
         pass
+
+    @classmethod
+    def group(cls):
+        return cls.__outer_class__.group()
+
+    @classmethod
+    def is_cli_positional(cls):
+        return all(n is not None and not n.startswith('-')
+                   for n in cls.cli_names)
 
     @classmethod
     def default_getter(cls, func):
@@ -140,35 +149,82 @@ class KnobBase(PropertyBase):
         return cls
 
 
-def Knob(type_or_base, default=_missing, sensitive=_missing,
-         deprecated=_missing, description=_missing, cli_name=_missing,
-         cli_short_name=_missing, cli_aliases=_missing, cli_metavar=_missing):
+def _knob(type=_missing, default=_missing, bases=_missing, _order=_missing,
+          sensitive=_missing, deprecated=_missing, description=_missing,
+          group=_missing, cli_names=_missing, cli_deprecated_names=_missing,
+          cli_metavar=_missing):
+    if type is None:
+        type = NoneType
+
+    if bases is _missing:
+        bases = (KnobBase,)
+    elif isinstance(bases, builtin_type):
+        bases = (bases,)
+
+    if cli_names is None or isinstance(cli_names, str):
+        cli_names = (cli_names,)
+    elif cli_names is not _missing:
+        cli_names = tuple(cli_names)
+
+    if isinstance(cli_deprecated_names, str):
+        cli_deprecated_names = (cli_deprecated_names,)
+    elif cli_deprecated_names is not _missing:
+        cli_deprecated_names = tuple(cli_deprecated_names)
+
     class_dict = {}
-    class_dict['_order'] = next(_counter)
-
-    if (not isinstance(type_or_base, type) or
-            not issubclass(type_or_base, KnobBase)):
-        class_dict['type'] = type_or_base
-        type_or_base = KnobBase
-
+    if type is not _missing:
+        class_dict['type'] = type
     if default is not _missing:
         class_dict['default'] = default
+    if _order is not _missing:
+        class_dict['_order'] = _order
     if sensitive is not _missing:
         class_dict['sensitive'] = sensitive
     if deprecated is not _missing:
         class_dict['deprecated'] = deprecated
     if description is not _missing:
         class_dict['description'] = description
-    if cli_name is not _missing:
-        class_dict['cli_name'] = cli_name
-    if cli_short_name is not _missing:
-        class_dict['cli_short_name'] = cli_short_name
-    if cli_aliases is not _missing:
-        class_dict['cli_aliases'] = cli_aliases
+    if group is not _missing:
+        class_dict['group'] = group
+    if cli_names is not _missing:
+        class_dict['cli_names'] = cli_names
+    if cli_deprecated_names is not _missing:
+        class_dict['cli_deprecated_names'] = cli_deprecated_names
     if cli_metavar is not _missing:
         class_dict['cli_metavar'] = cli_metavar
 
-    return util.InnerClassMeta('Knob', (type_or_base,), class_dict)
+    return util.InnerClassMeta('Knob', bases, class_dict)
+
+
+def knob(type, default=_missing, **kwargs):
+    """
+    Define a new knob.
+    """
+    return _knob(
+        type, default,
+        _order=next(_counter),
+        **kwargs
+    )
+
+
+def extend_knob(base, default=_missing, bases=_missing, group=_missing,
+                **kwargs):
+    """
+    Extend an existing knob.
+    """
+    if bases is _missing:
+        bases = (base,)
+
+    if group is _missing:
+        group = staticmethod(base.group)
+
+    return _knob(
+        _missing, default,
+        bases=bases,
+        _order=_missing,
+        group=group,
+        **kwargs
+    )
 
 
 class Configurable(six.with_metaclass(abc.ABCMeta, object)):
@@ -219,14 +275,10 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
     def group(cls):
         assert not hasattr(super(Configurable, cls), 'group')
 
-        return None
-
     def __init__(self, **kwargs):
         """
         Initialize the configurable.
         """
-
-        self.log = root_logger
 
         cls = self.__class__
         for owner_cls, name in cls.properties():
@@ -258,8 +310,6 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
             prop = prop_cls(self)
             try:
                 prop.validate(value)
-            except KnobValueError:
-                raise
             except ValueError as e:
                 raise KnobValueError(name, str(e))
 
@@ -285,7 +335,7 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
         raise TypeError("{0} is not composite".format(self))
 
     def _get_fallback(self):
-        return None
+        pass
 
     @abc.abstractmethod
     def _configure(self):
@@ -307,7 +357,8 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
 
         self.validate()
         if self.__state == _EXECUTE_PENDING:
-            self.execute()
+            return self.execute()
+        return None
 
     def validate(self):
         """
@@ -330,9 +381,13 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
         """
         Run the execution part of the configurable.
         """
+        return_value = 0
 
-        for _nothing in self._executor():
-            pass
+        for rval in self._executor():
+            if rval is not None and rval > return_value:
+                return_value = rval
+
+        return return_value
 
     def _executor(self):
         """
@@ -411,10 +466,13 @@ class Configurable(six.with_metaclass(abc.ABCMeta, object)):
         self.__state = to_state
 
 
-class Group(Configurable):
-    @classmethod
-    def group(cls):
+def group(cls):
+    def group():
         return cls
+
+    cls.group = staticmethod(group)
+
+    return cls
 
 
 class ComponentMeta(util.InnerClassMeta, abc.ABCMeta):

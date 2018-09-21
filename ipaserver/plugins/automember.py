@@ -451,10 +451,7 @@ class automember_remove_condition(LDAPUpdate):
 
         # Define container key
         type_attr_default = {'group': 'manager', 'hostgroup': 'fqdn'}
-        if 'key' in options:
-            key = options['key']
-        else:
-            key = type_attr_default[options['type']]
+        key = options.get('key', type_attr_default[options['type']])
 
         key = '%s=' % key
         completed = 0
@@ -769,7 +766,7 @@ class automember_rebuild(Method):
                 try:
                     obj.get_dn_if_exists(name)
                 except errors.NotFound:
-                    obj.handle_not_found(name)
+                    raise obj.handle_not_found(name)
             search_filter = ldap.make_filter_from_attr(
                 obj.primary_key.name,
                 names,

@@ -2,6 +2,10 @@
 # Copyright (C) 2015  FreeIPA Contributors see COPYING for license
 #
 
+from __future__ import absolute_import
+
+import logging
+
 from ipalib.plugable import Registry
 from ipalib import errors
 from ipalib import Updater
@@ -9,6 +13,8 @@ from ipaplatform.paths import paths
 from ipapython.dn import DN
 from ipaserver.install import sysupgrade
 from ipaserver.install.ldapupdate import LDAPUpdate
+
+logger = logging.getLogger(__name__)
 
 register = Registry()
 
@@ -32,7 +38,7 @@ class update_nis_configuration(Updater):
             # maps, we do not want to restore them again
             return
 
-        self.log.debug("Recovering from missing NIS maps bug")
+        logger.debug("Recovering from missing NIS maps bug")
 
         suffix = "cn=NIS Server,cn=plugins,cn=config"
         domain = self.api.env.domain
@@ -71,7 +77,7 @@ class update_nis_configuration(Updater):
             ldap.get_entry(dn, attrs_list=['cn'])
         except errors.NotFound:
             # NIS is not configured on system, do not execute update
-            self.log.debug("Skipping NIS update, NIS Server is not configured")
+            logger.debug("Skipping NIS update, NIS Server is not configured")
 
             # container does not exist, bug #5507 is not effective
             sysupgrade.set_upgrade_state(
@@ -79,7 +85,7 @@ class update_nis_configuration(Updater):
         else:
             self.__recover_from_missing_maps(ldap)
 
-            self.log.debug("Executing NIS Server update")
+            logger.debug("Executing NIS Server update")
             ld = LDAPUpdate(sub_dict={}, ldapi=True)
             ld.update([paths.NIS_UPDATE_ULDIF])
 

@@ -39,7 +39,7 @@ else:
     _dcerpc_bindings_installed = False
 
 
-ID_RANGE_VS_DNA_WARNING = """=======
+ID_RANGE_VS_DNA_WARNING = _("""=======
 WARNING:
 
 DNA plugin in 389-ds will allocate IDs based on the ranges configured for the
@@ -51,7 +51,7 @@ the new local range. Specifically, The dnaNextRange attribute of 'cn=Posix
 IDs,cn=Distributed Numeric Assignment Plugin,cn=plugins,cn=config' has to be
 modified to match the new range.
 =======
-"""
+""")
 
 __doc__ = _("""
 ID ranges
@@ -92,7 +92,7 @@ while creating the ID range.
 This ID range is then used by the IPA server and the SSSD IPA provider to
 assign Posix UIDs to users from the trusted domain.
 
-If e.g a range for a trusted domain is configured with the following values:
+If e.g. a range for a trusted domain is configured with the following values:
  base-id = 1200000
  range-size = 200000
  rid-base = 0
@@ -161,8 +161,7 @@ this domain has the SID S-1-5-21-123-456-789-1010 then 1010 id the RID of the
 user. RIDs are unique in a domain, 32bit values and are used for users and
 groups.
 
-{0}
-""".format(ID_RANGE_VS_DNA_WARNING))
+""") + ID_RANGE_VS_DNA_WARNING
 
 register = Registry()
 
@@ -239,18 +238,18 @@ class idrange(LDAPObject):
             cli_name='dom_name',
             flags=('no_search', 'virtual_attribute', 'no_update'),
             label=_('Name of the trusted domain'),
-        ),
+            ),
         StrEnum('iparangetype?',
-            label=_('Range type'),
-            cli_name='type',
-            doc=(_('ID range type, one of {vals}'
-                 .format(vals=', '.join(range_types.keys())))),
-            values=tuple(range_types.keys()),
-            flags=['no_update'],
-        )
+                label=_('Range type'),
+                cli_name='type',
+                doc=_('ID range type, one of allowed values'),
+                values=sorted(range_types),
+                flags=['no_update'],
+                )
     )
 
-    def handle_iparangetype(self, entry_attrs, options, keep_objectclass=False):
+    def handle_iparangetype(self, entry_attrs, options,
+                            keep_objectclass=False):
         if not any((options.get('pkey_only', False),
                     options.get('raw', False))):
             range_type = entry_attrs['iparangetype'][0]
@@ -399,8 +398,7 @@ class idrange_add(LDAPCreate):
 
     must be given to add a new range for a trusted AD domain.
 
-{0}
-""".format(ID_RANGE_VS_DNA_WARNING))
+""") + ID_RANGE_VS_DNA_WARNING
 
     msg_summary = _('Added ID range "%(value)s"')
 
@@ -411,7 +409,7 @@ class idrange_add(LDAPCreate):
 
         # This needs to stay in options since there is no
         # ipanttrusteddomainname attribute in LDAP
-        if 'ipanttrusteddomainname' in options:
+        if options.get('ipanttrusteddomainname'):
             if is_set('ipanttrusteddomainsid'):
                 raise errors.ValidationError(name='ID Range setup',
                     error=_('Options dom-sid and dom-name '
@@ -423,10 +421,10 @@ class idrange_add(LDAPCreate):
             if sid is not None:
                 entry_attrs['ipanttrusteddomainsid'] = sid
             else:
-                raise errors.ValidationError(name='ID Range setup',
-                    error=_('SID for the specified trusted domain name could '
-                            'not be found. Please specify the SID directly '
-                            'using dom-sid option.'))
+                raise errors.ValidationError(
+                    name='ID Range setup',
+                    error=_('Specified trusted domain name could not be '
+                            'found.'))
 
         # ipaNTTrustedDomainSID attribute set, this is AD Trusted domain range
         if is_set('ipanttrusteddomainsid'):
@@ -535,7 +533,7 @@ class idrange_del(LDAPDelete):
                                             'ipaidrangesize',
                                             'ipanttrusteddomainsid'])
         except errors.NotFound:
-            self.obj.handle_not_found(*keys)
+            raise self.obj.handle_not_found(*keys)
 
         # Check whether we leave any object with id in deleted range
         old_base_id = int(old_attrs.get('ipabaseid', [0])[0])
@@ -614,8 +612,7 @@ class idrange_show(LDAPRetrieve):
 class idrange_mod(LDAPUpdate):
     __doc__ = _("""Modify ID range.
 
-{0}
-""".format(ID_RANGE_VS_DNA_WARNING))
+""") + ID_RANGE_VS_DNA_WARNING
 
     msg_summary = _('Modified ID range "%(value)s"')
 
@@ -645,7 +642,7 @@ class idrange_mod(LDAPUpdate):
         try:
             old_attrs = ldap.get_entry(dn, ['*'])
         except errors.NotFound:
-            self.obj.handle_not_found(*keys)
+            raise self.obj.handle_not_found(*keys)
 
         if old_attrs['iparangetype'][0] == 'ipa-local':
             raise errors.ExecutionError(

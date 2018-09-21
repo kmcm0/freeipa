@@ -63,6 +63,16 @@ def subject_conflict_subca(request):
     return tracker
 
 
+@pytest.fixture(scope='class')
+def unrecognised_subject_dn_attrs_subca(request):
+    name = u'crud-subca-3'
+    subject = u'CN=crud subca test,DN=example.com,O=crud testing inc'
+    tracker = CATracker(name, subject)
+
+    # Should not get created, no need to delete
+    return tracker
+
+
 @pytest.mark.tier0
 class TestDefaultCA(XMLRPC_test):
     def test_default_ca_present(self, default_ca):
@@ -86,6 +96,13 @@ class TestCAbasicCRUD(XMLRPC_test):
 
     def test_retrieve_all(self, crud_subca):
         crud_subca.retrieve(all=True)
+
+    def test_export_ca(self, tmpdir, crud_subca):
+        exported_ca = tmpdir.join('exported_ca')
+        command = crud_subca.make_retrieve_command(
+            certificate_out=u'%s' % exported_ca,
+        )
+        command()
 
     def test_delete(self, crud_subca):
         crud_subca.delete()
@@ -173,3 +190,8 @@ class TestCAbasicCRUD(XMLRPC_test):
 
         with pytest.raises(errors.DuplicateEntry):
             subject_conflict_subca.create()
+
+    def test_create_subca_with_unrecognised_subject_dn_attrs(
+            self, unrecognised_subject_dn_attrs_subca):
+        with pytest.raises(errors.ValidationError):
+            unrecognised_subject_dn_attrs_subca.create()

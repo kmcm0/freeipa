@@ -18,6 +18,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+set -o errexit
 
 #
 # This script prepares working enviroment to use dojo toolkit.
@@ -75,7 +76,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DOJO_DIR=$DIR/../../../../dojo
 
 # working version of Dojo toolkit
-BRANCH='1.8.3'
+BRANCH='1.13.0'
 YES='YES'
 
 args=`getopt -q -u -l help,checkout,clone,patches,links,dojo,util,all,branch:,dir: a $*`

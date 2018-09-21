@@ -1,75 +1,645 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Red Hat
-# This file is distributed under the same license as the PACKAGE package.
-#
-# Translators:
-# jdennis <jdennis@redhat.com>, 2011
-# Petr Viktorin <encukou@gmail.com>, 2014
-# Yuri Chornoivan <yurchor@ukr.net>, 2011-2014
 # Yuri Chornoivan <yurchor@ukr.net>, 2015. #zanata
 # Martin Bašti <mbasti@redhat.com>, 2016. #zanata
 # Yuri Chornoivan <yurchor@ukr.net>, 2016. #zanata
+# Yuri Chornoivan <yurchor@ukr.net>, 2017. #zanata
+# Yuri Chornoivan <yurchor@ukr.net>, 2018. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: ipa\n"
+"Project-Id-Version: freeipa 4.6.90.pre2\n"
 "Report-Msgid-Bugs-To: https://fedorahosted.org/freeipa/newticket\n"
-"POT-Creation-Date: 2016-08-29 10:39+0200\n"
-"PO-Revision-Date: 2016-08-06 03:17-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/freeipa/"
-"language/uk/)\n"
-"Language: uk\n"
+"POT-Creation-Date: 2018-05-15 14:59-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-05-16 02:15+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"X-Generator: Zanata 4.4.5\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Zanata 3.9.3\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-msgid "Failed members"
-msgstr "Помилка members"
+#, c-format
+msgid "cannot open configuration file %s\n"
+msgstr "не вдалося відкрити файл налаштувань %s\n"
 
-msgid "Failed source hosts/hostgroups"
-msgstr "Помилка hosts/hostgroups джерела"
+#, c-format
+msgid "cannot stat() configuration file %s\n"
+msgstr "не вдалося обробити функцією stat() файл налаштування %s\n"
 
-msgid "Failed hosts/hostgroups"
-msgstr "Помилка hosts/hostgroups"
+#, c-format
+msgid "out of memory\n"
+msgstr "не вистачає пам'яті\n"
 
-msgid "Failed users/groups"
-msgstr "Помилка users/groups"
+#, c-format
+msgid "read error\n"
+msgstr "помилка читання\n"
 
-msgid "Failed service/service groups"
-msgstr "Помилки служб/груп служб"
+#, c-format
+msgid "Kerberos context initialization failed: %1$s (%2$d)\n"
+msgstr "Невдала спроба ініціалізації контексту Kerberos: %1$s (%2$d)\n"
 
-msgid "Failed to remove"
-msgstr "Спроба вилучення зазнала невдачі"
+#, c-format
+msgid "Unable to parse principal: %1$s (%2$d)\n"
+msgstr "Не вдалося обробити реєстраційний запис: %1$s (%2$d)\n"
 
-msgid "Failed RunAs"
-msgstr "Помилка запуску від імені"
+#, c-format
+msgid "No keys accepted by KDC\n"
+msgstr "Жоден з ключів не прийнято KDC\n"
 
-msgid "Failed RunAsGroup"
-msgstr "Помилка запуску від імені групи"
+#, c-format
+msgid "Out of memory \n"
+msgstr "Не вистачає пам'яті \n"
 
-msgid "Failed profiles"
-msgstr "Профілі із помилками"
+#, c-format
+msgid "Unable to set LDAP_OPT_X_TLS_REQUIRE_CERT\n"
+msgstr "Не вдалося встановити LDAP_OPT_X_TLS_REQUIRE_CERT\n"
 
-msgid "Failed CAs"
-msgstr "Помилкові CA"
+#, c-format
+msgid "Unable to initialize STARTTLS session\n"
+msgstr "Не вдалося ініціалізувати сеанс STARTTLS\n"
 
-msgid "Failed managedby"
-msgstr "Помилка managedby"
+#, c-format
+msgid "Unable to set LDAP_OPT_X_TLS\n"
+msgstr "Не вдалося встановити LDAP_OPT_X_TLS\n"
 
-msgid "Failed allowed to retrieve keytab"
-msgstr "Не вдалося дозволити отримувати таблицю ключів"
+#, c-format
+msgid "Unable to set LDAP_OPT_X_TLS_CERTIFICATE\n"
+msgstr "Не вдалося встановити LDAP_OPT_X_TLS_CERTIFICATE\n"
 
-msgid "Failed allowed to create keytab"
-msgstr "Не вдалося дозволити створювати таблицю ключів"
+#, c-format
+msgid "Unable to init connection to %s\n"
+msgstr "Не вдалося ініціалізувати з’єднання з %s\n"
 
-msgid "Failed targets"
-msgstr "Помилкові цілі"
+#, c-format
+msgid "Unable to initialize ldap library!\n"
+msgstr "Не вдалося ініціалізувати бібліотеку ldap!\n"
 
-msgid "Failed owners"
-msgstr "Записи власників із помилками"
+#, c-format
+msgid "Unable to set LDAP_OPT_X_SASL_NOCANON\n"
+msgstr "Не вдалося встановити LDAP_OPT_X_SASL_NOCANON\n"
+
+#, c-format
+msgid "Unable to set LDAP_OPT_PROTOCOL_VERSION\n"
+msgstr "Не вдалося встановити LDAP_OPT_PROTOCOL_VERSION\n"
+
+#, c-format
+msgid "Simple bind failed\n"
+msgstr "Невдала спроба простого прив’язування\n"
+
+#, c-format
+msgid "Operation failed: %s\n"
+msgstr "Невдала спроба виконання дії: %s\n"
+
+#, c-format
+msgid "Failed to get result: %s\n"
+msgstr "Не вдалося отримати результат: %s\n"
+
+#, c-format
+msgid "Timeout exceeded."
+msgstr "Перевищено обмеження за часом."
+
+#, c-format
+msgid "Failed to parse extended result: %s\n"
+msgstr "Не вдалося обробити розширений результат: %s\n"
+
+#, c-format
+msgid "Failed to parse result: %s\n"
+msgstr "Не вдалося обробити результат: %s\n"
+
+#, c-format
+msgid "Missing reply control list!\n"
+msgstr "Немає списку керування відповідями!\n"
+
+#, c-format
+msgid "Missing reply control!\n"
+msgstr "Немає керування відповіддю!\n"
+
+#, c-format
+msgid "Out of Memory!\n"
+msgstr "Не вистачає пам'яті!\n"
+
+#, c-format
+msgid "Failed to create control!\n"
+msgstr "Не вдалося створити керування!\n"
+
+#, c-format
+msgid "Failed to bind to server!\n"
+msgstr "Не вдалося прив’язати до сервера!\n"
+
+#, c-format
+msgid "Failed to get keytab!\n"
+msgstr "Не вдалося отримати таблицю ключів!\n"
+
+#, c-format
+msgid "ber_init() failed, Invalid control ?!\n"
+msgstr "Спроба виконання ber_init() зазнала невдачі. Некоректне керування?!\n"
+
+#, c-format
+msgid "ber_scanf() failed, unable to find kvno ?!\n"
+msgstr "помилка ber_scanf(), не вдалося знайти kvno?!\n"
+
+#, c-format
+msgid "Failed to retrieve encryption type type #%d\n"
+msgstr "Не вдалося отримати дані щодо типу шифрування №%d\n"
+
+#, c-format
+msgid "Failed to retrieve encryption type %1$s (#%2$d)\n"
+msgstr "Не вдалося отримати дані щодо типу шифрування %1$s (№%2$d)\n"
+
+#, c-format
+msgid "Failed to retrieve any keys"
+msgstr "Не вдалося отримати жодного ключа"
+
+msgid "Failed to decode control reply!\n"
+msgstr "Не вдалося декодувати контрольну відповідь!\n"
+
+msgid "New Principal Password"
+msgstr "Новий пароль реєстраційного запису"
+
+msgid "Verify Principal Password"
+msgstr "Перевірка пароля реєстраційного запису"
+
+#, c-format
+msgid "Passwords do not match!"
+msgstr "Паролі не збігаються!"
+
+#, c-format
+msgid "Failed to open config file %s\n"
+msgstr "Не вдалося відкрити файл налаштувань %s\n"
+
+#, c-format
+msgid "Failed to parse config file %s\n"
+msgstr "Не вдалося обробити файл налаштувань %s\n"
+
+msgid "Print as little as possible"
+msgstr "Виводити мінімум даних"
+
+msgid "Output only on errors"
+msgstr "Виводити лише повідомлення про помилки"
+
+msgid "Contact this specific KDC Server"
+msgstr "Встановити зв’язок з вказаним сервером KDC"
+
+msgid "Server Name"
+msgstr "Назва сервера"
+
+msgid "The principal to get a keytab for (ex: ftp/ftp.example.com@EXAMPLE.COM)"
+msgstr ""
+"Реєстраційний запис, для якого слід отримати таблицю ключів (приклад: ftp/"
+"ftp.example.com@EXAMPLE.COM)"
+
+msgid "Kerberos Service Principal Name"
+msgstr "Назва реєстраційного запису служби Kerberos"
+
+msgid ""
+"The keytab file to append the new key to (will be created if it does not "
+"exist)."
+msgstr ""
+"Файл таблиці ключів, до якого слід долучати новий ключ (файл буде створено, "
+"якщо його не існувало)."
+
+msgid "Keytab File Name"
+msgstr "Назва файла таблиці ключів"
+
+msgid "Encryption types to request"
+msgstr "Типи шифрування, запит щодо яких слід надсилати"
+
+msgid "Comma separated encryption types list"
+msgstr "Список типів шифрування, відокремлених комами"
+
+msgid "Show the list of permitted encryption types and exit"
+msgstr "Показати список дозволених типів шифрування і завершити роботу"
+
+msgid "Permitted Encryption Types"
+msgstr "Дозволені типи шифрування"
+
+msgid "Asks for a non-random password to use for the principal"
+msgstr ""
+"Запитати невипадковий пароль, який слід використати для реєстраційного запису"
+
+msgid "LDAP DN"
+msgstr "DN LDAP"
+
+msgid "DN to bind as if not using kerberos"
+msgstr ""
+"DN, до якого слід виконати прив’язку, якщо не використовується kerberos"
+
+msgid "LDAP password"
+msgstr "Пароль LDAP"
+
+msgid "password to use if not using kerberos"
+msgstr "пароль, який слід використати, якщо не використовується kerberos"
+
+msgid "Path to the IPA CA certificate"
+msgstr "Шлях до сертифіката CA IPA"
+
+msgid "IPA CA certificate"
+msgstr "Сертифікат CA IPA"
+
+msgid "LDAP uri to connect to. Mutually exclusive with --server"
+msgstr "Адреса LDAP, з якою слід встановити з’єднання. Несумісний з --server"
+
+msgid "url"
+msgstr "адреса"
+
+msgid "LDAP SASL bind mechanism if no bindd/bindpw"
+msgstr "Механізм прив’язування SASL LDAP, якщо без bindd/bindpw"
+
+msgid "GSSAPI|EXTERNAL"
+msgstr "GSSAPI|EXTERNAL"
+
+msgid "Retrieve current keys without changing them"
+msgstr "Отримувати поточні ключі без внесення до них змін"
+
+#, c-format
+msgid "Kerberos context initialization failed\n"
+msgstr "Невдала спроба ініціалізації контексту Kerberos\n"
+
+#, c-format
+msgid "No system preferred enctypes ?!\n"
+msgstr "Немає основних системних типів шифрування?!\n"
+
+#, c-format
+msgid "Supported encryption types:\n"
+msgstr "Підтримувані типи шифрування:\n"
+
+#, c-format
+msgid "Warning: failed to convert type (#%d)\n"
+msgstr "Попередження: не вдалося виконати перетворення типу (№%d)\n"
+
+#, c-format
+msgid "Bind password required when using a bind DN.\n"
+msgstr "У разі використання прив’язки DN слід вказати пароль прив’язки.\n"
+
+#, c-format
+msgid "Cannot specify both SASL mechanism and bind DN simultaneously.\n"
+msgstr "Не можна одночасно вказувати механізм SASL і DN прив’язки.\n"
+
+#, c-format
+msgid "Invalid SASL bind mechanism\n"
+msgstr "Некоректний механізм прив’язування SASL\n"
+
+#, c-format
+msgid "Cannot specify server and LDAP uri simultaneously.\n"
+msgstr "Не можна одночасно вказувати сервер і адресу LDAP.\n"
+
+#, c-format
+msgid "Server name not provided and unavailable\n"
+msgstr "Не надано назви сервера, сервер недоступний\n"
+
+#, c-format
+msgid "Incompatible options provided (-r and -P)\n"
+msgstr "Вказано несумісні параметри (-r і -P)\n"
+
+#, c-format
+msgid ""
+"Warning: salt types are not honored with randomized passwords (see opt. -P)\n"
+msgstr ""
+"Попередження: для випадкових паролів типи солі (salt) не мають значення "
+"(див. параметр -P)\n"
+
+#, c-format
+msgid "Invalid Service Principal Name\n"
+msgstr "Некоректна назва реєстраційного запису служби\n"
+
+#, c-format
+msgid "Kerberos Credential Cache not found. Do you have a Kerberos Ticket?\n"
+msgstr ""
+"Не знайдено кешу реєстраційних даних Kerberos. Чи є у вас квиток Kerberos?\n"
+
+#, c-format
+msgid ""
+"Kerberos User Principal not found. Do you have a valid Credential Cache?\n"
+msgstr ""
+"Не знайдено реєстраційного запису користувача Kerberos. Ви маєте ви "
+"коректний кеш реєстраційних даних?\n"
+
+#, c-format
+msgid "Failed to open Keytab\n"
+msgstr "Не вдалося відкрити таблицю ключів\n"
+
+#, c-format
+msgid "Retrying with pre-4.0 keytab retrieval method...\n"
+msgstr ""
+"Повторюємо спробу з використанням способу отримання сховища ключів, який "
+"використовувався до версії 4.0…\n"
+
+#, c-format
+msgid "Failed to create key material\n"
+msgstr "Не вдалося створити вихідні дані для ключа\n"
+
+#, c-format
+msgid "Failed to get keytab\n"
+msgstr "Не вдалося отримати таблицю ключів\n"
+
+#, c-format
+msgid "Failed to add key to the keytab\n"
+msgstr "Не вдалося додати ключ до таблиці ключів\n"
+
+#, c-format
+msgid "Failed to close the keytab\n"
+msgstr "Не вдалося закрити таблицю ключів\n"
+
+#, c-format
+msgid "Keytab successfully retrieved and stored in: %s\n"
+msgstr "Таблицю ключів успішно отримати і збережено до: %s\n"
+
+#, c-format
+msgid "No permission to join this host to the IPA domain.\n"
+msgstr "Немає дозволу на долучення цього вузла до домену IPA.\n"
+
+#, c-format
+msgid "No write permissions on keytab file '%s'\n"
+msgstr "Немає дозволу на запис до файла таблиці ключів «%s»\n"
+
+#, c-format
+msgid "access() on %1$s failed: errno = %2$d\n"
+msgstr "Невдала спроба виконання access() для %1$s: номер помилки = %2$d\n"
+
+#, c-format
+msgid "Out of memory!"
+msgstr "Не вистачає пам'яті!"
+
+#, c-format
+msgid "Unable to initialize connection to ldap server: %s"
+msgstr "Не вдалося ініціалізувати з’єднання з сервером LDAP: %s"
+
+#, c-format
+msgid "Unable to enable SSL in LDAP\n"
+msgstr "Не вдалося увімкнути SSL у LDAP\n"
+
+#, c-format
+msgid "Unable to set LDAP version\n"
+msgstr "Не вдалося встановити версію LDAP\n"
+
+#, c-format
+msgid "Bind failed: %s\n"
+msgstr "Невдала спроба прив’язки: %s\n"
+
+#, c-format
+msgid "Search for %1$s on rootdse failed with error %2$d\n"
+msgstr ""
+"Спроба пошуку %1$s у rootdse завершилася невдало з повідомленням про помилку "
+"%2$d\n"
+
+#, c-format
+msgid "No values for %s"
+msgstr "Немає значень %s"
+
+#, c-format
+msgid "Search for IPA namingContext failed with error %d\n"
+msgstr "Спроба пошуку namingContext IPA завершилася помилкою %d\n"
+
+#, c-format
+msgid "IPA namingContext not found\n"
+msgstr "namingContext IPA не знайдено\n"
+
+#, c-format
+msgid "Out of memory!\n"
+msgstr "Не вистачає пам'яті!\n"
+
+#, c-format
+msgid "Search for ipaCertificateSubjectBase failed with error %d"
+msgstr ""
+"Спроба пошуку ipaCertificateSubjectBase завершилася невдало з повідомлення "
+"про помилку %d"
+
+#, c-format
+msgid "Unable to determine root DN of %s\n"
+msgstr "Не вдалося визначити кореневий DN %s\n"
+
+#, c-format
+msgid "Incorrect password.\n"
+msgstr "Некоректний пароль.\n"
+
+#, c-format
+msgid "Unable to determine certificate subject of %s\n"
+msgstr "Не вдалося визначити призначення сертифіката %s\n"
+
+#, c-format
+msgid "Enrollment failed. %s\n"
+msgstr "Помилка реєстрування. %s\n"
+
+#, c-format
+msgid "principal not found in XML-RPC response\n"
+msgstr "реєстраційного запису не знайдено у XML-RPC відповіді\n"
+
+#, c-format
+msgid "Host is already joined.\n"
+msgstr "Вузол вже приєднано.\n"
+
+#, c-format
+msgid "Unable to determine IPA server from %s\n"
+msgstr "Не вдалося визначити сервер IPA з %s\n"
+
+#, c-format
+msgid "The hostname must be fully-qualified: %s\n"
+msgstr "Назву вузла слід вказувати повністю: %s\n"
+
+#, c-format
+msgid "Unable to join host: Kerberos context initialization failed\n"
+msgstr ""
+"Не вдалося долучити вузол: невдала спроба ініціалізації контексту Kerberos\n"
+
+#, c-format
+msgid "Error resolving keytab: %s.\n"
+msgstr "Помилка при визначенні адрес таблиці ключів: %s.\n"
+
+#, c-format
+msgid "Error getting default Kerberos realm: %s.\n"
+msgstr "Помилка під час отримання типової області дії Kerberos: %s.\n"
+
+#, c-format
+msgid "Error parsing \"%1$s\": %2$s.\n"
+msgstr "Помилка під час обробки «%1$s»: %2$s.\n"
+
+#, c-format
+msgid "Error obtaining initial credentials: %s.\n"
+msgstr "Помилка під час отримання початкових реєстраційних даних: %s.\n"
+
+#, c-format
+msgid "Unable to generate Kerberos Credential Cache\n"
+msgstr "Не вдалося створити кеш реєстраційних даних Kerberos\n"
+
+#, c-format
+msgid "Error storing creds in credential cache: %s.\n"
+msgstr "Помилка під час спроби збереження реєстраційних даних у кеші: %s.\n"
+
+#, c-format
+msgid "Unenrollment successful.\n"
+msgstr "Успішне скасування реєстрації.\n"
+
+#, c-format
+msgid "Unenrollment failed.\n"
+msgstr "Спроба скасування реєстрації зазнала невдачі.\n"
+
+#, c-format
+msgid "result not found in XML-RPC response\n"
+msgstr "у відповіді XML-RPC не знайдено результату\n"
+
+#, c-format
+msgid "The hostname must not be: %s\n"
+msgstr "Назва вузла не повинна бути такою: %s\n"
+
+#, c-format
+msgid "Unable to join host: Kerberos Credential Cache not found\n"
+msgstr ""
+"Не вдалося долучити вузол: не знайдено кешу реєстраційних даних Kerberos\n"
+
+#, c-format
+msgid ""
+"Unable to join host: Kerberos User Principal not found and host password not "
+"provided.\n"
+msgstr ""
+"Не вдалося долучити вузол: не знайдено реєстраційного запису користувача "
+"Kerberos і не вказано пароля вузла.\n"
+
+#, c-format
+msgid "fork() failed\n"
+msgstr "невдала спроба виконання fork()\n"
+
+#, c-format
+msgid "ipa-getkeytab not found\n"
+msgstr "Не знайдено ipa-getkeytab\n"
+
+#, c-format
+msgid "ipa-getkeytab has bad permissions?\n"
+msgstr "Помилкові права доступу до ipa-getkeytab?\n"
+
+#, c-format
+msgid "executing ipa-getkeytab failed, errno %d\n"
+msgstr "спроба виконання ipa-getkeytab зазнала невдачі, номер помилки %d\n"
+
+#, c-format
+msgid "child exited with %d\n"
+msgstr "дочірній процес завершив роботу з повідомленням %d\n"
+
+#, c-format
+msgid "Certificate subject base is: %s\n"
+msgstr "Базовий об’єкт сертифікації: %s\n"
+
+msgid "Print the raw XML-RPC output in GSSAPI mode"
+msgstr "Вивести дані XML-RPC без обробки у режимі GSSAPI"
+
+msgid "Quiet mode. Only errors are displayed."
+msgstr "«Мовчазний» режим. Буде показано лише повідомлення про помилки."
+
+msgid "Unenroll this host from IPA server"
+msgstr "Скасувати реєстрацію цього вузла на сервері IPA"
+
+msgid "Hostname of this server"
+msgstr "Назва вузла цього сервера"
+
+msgid "hostname"
+msgstr "назва вузла"
+
+msgid "IPA Server to use"
+msgstr "Сервер IPA, який слід використовувати"
+
+msgid "Specifies where to store keytab information."
+msgstr "Визначає, де слід зберігати дані таблиці ключів."
+
+msgid "filename"
+msgstr "назва файла"
+
+msgid "Force the host join. Rejoin even if already joined."
+msgstr ""
+"Долучити вузол у примусовому режимі. Повторне долучення виконуватиметься, "
+"навіть якщо вузол вже долучено."
+
+msgid "LDAP password (if not using Kerberos)"
+msgstr "Пароль LDAP (якщо не використовується Kerberos)"
+
+msgid "password"
+msgstr "пароль"
+
+msgid "LDAP basedn"
+msgstr "Базовий DN LDAP"
+
+msgid "basedn"
+msgstr "Базовий DN"
+
+#, c-format
+msgid "Unable to parse principal name\n"
+msgstr "Не вдалося обробити назву реєстраційного запису\n"
+
+#, c-format
+msgid "krb5_parse_name %1$d: %2$s\n"
+msgstr "krb5_parse_name %1$d: %2$s\n"
+
+#, c-format
+msgid "Removing principal %s\n"
+msgstr "Вилучення реєстраційного запису %s\n"
+
+#, c-format
+msgid "Failed to open keytab\n"
+msgstr "Не вдалося відкрити таблицю ключів\n"
+
+#, c-format
+msgid "principal not found\n"
+msgstr "реєстраційного запису не знайдено\n"
+
+#, c-format
+msgid "krb5_kt_get_entry %1$d: %2$s\n"
+msgstr "krb5_kt_get_entry %1$d: %2$s\n"
+
+#, c-format
+msgid "Unable to remove entry\n"
+msgstr "Не вдалося вилучити запис\n"
+
+#, c-format
+msgid "kvno %d\n"
+msgstr "kvno %d\n"
+
+#, c-format
+msgid "krb5_kt_remove_entry %1$d: %2$s\n"
+msgstr "krb5_kt_remove_entry %1$d: %2$s\n"
+
+#, c-format
+msgid "Unable to parse principal\n"
+msgstr "Не вдалося обробити реєстраційний запис\n"
+
+#, c-format
+msgid "krb5_unparse_name %1$d: %2$s\n"
+msgstr "krb5_unparse_name %1$d: %2$s\n"
+
+#, c-format
+msgid "realm not found\n"
+msgstr "область не знайдено\n"
+
+msgid "Print debugging information"
+msgstr "Вивести діагностичні дані"
+
+msgid "Debugging output"
+msgstr "Діагностична інформація"
+
+msgid ""
+"The principal to remove from the keytab (ex: ftp/ftp.example.com@EXAMPLE.COM)"
+msgstr ""
+"Реєстраційні записи, які слід вилучити із таблиці ключів (приклад: ftp/ftp."
+"example.com@EXAMPLE.COM)"
+
+msgid "The keytab file to remove the principcal(s) from"
+msgstr "Файл таблиці ключів, звідки слід вилучити реєстраційні записи"
+
+msgid "Remove all principals in this realm"
+msgstr "Вилучити всі реєстраційні записи у цій області"
+
+msgid "Realm name"
+msgstr "Назва області"
+
+#, c-format
+msgid "Failed to open keytab '%1$s': %2$s\n"
+msgstr "Не вдалося відкрити таблицю ключів «%1$s»: %2$s\n"
+
+#, c-format
+msgid "Closing keytab failed\n"
+msgstr "Спроба закриття таблиці ключів зазнала невдачі\n"
+
+#, c-format
+msgid "krb5_kt_close %1$d: %2$s\n"
+msgstr "krb5_kt_close %1$d: %2$s\n"
 
 msgid "Failed to add"
 msgstr "Не вдалося додати"
@@ -139,6 +709,35 @@ msgstr "Пропущені дублікати ключів:"
 msgid "Skipped %(key)s"
 msgstr "Пропущено %(key)s"
 
+msgid "Write certificate (chain if --chain used) to file"
+msgstr ""
+"Записати сертифікат (ланцюжок сертифікації, якщо використано --chain) до "
+"файла"
+
+msgid "Path to NSS database"
+msgstr "Шлях до бази даних NSS"
+
+msgid "Path to NSS database to use for private key"
+msgstr "Шлях до бази даних NSS, яку слід використовувати для закритого ключа"
+
+msgid "Path to private key file"
+msgstr "Шлях до файла закритого ключа"
+
+msgid "Path to PEM file containing a private key"
+msgstr "Шлях до файла PEM, який містить закритий ключ"
+
+msgid "File containing a password for the private key or database"
+msgstr "Файл, що містить пароль до закритого ключа або бази даних"
+
+msgid "Name of CSR generation profile (if not the same as profile_id)"
+msgstr "Назва профілю створення CSR (якщо не та сама, що і profile_id)"
+
+msgid "Generated CSR was empty"
+msgstr "Створений CSR виявився порожнім"
+
+msgid "Options 'database' and 'private_key' are not compatible with 'csr'"
+msgstr "Параметри «database» і «private_key» є несумісними з «csr»"
+
 msgid "Unrevoked"
 msgstr "Відкликання скасовано"
 
@@ -154,9 +753,56 @@ msgstr "Файл, з якого слід завантажити сертифік
 msgid "cannot specify both raw certificate and file"
 msgstr "не можна одночасно вказувати код сертифіката і файл із сертифікатом"
 
+msgid "Input file"
+msgstr "Вхідний файл"
+
+msgid "File to load the certificate from"
+msgstr "Файл, з якого слід завантажити сертифікат"
+
 #, python-format
 msgid "Profile configuration stored in file '%(file)s'"
 msgstr "Налаштування профілів збережено до файла «%(file)s»"
+
+msgid ""
+"\n"
+"Commands to build certificate requests automatically\n"
+msgstr ""
+"\n"
+"Команди для автоматичної побудови запитів щодо сертифікації\n"
+
+msgid "Gather data for a certificate signing request."
+msgstr "Зібрати дані для запиту щодо підписування сертифіката."
+
+msgid "Principal"
+msgstr "Реєстраційний запис"
+
+msgid "Principal for this certificate (e.g. HTTP/test.example.com)"
+msgstr ""
+"Реєстраційний запис для цього сертифіката (наприклад HTTP/test.example.com)"
+
+msgid "Profile ID"
+msgstr "Ід. профілю"
+
+msgid "CSR Generation Profile to use"
+msgstr "Профіль створення CSR, яким слід скористатися"
+
+msgid "Subject Public Key Info"
+msgstr "Дані щодо відкритого ключа суб’єкта"
+
+msgid "DER-encoded SubjectPublicKeyInfo structure"
+msgstr "Структура SubjectPublicKeyInfo у кодуванні DER"
+
+msgid "Write CertificationRequestInfo to file"
+msgstr "Записати CertificationRequestInfo до файла"
+
+msgid "Dictionary mapping variable name to value"
+msgstr "Відображення назви змінної на значення за словником"
+
+msgid "CertificationRequestInfo structure"
+msgstr "Структура CertificationRequestInfo"
+
+msgid "The principal for this request doesn't exist."
+msgstr "Реєстраційного запису для цього запиту не існує."
 
 msgid "Please choose a type of DNS resource record to be added"
 msgstr "Будь ласка, виберіть тип запису ресурсу DNS, який слід додати"
@@ -222,12 +868,25 @@ msgstr "Сервер перевірятиме засоби переспрямо�
 msgid "This may take some time, please wait ..."
 msgstr "Це доволі тривала дія. Будь ласка, зачекайте…"
 
+msgid "DNS forwarder"
+msgstr "Переспрямовувач DNS"
+
+msgid "file to store DNS records in nsupdate format"
+msgstr "файл для зберігання записів DNS у форматі nsupdate"
+
 #, python-format
 msgid "Certificate(s) stored in file '%(file)s'"
 msgstr "Сертифікати, що зберігаються у файлі «%(file)s»"
 
 msgid "Servers details:"
 msgstr "Параметри сервера:"
+
+msgid ""
+"Migration mode is disabled.\n"
+"Use 'ipa config-mod --enable-migration=TRUE' to enable it."
+msgstr ""
+"Режим міграції вимкнено. Скористайтеся командою «ipa config-mod--enable-"
+"migration=TRUE», щоб увімкнути його."
 
 msgid ""
 "Passwords have been migrated in pre-hashed format.\n"
@@ -275,6 +934,9 @@ msgstr "Другий код"
 
 msgid "Token ID"
 msgstr "Ідентифікатор жетона"
+
+msgid "python-yubico is not installed."
+msgstr "python-yubico не встановлено."
 
 msgid ""
 "\n"
@@ -1922,9 +2584,6 @@ msgstr "Надіслати запит щодо підписування серт
 msgid "CSR"
 msgstr "CSR"
 
-msgid "Principal"
-msgstr "Реєстраційний запис"
-
 msgid "Service principal for this certificate (e.g. HTTP/test.example.com)"
 msgstr ""
 "Реєстраційний запис служби для цього сертифіката (наприклад HTTP/test."
@@ -1932,9 +2591,6 @@ msgstr ""
 
 msgid "automatically add the principal if it doesn't exist"
 msgstr "автоматично додати реєстраційний запис, якщо його не існує"
-
-msgid "Dictionary mapping variable name to value"
-msgstr "Відображення назви змінної на значення за словником"
 
 msgid "Revoke a certificate."
 msgstr "Відкликати сертифікат."
@@ -2458,7 +3114,7 @@ msgid ""
 "   queries, which cannot be answered from its local cache, to configured\n"
 "   forwarders.\n"
 "\n"
-" Semantics of the --forwarder-policy option:\n"
+" Semantics of the --forward-policy option:\n"
 "   * none - disable forwarding for the given zone.\n"
 "   * first - forward all queries to configured forwarders. If they fail,\n"
 "   do resolution using DNS root servers.\n"
@@ -5335,7 +5991,7 @@ msgid ""
 "This ID range is then used by the IPA server and the SSSD IPA provider to\n"
 "assign Posix UIDs to users from the trusted domain.\n"
 "\n"
-"If e.g a range for a trusted domain is configured with the following "
+"If e.g. a range for a trusted domain is configured with the following "
 "values:\n"
 " base-id = 1200000\n"
 " range-size = 200000\n"
@@ -5704,7 +6360,9 @@ msgstr "Показати дані щодо діапазону."
 msgid ""
 "\n"
 "ID Views\n"
+"\n"
 "Manage ID Views\n"
+"\n"
 "IPA allows to override certain properties of users and groups per each "
 "host.\n"
 "This functionality is primarily used to allow migration from older systems "
@@ -5713,7 +6371,9 @@ msgid ""
 msgstr ""
 "\n"
 "Перегляди ідентифікаторів\n"
+"\n"
 "Керування переглядами ідентифікаторів\n"
+"\n"
 "IPA надає вам змогу перевизначити певні властивості записів користувачів та "
 "груп для окремих вузлів.\n"
 "В основному, ці функціональні можливості призначено для уможливлення "
@@ -10088,9 +10748,6 @@ msgstr ""
 "   ipa trustconfig-mod --type ad --fallback-primary-group \"Default SMB Group"
 "\"\n"
 
-msgid "Realm name"
-msgstr "Назва області"
-
 msgid "Domain NetBIOS name"
 msgstr "Назва домену у NetBIOS"
 
@@ -10239,6 +10896,9 @@ msgstr "Показати налаштування довіри на загаль
 
 msgid "Allow access from the trusted domain"
 msgstr "Дозволити доступ з довіреного домену"
+
+msgid "Remove information about the domain associated with the trust."
+msgstr "Вилучити дані щодо домену, пов’язаного з цим правилом довіри."
 
 msgid "Disable use of IPA resources by the domain of the trust"
 msgstr "Вимкнути використання ресурсів IPA доменом правила довіри"
@@ -10748,13 +11408,6 @@ msgstr "Вилучити користувачів або групи з CA ACL."
 msgid "Display the properties of a CA ACL."
 msgstr "Показати властивості CA ACL."
 
-msgid "Principal for this certificate (e.g. HTTP/test.example.com)"
-msgstr ""
-"Реєстраційний запис для цього сертифіката (наприклад HTTP/test.example.com)"
-
-msgid "Profile ID"
-msgstr "Ід. профілю"
-
 msgid "Certificate Profile to use"
 msgstr "Профіль сертифіката, яким слід скористатися"
 
@@ -10985,7 +11638,7 @@ msgid ""
 "This ID range is then used by the IPA server and the SSSD IPA provider to\n"
 "assign Posix UIDs to users from the trusted domain.\n"
 "\n"
-"If e.g a range for a trusted domain is configured with the following "
+"If e.g. a range for a trusted domain is configured with the following "
 "values:\n"
 " base-id = 1200000\n"
 " range-size = 200000\n"
@@ -12337,6 +12990,9 @@ msgstr "Групи власника"
 
 msgid "Owner services"
 msgstr "Служби власника"
+
+msgid "Failed owners"
+msgstr "Записи власників із помилками"
 
 msgid "Vault service"
 msgstr "Служба сховища"
@@ -14863,7 +15519,7 @@ msgid ""
 "This ID range is then used by the IPA server and the SSSD IPA provider to\n"
 "assign Posix UIDs to users from the trusted domain.\n"
 "\n"
-"If e.g a range for a trusted domain is configured with the following "
+"If e.g. a range for a trusted domain is configured with the following "
 "values:\n"
 " base-id = 1200000\n"
 " range-size = 200000\n"
@@ -15816,13 +16472,80 @@ msgstr "Пароль адміністратора домену Active directory"
 msgid "GECOS field"
 msgstr "поле GECOS"
 
+msgid ""
+"\n"
+"Routines for constructing certificate signing requests using IPA data and\n"
+"stored templates.\n"
+msgstr ""
+"\n"
+"Процедури для побудови запитів щодо підписування сертифікатів за допомогою "
+"даних IPA та\n"
+"збережених шаблонів.\n"
+
+#, python-format
+msgid "Required CSR generation rule %(name)s is missing data"
+msgstr "У обов’язковому правилі створення CSR, %(name)s, не вистачає даних"
+
+msgid "Template error when formatting certificate data"
+msgstr "Помилка шаблона під час форматування даних сертифіката"
+
+#, python-format
+msgid "No generation rule %(rulename)s found."
+msgstr "Не знайдено правила створення %(rulename)s."
+
+#, python-format
+msgid "Generation rule \"%(rulename)s\" is missing the \"rule\" key"
+msgstr "У правилі створення «%(rulename)s» немає ключа «rule»"
+
+#, python-format
+msgid "No CSR generation rules are defined for profile %(profile_id)s"
+msgstr "Для профілю %(profile_id)s не визначено правил створення CSR"
+
+msgid "Failed members"
+msgstr "Помилка members"
+
+msgid "Failed source hosts/hostgroups"
+msgstr "Помилка hosts/hostgroups джерела"
+
+msgid "Failed hosts/hostgroups"
+msgstr "Помилка hosts/hostgroups"
+
+msgid "Failed users/groups"
+msgstr "Помилка users/groups"
+
+msgid "Failed service/service groups"
+msgstr "Помилки служб/груп служб"
+
+msgid "Failed to remove"
+msgstr "Спроба вилучення зазнала невдачі"
+
+msgid "Failed RunAs"
+msgstr "Помилка запуску від імені"
+
+msgid "Failed RunAsGroup"
+msgstr "Помилка запуску від імені групи"
+
+msgid "Failed profiles"
+msgstr "Профілі із помилками"
+
+msgid "Failed CAs"
+msgstr "Помилкові CA"
+
+msgid "Failed managedby"
+msgstr "Помилка managedby"
+
+msgid "Failed allowed to retrieve keytab"
+msgstr "Не вдалося дозволити отримувати таблицю ключів"
+
+msgid "Failed allowed to create keytab"
+msgstr "Не вдалося дозволити створювати таблицю ключів"
+
+msgid "Failed targets"
+msgstr "Помилкові цілі"
+
 #, python-format
 msgid "Enter %(label)s again to verify: "
 msgstr "Введіть %(label)s ще раз для перевірки: "
-
-#, c-format
-msgid "Passwords do not match!"
-msgstr "Паролі не збігаються!"
 
 msgid "No matching entries found"
 msgstr "Відповідних записів не знайдено"
@@ -15897,6 +16620,15 @@ msgstr ""
 #, python-format
 msgid "Missing or invalid HTTP Referer, %(referer)s"
 msgstr "Не вказано HTTP Referer або вказано помилкове значення, %(referer)s"
+
+#, python-format
+msgid ""
+"System encoding must be UTF-8, '%(encoding)s' is not supported. Set LC_ALL="
+"\"C.UTF-8\", or LC_ALL=\"\" and LC_CTYPE=\"C.UTF-8\"."
+msgstr ""
+"Кодуванням системи має бути UTF-8, підтримки «%(encoding)s» не передбачено. "
+"Встановіть такі значення змінних середовища: LC_ALL=\"C.UTF-8\" або LC_ALL="
+"\"\" і LC_CTYPE=\"C.UTF-8\"."
 
 #, python-format
 msgid "Kerberos error: %(major)s/%(minor)s"
@@ -16102,6 +16834,18 @@ msgstr ""
 "передбачено"
 
 #, python-format
+msgid "Request failed with status %(status)s: %(reason)s"
+msgstr "Помилка під час виконання запиту, стан %(status)s: %(reason)s"
+
+#, python-format
+msgid ""
+"Mapping ruleset \"%(ruleset)s\" has more than one rule for the %(helper)s "
+"helper"
+msgstr ""
+"Набір правил прив’язки «%(ruleset)s» містить декілька правил для допоміжного "
+"засобу %(helper)s"
+
+#, python-format
 msgid "no command nor help topic '%(topic)s'"
 msgstr "не виявлено ні команди, ні запису довідки «%(topic)s»"
 
@@ -16210,6 +16954,14 @@ msgstr ""
 #, python-format
 msgid "%(exception)s"
 msgstr "%(exception)s"
+
+#, python-format
+msgid ""
+"Forest '%(forest)s' has existing trust to forest(s) %(domains)s which "
+"prevents a trust to '%(conflict)s'"
+msgstr ""
+"У лісу «%(forest)s» наявні відносини довіри з лісами %(domains)s, що не дає "
+"змоги встановити довіру до «%(conflict)s»"
 
 msgid "Results are truncated, try a more specific search"
 msgstr ""
@@ -16418,8 +17170,24 @@ msgstr ""
 "працюватиме як слід."
 
 #, python-format
-msgid "%(subject)s: Invalid certificate. %(reason)s"
-msgstr "%(subject)s: некоректний сертифікат. %(reason)s"
+msgid "%(subject)s: Malformed certificate. %(reason)s"
+msgstr "%(subject)s: помилкове форматування сертифіката. %(reason)s"
+
+#, python-format
+msgid "The host was added but the DNS update failed with: %(reason)s"
+msgstr ""
+"Запис вузла було додано, але спроба оновлення DNS зазнала невдачі: %(reason)s"
+
+#, python-format
+msgid "%(count)d variables"
+msgstr "%(count)d змінних"
+
+#, python-format
+msgid "%(count)d plugin loaded"
+msgid_plural "%(count)d plugins loaded"
+msgstr[0] "завантажено %(count)d додаток"
+msgstr[1] "завантажено %(count)d додатки"
+msgstr[2] "завантажено %(count)d додатків"
 
 msgid "A dictionary representing an LDAP entry"
 msgstr "Словник, що відповідає запису LDAP"
@@ -16491,6 +17259,17 @@ msgstr "не повинне перевищувати за розміром %(max
 msgid "must be exactly %(length)d bytes"
 msgstr "має бути розміром точно у %(length)d байтів"
 
+msgid "must be a certificate"
+msgstr "має бути сертифікатом"
+
+msgid "must be a certificate signing request"
+msgstr "має бути запитом щодо підписування сертифіката"
+
+#, python-format
+msgid "Failure decoding Certificate Signing Request: %s"
+msgstr ""
+"Помилка під час декодування запиту на підписування сертифіката (CSR): %s"
+
 msgid "must be Unicode text"
 msgstr "має бути текстом у Unicode"
 
@@ -16552,8 +17331,15 @@ msgstr "Помилкове форматування реєстраційного
 msgid "Service principal is required"
 msgstr "Слід вказати реєстраційний запис служби"
 
+#, python-format
+msgid "%(filename)s: file not found"
+msgstr "%(filename)s: файл не знайдено"
+
 msgid "any of the configured servers"
 msgstr "будь-який з налаштованих серверів"
+
+msgid "Exceeded number of tries to forward a request."
+msgstr "Перевищено кількість спроб переспрямовування запиту."
 
 msgid "Filename is empty"
 msgstr "Порожня назва файла"
@@ -16575,6 +17361,9 @@ msgid ""
 msgstr ""
 "можна використовувати лише літери, цифри, %(chars)s. Символ %(chars2)s не "
 "повинен бути першим або останнім символом мітки DNS."
+
+msgid "single label {}s are not supported"
+msgstr "підтримки одинарних міток {}ів не передбачено"
 
 msgid "too many '@' characters"
 msgstr "занадто багато символів «@»"
@@ -16660,9 +17449,6 @@ msgid "realm or UPN suffix overlaps with trusted domain namespace"
 msgstr ""
 "область або суфікс UPN перекриваються із простором назв довіреного домену"
 
-msgid "improperly formatted DER-encoded certificate"
-msgstr "неналежне форматування сертифіката у кодуванні DER"
-
 #, python-format
 msgid "Retrieving CA cert chain failed: %s"
 msgstr "Спроба отримання ланцюжка сертифікації CA зазнала невдачі: %s"
@@ -16684,144 +17470,13 @@ msgstr "Спроба отримання стану CA зазнала невда�
 msgid "objectclass %s not found"
 msgstr "клас об’єктів %s не знайдено"
 
-msgid ""
-"\n"
-"Classes to manage trust joins using DCE-RPC calls\n"
-"\n"
-"The code in this module relies heavily on samba4-python package\n"
-"and Samba4 python bindings.\n"
-msgstr ""
-"\n"
-"Класи для керування довіреними приєднаннями за допомогою викликів DCE-RPC\n"
-"\n"
-"Код цього модуля жорстко залежить від вмісту пакунка samba4-python\n"
-"та обгорток для мови Python у Samba4.\n"
-
-msgid "CIFS server denied your credentials"
-msgstr "Ваші реєстраційні дані відхилено сервером CIFS"
-
-msgid "communication with CIFS server was unsuccessful"
-msgstr "спроба обмінятися даними з сервером CIFS зазнала невдачі"
-
-msgid "AD domain controller"
-msgstr "Контролер домену AD"
-
-msgid "unsupported functional level"
-msgstr "непідтримуваний функціональний рівень"
-
-msgid ""
-"AD domain controller complains about communication sequence. It may mean "
-"unsynchronized time on both sides, for example"
-msgstr ""
-"Домен AD скаржиться на послідовність команд встановлення зв’язку. Це, "
-"наприклад, може означати розсинхронізацію часу між комп’ютерами, які "
-"обмінюються даними."
-
-msgid "CIFS server configuration does not allow access to \\\\pipe\\lsarpc"
-msgstr "Налаштування сервера CIFS забороняє доступ до \\\\pipe\\lsarpc"
-
-msgid "Cannot find specified domain or server name"
-msgstr "Не вдалося знайти домену або сервера з вказаною назвою"
-
-msgid ""
-"AD DC was unable to reach any IPA domain controller. Most likely it is a DNS "
-"or firewall issue"
-msgstr ""
-"AD DC не вдалося отримати доступ до жодного з контролерів домену IPA. "
-"Найімовірніше, цю помилку пов’язано із проблемами з DNS або брандмауером"
-
-msgid "At least the domain or IP address should be specified"
-msgstr "Слід вказати принаймні домен або IP-адресу"
-
-msgid "no trusted domain is configured"
-msgstr "Не налаштовано жодного довіреного домену"
-
-msgid "domain is not configured"
-msgstr "домен не налаштовано"
-
-msgid "SID is not valid"
-msgstr "SID не є чинним"
-
-msgid "SID does not match exactlywith any trusted domain's SID"
-msgstr "SID не збігається точно з будь-яким з SID довірених доменів"
-
-msgid "SID does not match any trusted domain"
-msgstr "SID не відповідає жодному з довірених доменів"
-
-msgid "Trust setup"
-msgstr "Налаштування довіри"
-
-msgid "Our domain is not configured"
-msgstr "Наш домен не налаштовано"
-
-msgid "No trusted domain is not configured"
-msgstr "Не налаштовано жодного довіреного домену"
-
-msgid "trusted domain object"
-msgstr "об’єкт довіреного домену"
-
-msgid "domain is not trusted"
-msgstr "домен не є довіреним"
-
-msgid "no trusted domain matched the specified flat name"
-msgstr "вказаній простій назві не відповідає жоден довірений домен"
-
-msgid "trusted domain object not found"
-msgstr "об’єкт довіреного домену не знайдено"
-
-msgid "SSSD was unable to resolve the object to a valid SID"
-msgstr "SSSD не вдалося визначити за об’єктом коректний SID"
-
-msgid "Ambiguous search, user domain was not specified"
-msgstr "Неоднозначні параметри пошуку: не вказано домену користувача"
-
-msgid "Trusted domain did not return a unique object"
-msgstr "Довіреним доменом не повернуто унікального об’єкта"
-
-msgid "Trusted domain did not return a valid SID for the object"
-msgstr "Довіреним доменом не повернуто коректного SID об’єкта"
-
-msgid "trusted domain user not found"
-msgstr "не знайдено користувача довіреного домену"
-
-msgid "Cannot retrieve trusted domain GC list"
-msgstr "Не вдалося отримати список GC довіреного домену"
-
-msgid "CIFS credentials object"
-msgstr "Об’єкт реєстраційних даних CIFS"
-
-#, python-format
-msgid "CIFS server %(host)s denied your credentials"
-msgstr "Ваші реєстраційні дані відхилено сервером CIFS %(host)s"
-
-#, python-format
-msgid "Cannot establish LSA connection to %(host)s. Is CIFS server running?"
-msgstr ""
-"Не вдалося встановити LSA-з’єднання з %(host)s. Чи запущено сервер CIFS?"
-
-#, python-format
-msgid ""
-"the IPA server and the remote domain cannot share the same NetBIOS name: %s"
-msgstr ""
-"сервер IPA і віддалений домен не можуть використовувати спільно ту саму "
-"назву NetBIOS: %s"
-
-#, python-format
-msgid ""
-"IPA master denied trust validation requests from AD DC %(count)d times. Most "
-"likely AD DC contacted a replica that has no trust information replicated "
-"yet. Additionally, please check that AD DNS is able to resolve %(records)s "
-"SRV records to the correct IPA server."
-msgstr ""
-"Основний вузол IPA відмовив у запитах щодо затвердження довіри від AD DC "
-"%(count)d разів. Найімовірніше, AD DC встановив зв’язок із реплікою, на якій "
-"ще не виконано реплікацію даних щодо довіри. Крім того, будь ласка, "
-"перевірте, чи може DNS AD визначати за записами SRV %(records)s коректний "
-"сервер IPA."
-
 #, python-format
 msgid "Unable to communicate with CMS (status %d)"
 msgstr "Не вдалося обмінятися даними з CMS (стан %d)"
+
+#, python-format
+msgid "Replication agreement for %(hostname)s not found"
+msgstr "Не знайдено угоди щодо реплікації для %(hostname)s"
 
 msgid "A list of ACI values"
 msgstr "Список значень ACI"
@@ -16895,6 +17550,9 @@ msgstr[2] "встановлено відповідність %(count)d ACI"
 #, python-format
 msgid "Renamed ACI to \"%(value)s\""
 msgstr "ACI перейменовано на «%(value)s»"
+
+msgid "commands for controlling sudo configuration"
+msgstr "команди керування налаштуванням sudo"
 
 msgid ""
 "\n"
@@ -17597,15 +18255,17 @@ msgid ""
 "%(ldap_object)s."
 msgstr "Шукати %(searched_object)s не у цих %(relationship)s %(ldap_object)s."
 
-msgid "added attribute value to entry %(value)"
-msgstr "додано значення атрибута до запису %(value)"
+#, python-format
+msgid "added attribute value to entry %(value)s"
+msgstr "додано значення атрибута до запису %(value)s"
 
 #, python-format
 msgid "'%(attr)s' already contains one or more values"
 msgstr "«%(attr)s» вже містить одне або декілька значень"
 
-msgid "removed attribute values from entry %(value)"
-msgstr "вилучено значення атрибутів із запису %(value)"
+#, python-format
+msgid "removed attribute values from entry %(value)s"
+msgstr "вилучено значення атрибутів із запису %(value)s"
 
 msgid "one or more values to remove"
 msgstr "одне або декілька значень для вилучення"
@@ -17627,11 +18287,17 @@ msgstr "має дорівнювати TRUE або FALSE"
 msgid "Principal alias"
 msgstr "Псевдонім реєстраційного запису"
 
+msgid "User password expiration"
+msgstr "Вичерпання строку дії пароля користувача"
+
 msgid "SSH public key fingerprint"
 msgstr "Відбиток відкритого ключа SSH"
 
 msgid "Base-64 encoded user certificate"
 msgstr "Сертифікат користувача у кодуванні Base-64"
+
+msgid "Certificate mapping data"
+msgstr "Дані прив’язки сертифіката"
 
 #, python-format
 msgid "invalid e-mail format: %(email)s"
@@ -17645,39 +18311,142 @@ msgstr "керування %(manager)s не знайдено"
 msgid "can be at most %(len)d characters"
 msgstr "не повинне перевищувати %(len)d символів у довжину"
 
+msgid "Issuer"
+msgstr "Видавець"
+
+msgid "Issuer of the certificate"
+msgstr "Видавець сертифіката"
+
+msgid "Subject of the certificate"
+msgstr "Призначення сертифіката"
+
+msgid "cannot have an empty subject"
+msgstr "поле призначення не може бути порожнім"
+
+msgid "cannot specify both subject/issuer and certificate"
+msgstr "не можна вказувати одночасно subject/issuer і certificate"
+
+msgid "cannot specify both subject/issuer and ipacertmapdata"
+msgstr "не можна вказувати одночасно subject/issuer і ipacertmapdata"
+
+msgid "Add one or more certificate mappings to the user entry."
+msgstr "Додати одну або декілька прив’язок сертифікатів до запису користувача."
+
+#, python-format
+msgid "Added certificate mappings to user \"%(value)s\""
+msgstr "Додано прив’язки сертифікатів до запису користувача «%(value)s»"
+
+msgid "Remove one or more certificate mappings from the user entry."
+msgstr ""
+"Вилучити одну або декілька прив’язок сертифікатів із запису користувача."
+
+#, python-format
+msgid "Removed certificate mappings from user \"%(value)s\""
+msgstr "Вилучено прив’язки сертифікатів до запису користувача «%(value)s»"
+
 msgid "must contain a tuple (list, dict)"
 msgstr "має містити кортеж (список, словник)"
 
 msgid ""
 "\n"
 "Manage Certificate Authorities\n"
+msgstr ""
+"\n"
+"Керування службами сертифікації\n"
+
+msgid ""
 "\n"
 "Subordinate Certificate Authorities (Sub-CAs) can be added for scoped "
 "issuance\n"
 "of X.509 certificates.\n"
+msgstr ""
 "\n"
-"EXAMPLES:\n"
+"Підлеглі служби сертифікації (Sub-CA) можна додавати для обмежених під час "
+"видання областю\n"
+"сертифікатів X.509.\n"
+
+msgid ""
+"\n"
+"CAs are enabled on creation, but their use is subject to CA ACLs unless the\n"
+"operator has permission to bypass CA ACLs.\n"
+msgstr ""
+"\n"
+"Служби сертифікації увімкнено при створенні, але їхнє використання "
+"регулюється ACL служб сертифікації,\n"
+"якщо у оператора немає дозволу обходити ACL служб сертифікації (CA).\n"
+
+msgid ""
+"\n"
+"All CAs except the 'IPA' CA can be disabled or re-enabled.  Disabling a CA\n"
+"prevents it from issuing certificates but does not affect the validity of "
+"its\n"
+"certificate.\n"
+msgstr ""
+"\n"
+"Усі слжуби сертифікації, окрім служби сертифікації «IPA», можна вимикати і "
+"повторно вмикати. Вимикання\n"
+"служби сертифікації призводить до заборони для неї видавати сертифікати, але "
+"не впливає на\n"
+"чинність її сертифіката.\n"
+
+msgid ""
+"\n"
+"CAs (all except the 'IPA' CA) can be deleted.  Deleting a CA causes its "
+"signing\n"
+"certificate to be revoked and its private key deleted.\n"
+msgstr ""
+"\n"
+"Усі записи служб сертифікації (окрім служби «IPA») можна вилучати. Вилучення "
+"запису служби сертифікації\n"
+"призводить до відкликання її підписувального сертифіката і вилучення "
+"закритого ключа.\n"
+
+msgid ""
 "\n"
 "  Create new CA, subordinate to the IPA CA.\n"
 "\n"
 "    ipa ca-add puppet --desc \"Puppet\" \\\n"
 "        --subject \"CN=Puppet CA,O=EXAMPLE.COM\"\n"
-"\n"
 msgstr ""
 "\n"
-"Керування записами центрів сертифікації\n"
-"\n"
-"Підлеглі центри сертифікації (Sub-CA) може бути додано для області "
-"видавництва\n"
-"сертифікатів X.509.\n"
-"\n"
-"Приклади:\n"
-"\n"
-"  Створити запис CA, зробити його підлеглим щодо CA IPA.\n"
+"  Створити новий запис служби сертифікації, підлеглий щодо служби "
+"сертифікації IPA.\n"
 "\n"
 "    ipa ca-add puppet --desc \"Puppet\" \\\n"
 "        --subject \"CN=Puppet CA,O=EXAMPLE.COM\"\n"
+
+msgid ""
 "\n"
+"  Disable a CA.\n"
+"\n"
+"    ipa ca-disable puppet\n"
+msgstr ""
+"\n"
+"  Вимкнути службу сертифікації.\n"
+"\n"
+"    ipa ca-disable puppet\n"
+
+msgid ""
+"\n"
+"  Re-enable a CA.\n"
+"\n"
+"    ipa ca-enable puppet\n"
+msgstr ""
+"\n"
+"  Повторно увімкнути службу сертифікації.\n"
+"\n"
+"    ipa ca-enable puppet\n"
+
+msgid ""
+"\n"
+"  Delete a CA.\n"
+"\n"
+"    ipa ca-del puppet\n"
+msgstr ""
+"\n"
+"  Вилучити запис служби сертифікації.\n"
+"\n"
+"    ipa ca-del puppet\n"
 
 msgid "Certificate Authority"
 msgstr "Центр сертифікації"
@@ -17712,6 +18481,15 @@ msgstr "DN видавця"
 msgid "Issuer Distinguished Name"
 msgstr "Унікальна назва видавця"
 
+msgid "Base-64 encoded certificate."
+msgstr "Сертифікат у кодуванні Base-64."
+
+msgid "Certificate chain"
+msgstr "Ланцюжок сертифікації"
+
+msgid "X.509 certificate chain"
+msgstr "Ланцюжок сертифікації X.509"
+
 msgid "Search for CAs."
 msgstr "Шукати CA."
 
@@ -17721,6 +18499,9 @@ msgid_plural "%(count)d CAs matched"
 msgstr[0] "встановлено відповідність %(count)d CA"
 msgstr[1] "встановлено відповідність %(count)d CA"
 msgstr[2] "встановлено відповідність %(count)d CA"
+
+msgid "Include certificate chain in output"
+msgstr "Включити ланцюжок сертифікації до виведення"
 
 msgid "Display the properties of a CA."
 msgstr "Показати властивості CA."
@@ -17737,6 +18518,10 @@ msgid "Insufficient 'add' privilege for entry '%s'."
 msgstr "Недостатні привілеї «add» для запису «%s»."
 
 #, python-format
+msgid "Unrecognized attributes: %(attrs)s"
+msgstr "Нерозпізнані атрибути: %(attrs)s"
+
+#, python-format
 msgid "Subject DN is already used by CA '%s'"
 msgstr "DN призначення вже використано CA «%s»"
 
@@ -17746,6 +18531,9 @@ msgstr "Вилучити запис CA."
 #, python-format
 msgid "Deleted CA \"%(value)s\""
 msgstr "Вилучено запис CA «%(value)s»"
+
+msgid "Insufficient privilege to delete a CA."
+msgstr "Недостатні права доступу для вилучення запису CA."
 
 msgid "CA"
 msgstr "CA"
@@ -17759,6 +18547,26 @@ msgstr "Змінити налаштування CA."
 #, python-format
 msgid "Modified CA \"%(value)s\""
 msgstr "Змінено CA «%(value)s»"
+
+msgid "Insufficient privilege to modify a CA."
+msgstr "Недостатні права доступу для внесення змін до запису CA."
+
+msgid "Disable a CA."
+msgstr "Вимкнути службу сертифікації."
+
+#, python-format
+msgid "Disabled CA \"%(value)s\""
+msgstr "Вимкнено службу сертифікації «%(value)s»"
+
+msgid "IPA CA cannot be disabled"
+msgstr "Службу сертифікації IPA не можна вимикати"
+
+msgid "Enable a CA."
+msgstr "Увімкнути службу сертифікації"
+
+#, python-format
+msgid "Enabled CA \"%(value)s\""
+msgstr "Увімкнено службу сертифікації «%(value)s»"
 
 msgid ""
 "\n"
@@ -18054,6 +18862,9 @@ msgstr "Вилучено %i."
 msgid "%i CAs removed."
 msgstr "Вилучено %i CA."
 
+msgid "pyhbac is not installed."
+msgstr "pyhbac не встановлено."
+
 msgid ""
 "\n"
 "IPA certificate operations\n"
@@ -18325,14 +19136,6 @@ msgstr ""
 "http://www.ietf.org/rfc/rfc5280.txt\n"
 "\n"
 
-msgid "service"
-msgstr "служба"
-
-#, python-format
-msgid "Failure decoding Certificate Signing Request: %s"
-msgstr ""
-"Помилка під час декодування запиту на підписування сертифіката (CSR): %s"
-
 msgid "CA is not configured"
 msgstr "CA не налаштовано"
 
@@ -18344,11 +19147,48 @@ msgstr ""
 "Реєстраційному запису «%(principal)s» не дозволено використовувати службу "
 "сертифікації «%(ca)s» із профілем «%(profile_id)s» для видання сертифікатів."
 
-msgid "Base-64 encoded certificate."
-msgstr "Сертифікат у кодуванні Base-64."
+#, python-format
+msgid "Host '%(hostname)s' is not an active KDC"
+msgstr "Вузол «%(hostname)s» не є активним KDC"
 
-msgid "Issuer"
-msgstr "Видавець"
+msgid "Issuing CA"
+msgstr "Видавничий CA"
+
+msgid "Name of issuing CA"
+msgstr "Назва видавничого CA"
+
+msgid "Subject email address"
+msgstr "Адреса електронної пошти призначення"
+
+msgid "Subject DNS name"
+msgstr "Назва DNS призначення"
+
+msgid "Subject X.400 address"
+msgstr "Адреса X.400 призначення"
+
+msgid "Subject directory name"
+msgstr "Назва каталогу призначення"
+
+msgid "Subject EDI Party name"
+msgstr "Назва EDI Party призначення"
+
+msgid "Subject URI"
+msgstr "Адреса призначення"
+
+msgid "Subject IP Address"
+msgstr "IP-адреса призначення"
+
+msgid "Subject OID"
+msgstr "OID призначення"
+
+msgid "Subject UPN"
+msgstr "UPN призначення"
+
+msgid "Subject Kerberos principal name"
+msgstr "Назва реєстраційного запису Kerberos призначення"
+
+msgid "Subject Other Name"
+msgstr "Інша назва призначення"
 
 msgid "Not Before"
 msgstr "Не раніше"
@@ -18356,20 +19196,14 @@ msgstr "Не раніше"
 msgid "Not After"
 msgstr "Не пізніше"
 
-msgid "Fingerprint (MD5)"
-msgstr "Відбиток (MD5)"
-
 msgid "Fingerprint (SHA1)"
 msgstr "Відбиток (SHA1)"
 
+msgid "Fingerprint (SHA256)"
+msgstr "Відбиток (SHA256)"
+
 msgid "Serial number (hex)"
 msgstr "Серійний номер (шістнадцятковий)"
-
-msgid "Issuing CA"
-msgstr "Видавничий CA"
-
-msgid "Name of issuing CA"
-msgstr "Назва видавничого CA"
 
 msgid "Request status"
 msgstr "Стан запиту"
@@ -18380,14 +19214,20 @@ msgstr ""
 "автоматично додати реєстраційний запис, якщо його не існує (лише "
 "реєстраційні записи служб)"
 
-msgid "'add' option"
-msgstr "параметр «add»"
-
-msgid "The principal for this request doesn't exist."
-msgstr "Реєстраційного запису для цього запиту не існує."
+#, python-format
+msgid "krbtgt certs can use only the %s profile"
+msgstr "Сертифікати krbtgt можуть використовувати лише профіль %s"
 
 msgid "No Common Name was found in subject of request."
 msgstr "У темі запиту не було знайдено загальної назви (CN)."
+
+#, python-format
+msgid ""
+"hostname in subject of request '%(cn)s' does not match name or aliases of "
+"principal '%(principal)s'"
+msgstr ""
+"назва вузла у предметі запиту «%(cn)s» не збігається із назвою або "
+"альтернативними назвами реєстраційного запису «%(principal)s»"
 
 #, python-format
 msgid ""
@@ -18451,6 +19291,13 @@ msgstr ""
 msgid "Subject alt name type %s is forbidden"
 msgstr "Використання типу альтернативної назви об’єкта %s заборонено"
 
+#, python-format
+msgid "CA '%s' is disabled"
+msgstr "Службу сертифікації «%s» вимкнено"
+
+msgid "'add' option"
+msgstr "параметр «add»"
+
 msgid "Status"
 msgstr "Стан"
 
@@ -18459,6 +19306,13 @@ msgstr "Анульований"
 
 msgid "Revocation reason"
 msgstr "Причина відкликання"
+
+msgid ""
+"Reason for revoking the certificate (0-10). Type \"ipa help cert\" for "
+"revocation reason details. "
+msgstr ""
+"Причина відкликання сертифіката (0-10). Введіть «ipa help cert», щоб "
+"ознайомитися із подробицями причин відкликання. "
 
 #, python-format
 msgid "Owner %s"
@@ -18490,6 +19344,466 @@ msgstr "Шукати сертифікати із вказаними %s влас�
 #, python-format
 msgid "Search for certificates without these owner %s."
 msgstr "Шукати сертифікати, власником яких не є %s."
+
+msgid ""
+"\n"
+"Certificate Identity Mapping\n"
+msgstr ""
+"\n"
+"Прив’язка сертифікатів до профілів\n"
+
+msgid ""
+"\n"
+"Manage Certificate Identity Mapping configuration and rules.\n"
+msgstr ""
+"\n"
+"Керування налаштуваннями і правилами прив’язки сертифікатів до профілів.\n"
+
+msgid ""
+"\n"
+"IPA supports the use of certificates for authentication. Certificates can\n"
+"either be stored in the user entry (full certificate in the usercertificate\n"
+"attribute), or simply linked to the user entry through a mapping.\n"
+"This code enables the management of the rules allowing to link a\n"
+"certificate to a user entry.\n"
+msgstr ""
+"\n"
+"У IPA передбачено підтримку використання сертифікатів для розпізнавання. "
+"Сертифікати\n"
+"можуть зберігатися або у записі користувача (весь сертифікат у атрибуті\n"
+"usercertificate), або просто прив’язуватися до запису користувача.\n"
+"Цей код уможливлює керування правилами доступу до прив’язування сертифіката "
+"до\n"
+"запису користувача.\n"
+
+msgid ""
+"\n"
+" Display the Certificate Identity Mapping global configuration:\n"
+"   ipa certmapconfig-show\n"
+msgstr ""
+"\n"
+" Вивести загальні налаштування прив’язки сертифікатів до профілів:\n"
+"   ipa certmapconfig-show\n"
+
+msgid ""
+"\n"
+" Modify Certificate Identity Mapping global configuration:\n"
+"   ipa certmapconfig-mod --promptusername=TRUE\n"
+msgstr ""
+"\n"
+" Змінити загальні налаштування прив’язки сертифікатів до профілів:\n"
+"   ipa certmapconfig-mod --promptusername=TRUE\n"
+
+msgid ""
+"\n"
+" Create a new Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-add rule1 --desc=\"Link certificate with subject and "
+"issuer\"\n"
+msgstr ""
+"\n"
+" Створити правило прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-add rule1 --desc=\"Link certificate with subject and "
+"issuer\"\n"
+
+msgid ""
+"\n"
+" Modify a Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-mod rule1 --maprule=\"<ALT-SEC-ID-I-S:"
+"altSecurityIdentities>\"\n"
+msgstr ""
+"\n"
+" Змінити правило прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-mod rule1 --maprule=\"<ALT-SEC-ID-I-S:"
+"altSecurityIdentities>\"\n"
+
+msgid ""
+"\n"
+" Disable a Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-disable rule1\n"
+msgstr ""
+"\n"
+" Вимкнути правило прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-disable rule1\n"
+
+msgid ""
+"\n"
+" Enable a Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-enable rule1\n"
+msgstr ""
+"\n"
+" Увімкнути правило прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-enable rule1\n"
+
+msgid ""
+"\n"
+" Display information about a Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-show rule1\n"
+msgstr ""
+"\n"
+" Вивести дані щодо правила прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-show rule1\n"
+
+msgid ""
+"\n"
+" Find all Certificate Identity Mapping Rules with the specified domain:\n"
+"   ipa certmaprule-find --domain example.com\n"
+msgstr ""
+"\n"
+" Знайти усі правила прив’язування сертифікатів до профілів із вказаним "
+"доменом:\n"
+"   ipa certmaprule-find --domain example.com\n"
+
+msgid ""
+"\n"
+" Delete a Certificate Identity Mapping Rule:\n"
+"   ipa certmaprule-del rule1\n"
+msgstr ""
+"\n"
+" Вилучити правило прив’язування сертифікатів до профілів:\n"
+"   ipa certmaprule-del rule1\n"
+
+msgid "domain"
+msgstr "домен"
+
+#, python-format
+msgid "The domain %s is neither IPA domain nor a trusteddomain."
+msgstr "Домен %s не є ні доменом IPA, ні довіреним доменом."
+
+msgid "Certificate Identity Mapping configuration options"
+msgstr "Параметри налаштування прив’язки сертифікатів до профілів"
+
+msgid "Certificate Identity Mapping Global Configuration"
+msgstr "Загальні налаштування прив’язки сертифікатів до профілів"
+
+msgid "Prompt for the username"
+msgstr "Запит щодо імені користувача"
+
+msgid ""
+"Prompt for the username when multiple identities are mapped to a certificate"
+msgstr ""
+"Запитувати ім’я користувача, якщо із сертифікатом пов’язано декілька профілів"
+
+msgid "Modify Certificate Identity Mapping configuration."
+msgstr "Змінити налаштування прив’язки сертифікатів до профілів."
+
+msgid "Show the current Certificate Identity Mapping configuration."
+msgstr "Показати поточні налаштування прив’язки сертифікатів до профілів."
+
+msgid "Certificate Identity Mapping Rules"
+msgstr "Правила прив’язування сертифікатів до профілів"
+
+msgid "Certificate Identity Mapping Rule"
+msgstr "Правило прив’язування сертифікатів до профілів"
+
+msgid "Certificate Identity Mapping Rule name"
+msgstr "Назва правила прив’язування сертифікатів до профілів"
+
+msgid "Certificate Identity Mapping Rule description"
+msgstr "Опис правила прив’язування сертифікатів до профілів"
+
+msgid "Mapping rule"
+msgstr "Правило прив’язування"
+
+msgid "Rule used to map the certificate with a user entry"
+msgstr ""
+"Правило, яке використовується для прив’язування сертифіката до запису "
+"користувача"
+
+msgid "Matching rule"
+msgstr "Правило відповідності"
+
+msgid "Rule used to check if a certificate can be used for authentication"
+msgstr ""
+"Правило, яке використовується для визначення того, чи придатний сертифікат "
+"для розпізнавання"
+
+msgid "Domain where the user entry will be searched"
+msgstr "Домен, у якому слід шукати запис користувача"
+
+msgid "Priority of the rule (higher number means lower priority"
+msgstr "Пріоритет правила (більше число — нижчий пріоритет)"
+
+msgid "Create a new Certificate Identity Mapping Rule."
+msgstr "Створити правило прив’язування сертифіката до профілів."
+
+#, python-format
+msgid "Added Certificate Identity Mapping Rule \"%(value)s\""
+msgstr "Додано правило прив’язування сертифікатів до профілів «%(value)s»"
+
+msgid "Modify a Certificate Identity Mapping Rule."
+msgstr "Змінити правило прив’язування сертифікатів до профілів."
+
+#, python-format
+msgid "Modified Certificate Identity Mapping Rule \"%(value)s\""
+msgstr "Змінено правило прив’язування сертифікатів до профілів «%(value)s»"
+
+msgid "Search for Certificate Identity Mapping Rules."
+msgstr "Шукати правила прив’язування сертифікатів до профілів."
+
+#, python-format
+msgid "%(count)d Certificate Identity Mapping Rule matched"
+msgid_plural "%(count)d Certificate Identity Mapping Rules matched"
+msgstr[0] ""
+"Встановлено відповідність %(count)d правила прив’язування сертифікатів до "
+"профілів"
+msgstr[1] ""
+"Встановлено відповідність %(count)d правил прив’язування сертифікатів до "
+"профілів"
+msgstr[2] ""
+"Встановлено відповідність %(count)d правил прив’язування сертифікатів до "
+"профілів"
+
+msgid "Display information about a Certificate Identity Mapping Rule."
+msgstr "Вивести дані щодо правила прив’язування сертифікатів до профілів."
+
+msgid "Delete a Certificate Identity Mapping Rule."
+msgstr "Вилучити правило прив’язування сертифікатів до профілів."
+
+#, python-format
+msgid "Deleted Certificate Identity Mapping Rule \"%(value)s\""
+msgstr "Вилучено правило прив’язування сертифікатів до профілів «%(value)s»"
+
+msgid "Enable a Certificate Identity Mapping Rule."
+msgstr "Увімкнути правило прив’язування сертифікатів до профілів."
+
+#, python-format
+msgid "Enabled Certificate Identity Mapping Rule \"%(value)s\""
+msgstr "Увімкнено правило прив’язування сертифікатів до профілів «%(value)s»"
+
+msgid "Disable a Certificate Identity Mapping Rule."
+msgstr "Вимкнути правило прив’язування сертифікатів до профілів."
+
+#, python-format
+msgid "Disabled Certificate Identity Mapping Rule \"%(value)s\""
+msgstr "Вимкнено правило прив’язування сертифікатів до профілів «%(value)s»"
+
+msgid "Failed to connect to sssd over SystemBus. See details in the error_log"
+msgstr ""
+"Не вдалося встановити з’єднання із sssd за допомогою SystemBus. Докладніший "
+"опис — у файлі error_log"
+
+msgid "Failed to find users over SystemBus.  See details in the error_log"
+msgstr ""
+"Не вдалося знайти користувачів за допомогою SystemBus. Докладніший опис — у "
+"файлі error_log"
+
+msgid "User logins"
+msgstr "Користувачі"
+
+msgid ""
+"\n"
+"    Search for users matching the provided certificate.\n"
+"\n"
+"    This command relies on SSSD to retrieve the list of matching users and\n"
+"    may return cached data. For more information on purging SSSD cache,\n"
+"    please refer to sss_cache documentation.\n"
+"    "
+msgstr ""
+"\n"
+"    Шукати користувачів, яких пов’язано із наданим сертифікатом.\n"
+"\n"
+"    Для отримання списку відповідних користувачів ця команда покладається\n"
+"    на дані SSSD, отже, вона може повертати кешовані дані. Докладніше про\n"
+"    очищення кешу SSSD можна дізнатися із документації до sss_cache.\n"
+"    "
+
+#, python-format
+msgid "%(count)s user matched"
+msgid_plural "%(count)s users matched"
+msgstr[0] "Встановлено відповідність %(count)s користувача"
+msgstr[1] "Встановлено відповідність %(count)s користувачів"
+msgstr[2] "Встановлено відповідність %(count)s користувачів"
+
+msgid ""
+"\n"
+"Stageusers\n"
+"\n"
+"Manage stage user entries.\n"
+"\n"
+"Stage user entries are directly under the container: \"cn=stage users,\n"
+"cn=accounts, cn=provisioning, SUFFIX\".\n"
+"Users can not authenticate with those entries (even if the entries\n"
+"contain credentials). Those entries are only candidate to become Active "
+"entries.\n"
+"\n"
+"Active user entries are Posix users directly under the container: "
+"\"cn=accounts, SUFFIX\".\n"
+"Users can authenticate with Active entries, at the condition they have\n"
+"credentials.\n"
+"\n"
+"Deleted user entries are Posix users directly under the container: "
+"\"cn=deleted users,\n"
+"cn=accounts, cn=provisioning, SUFFIX\".\n"
+"Users can not authenticate with those entries, even if the entries contain "
+"credentials.\n"
+"\n"
+"The stage user container contains entries:\n"
+"    - created by 'stageuser-add' commands that are Posix users,\n"
+"    - created by external provisioning system.\n"
+"\n"
+"A valid stage user entry MUST have:\n"
+"    - entry RDN is 'uid',\n"
+"    - ipaUniqueID is 'autogenerate'.\n"
+"\n"
+"IPA supports a wide range of username formats, but you need to be aware of "
+"any\n"
+"restrictions that may apply to your particular environment. For example,\n"
+"usernames that start with a digit or usernames that exceed a certain length\n"
+"may cause problems for some UNIX systems.\n"
+"Use 'ipa config-mod' to change the username format allowed by IPA tools.\n"
+"\n"
+"\n"
+"EXAMPLES:\n"
+"\n"
+" Add a new stageuser:\n"
+"   ipa stageuser-add --first=Tim --last=User --password tuser1\n"
+"\n"
+" Add a stageuser from the deleted users container:\n"
+"   ipa stageuser-add  --first=Tim --last=User --from-delete tuser1\n"
+"\n"
+msgstr ""
+"\n"
+"Користувачі етапу\n"
+"\n"
+"Керування записами користувачів етапу.\n"
+"\n"
+"Записи користувачів етапу перебувають безпосередньо у контейнері:\n"
+"\"cn=stage users, cn=accounts, cn=provisioning, SUFFIX\".\n"
+"Користувач не може пройти розпізнавання за допомогою цих записів\n"
+"(навіть якщо записи містять реєстраційні дані) і є кандидатами на\n"
+"перетворення на активні записи.\n"
+"\n"
+"Записи активних користувачів є користувачами Posix, що перебувають\n"
+"безпосередньо у контейнері: \"cn=accounts, SUFFIX\".\n"
+"Користувач може пройти розпізнавання за допомогою активних записів,\n"
+"якщо для них передбачено реєстраційні дані\n"
+"\n"
+"Вилучені записи користувачів є записами користувачів Posix, що\n"
+"перебувають безпосередньо у контейнері: \"cn=deleted users,\n"
+"cn=accounts, cn=provisioning, SUFFIX\".\n"
+"Користувачі не можуть проходити розпізнавання за допомогою цих\n"
+"записів (навіть якщо записи містять реєстраційні дані)\n"
+"\n"
+"Контейнер користувачів етапу містить записи\n"
+"    - створені командами 'stageuser-add', які є користувачами Posix\n"
+"    - створені зовнішньою системою забезпечення\n"
+"\n"
+"Коректний запис користувача етапу МАЄ відповідати таким вимогам:\n"
+"    - RDN запису має значення 'uid'\n"
+"    - ipaUniqueID має значення 'autogenerate'\n"
+"\n"
+"У IPA передбачено підтримку широкого діапазону форматів імен користувачів,\n"
+"але слід зважати на різноманітні обмеження, які можуть стосуватися "
+"середовища,\n"
+"у якому ви працюєте. Наприклад, імена користувачів, що починаються з цифри,\n"
+"або імена користувачів, довжина яких перевищує певну довжину, можуть\n"
+"призвести до проблем у деяких системах UNIX.\n"
+"Для зміни формату, який дозволено інструментами IPA, скористайтеся командою\n"
+"'ipa config-mod'.\n"
+"\n"
+"\n"
+"ПРИКЛАДИ:\n"
+"\n"
+" Додати нового користувача етапу:\n"
+"   ipa stageuser-add --first=Tim --last=User --password tuser1\n"
+"\n"
+" Додати користувача етапу з контейнера вилучених користувачів\n"
+"   ipa stageuser-add  --first=Tim --last=User --from-delete tuser1\n"
+"\n"
+
+msgid "Stage Users"
+msgstr "Користувачі етапу"
+
+msgid "Stage User"
+msgstr "Користувач етапу"
+
+msgid "stage user"
+msgstr "користувач етапу"
+
+msgid "stage users"
+msgstr "користувачі етапу"
+
+#, python-format
+msgid "Added stage user \"%(value)s\""
+msgstr "Додано користувача етапу «%(value)s»"
+
+msgid "givenname is required"
+msgstr "слід вказати ім’я"
+
+msgid "sn is required"
+msgstr "слід вказати sn"
+
+#, python-format
+msgid "Deleted stage user \"%(value)s\""
+msgstr "Вилучено запис користувача етапу «%(value)s»"
+
+#, python-format
+msgid "Modified stage user \"%(value)s\""
+msgstr "Змінено запис користувача етапу «%(value)s»"
+
+#, python-format
+msgid "%(count)d user matched"
+msgid_plural "%(count)d users matched"
+msgstr[0] "встановлено відповідність %(count)d користувача"
+msgstr[1] "встановлено відповідність %(count)d користувачів"
+msgstr[2] "встановлено відповідність %(count)d користувачів"
+
+#, python-format
+msgid "Activate a stage user \"%(value)s\""
+msgstr "Активувати користувача етапу «%(value)s»"
+
+msgid "Entry RDN is not 'uid'"
+msgstr "RDN запису не належить до «uid»"
+
+#, python-format
+msgid "Entry has no '%(attribute)s'"
+msgstr "У запису немає атрибута «%(attribute)s»"
+
+#, python-format
+msgid "active user with name \"%(user)s\" already exists"
+msgstr "запис активного користувача із іменем «%(user)s» вже існує"
+
+#, python-format
+msgid "Stage user %s activated"
+msgstr "Активовано користувача етапу %s"
+
+msgid "Add one or more certificates to the stageuser entry"
+msgstr "Додати один або декілька сертифікатів запису користувача етапу"
+
+#, python-format
+msgid "Added certificates to stageuser \"%(value)s\""
+msgstr "Додано сертифікати до запису користувача етапу «%(value)s»"
+
+msgid "Remove one or more certificates to the stageuser entry"
+msgstr "Вилучити один або декілька сертифікатів запису користувача етапу"
+
+#, python-format
+msgid "Removed certificates from stageuser \"%(value)s\""
+msgstr "Вилучено сертифікати із запису користувача етапу «%(value)s»"
+
+msgid "Add new principal alias to the stageuser entry"
+msgstr ""
+"Додати новий псевдонім реєстраційного запису до запису користувача етапу"
+
+#, python-format
+msgid "Added new aliases to stageuser \"%(value)s\""
+msgstr "Додано нові псевдоніми до запису користувача етапу «%(value)s»"
+
+msgid "Remove principal alias from the stageuser entry"
+msgstr "Вилучити псевдонім реєстраційного запису із запису користувача етапу"
+
+#, python-format
+msgid "Removed aliases from stageuser \"%(value)s\""
+msgstr "Вилучено псевдоніми із запису користувача етапу «%(value)s»"
+
+msgid "Add one or more certificate mappings to the stage user entry."
+msgstr ""
+"Додати одну або декілька прив’язок сертифікатів до запису користувача етапу."
+
+msgid "Remove one or more certificate mappings from the stage user entry."
+msgstr ""
+"Вилучити одну або декілька прив’язок сертифікатів із запису користувача "
+"етапу."
 
 msgid ""
 "\n"
@@ -18628,6 +19942,10 @@ msgid "Imported profile \"%(value)s\""
 msgstr "Імпортовано профіль «%(value)s»"
 
 #, python-format
+msgid "Profile data specifies profileId multiple times: %(values)s"
+msgstr "У даних профілю profileId вказано декілька разів: %(values)s"
+
+#, python-format
 msgid "Profile ID '%(cli_value)s' does not match profile data '%(file_value)s'"
 msgstr ""
 "Ідентифікатор профілю, «%(cli_value)s», не збігається із вказаним у даних "
@@ -18648,6 +19966,9 @@ msgstr "Змінено профіль сертифікатів «%(value)s»"
 msgid "Certificate profiles cannot be renamed"
 msgstr "Профілі сертифікатів не можна перейменовувати"
 
+msgid "Insufficient privilege to modify a certificate profile."
+msgstr "Недостатні права доступу для внесення змін до профілю сертифікації."
+
 msgid "configuration options"
 msgstr "параметри налаштування"
 
@@ -18666,17 +19987,40 @@ msgstr "Сервери CA IPA"
 msgid "IPA servers configured as certificate authority"
 msgstr "Сервери IPA, які налаштовано як центри сертифікації"
 
-msgid "IPA NTP servers"
-msgstr "Сервери NTP IPA"
-
-msgid "IPA servers with enabled NTP"
-msgstr "Сервери IPA із увімкненим NTP"
-
 msgid "IPA CA renewal master"
 msgstr "Основних вузол відновлення CA IPA"
 
 msgid "Renewal master for IPA certificate authority"
 msgstr "Основний сервер відновлення для центру сертифікації IPA"
+
+msgid "IPA master capable of PKINIT"
+msgstr "Основний IPA з можливістю PKINIT"
+
+msgid "IPA master which can process PKINIT requests"
+msgstr "Основний IPA, який може обробляти запити PKINIT"
+
+msgid "Domain resolution order"
+msgstr "Порядок визначення доменів"
+
+msgid "colon-separated list of domains used for short name qualification"
+msgstr ""
+"список доменів, відокремлених двокрапками, які використовуються для обробки "
+"коротких назв"
+
+msgid "Empty domain is not allowed"
+msgstr "Не можна використовувати порожні домени"
+
+#, python-format
+msgid "Invalid domain name '%(domain)s': %(e)s"
+msgstr "Некоректна назва домену, «%(domain)s»: %(e)s"
+
+#, python-format
+msgid "Server has no information about domain '%(domain)s'"
+msgstr "На сервері немає інформації щодо домену «%(domain)s»"
+
+#, python-format
+msgid "Disabled domain '%(domain)s' is not allowed"
+msgstr "Вимкнений домен «%(domain)s» не можна використовувати"
 
 msgid "The group doesn't exist"
 msgstr "Такої групи не існує"
@@ -18705,6 +20049,63 @@ msgid "SELinux user map default user not in order list"
 msgstr ""
 "Типового користувача типової карти користувачів SELinux немає у порядковому "
 "списку"
+
+msgid ""
+"\n"
+"Sudo Commands\n"
+"\n"
+"Commands used as building blocks for sudo\n"
+"\n"
+"EXAMPLES:\n"
+"\n"
+" Create a new command\n"
+"   ipa sudocmd-add --desc='For reading log files' /usr/bin/less\n"
+"\n"
+" Remove a command\n"
+"   ipa sudocmd-del /usr/bin/less\n"
+"\n"
+msgstr ""
+"\n"
+"Команди sudo\n"
+"\n"
+"Команди, використані як будівельні блоки для sudo\n"
+"\n"
+"ПРИКЛАДИ:\n"
+"\n"
+" Створення запису команди\n"
+"   ipa sudocmd-add --desc='Читання файлів журналу' /usr/bin/less\n"
+"\n"
+" Вилучення команди\n"
+"   ipa sudocmd-del /usr/bin/less\n"
+"\n"
+
+msgid "sudo command"
+msgstr "команда sudo"
+
+msgid "sudo commands"
+msgstr "команди sudo"
+
+msgid "Sudo Commands"
+msgstr "Команди sudo"
+
+#, python-format
+msgid "Added Sudo Command \"%(value)s\""
+msgstr "Додано команду sudo «%(value)s»"
+
+#, python-format
+msgid "Deleted Sudo Command \"%(value)s\""
+msgstr "Вилучено команду sudo «%(value)s»"
+
+#, python-format
+msgid "Modified Sudo Command \"%(value)s\""
+msgstr "Змінено команду sudo «%(value)s»"
+
+#, python-format
+msgid "%(count)d Sudo Command matched"
+msgid_plural "%(count)d Sudo Commands matched"
+msgstr[0] "встановлено відповідність %(count)d команд sudo"
+msgstr[1] "встановлено відповідність %(count)d команд sudo"
+msgstr[2] "встановлено відповідність %(count)d команд sudo"
 
 msgid "delegation"
 msgstr "уповноваження"
@@ -19237,7 +20638,7 @@ msgstr ""
 
 msgid ""
 "\n"
-" Semantics of the --forwarder-policy option:\n"
+" Semantics of the --forward-policy option:\n"
 "   * none - disable forwarding for the given zone.\n"
 "   * first - forward all queries to configured forwarders. If they fail,\n"
 "   do resolution using DNS root servers.\n"
@@ -19245,7 +20646,7 @@ msgid ""
 "   return failure.\n"
 msgstr ""
 "\n"
-" Семантика параметра --forwarder-policy:\n"
+" Семантика параметра --forward-policy:\n"
 "   * none — вимкнути переспрямовування для вказаної зони.\n"
 "   * first — спрямувати усі запити до налаштованих переспрямовувачів. Якщо\n"
 "   це не спрацює, виконати перетворення за допомогою кореневих серверів "
@@ -19425,6 +20826,13 @@ msgstr "не можна використовувати шаблон назви �
 
 #, python-format
 msgid ""
+"All nameservers failed to answer the query for DNS reverse zone %(revdns)s"
+msgstr ""
+"Не вдалося отримати відповідь на запит щодо зворотної зони DNS %(revdns)s "
+"від жодного із серверів назв"
+
+#, python-format
+msgid ""
 "DNS reverse zone %(revzone)s for IP address %(addr)s is not managed by this "
 "server"
 msgstr ""
@@ -19521,8 +20929,36 @@ msgstr ""
 "значенням прапорців (flags) має бути одна з літер, \"S\", \"A\", \"U\" або "
 "\"P\""
 
+msgid "Priority (order)"
+msgstr "Пріоритетність (порядок)"
+
+msgid ""
+"Lower number means higher priority. Clients will attempt to contact the "
+"server with the lowest-numbered priority they can reach."
+msgstr ""
+"Менше число — вища пріоритетність. Клієнтські частини намагатимуться "
+"встановити зв’язок із ттим доступноми для них сервером, у якого нижче число "
+"пріоритетності."
+
+msgid "Relative weight for entries with the same priority."
+msgstr "Відносна вага для записів із однаковою пріоритетністю."
+
 msgid "the value does not follow \"YYYYMMDDHHMMSS\" time format"
 msgstr "значення не відповідає формату «РРРРММДДГГХХСС»"
+
+msgid ""
+"Lower number means higher priority. Clients will attempt to contact the URI "
+"with the lowest-numbered priority they can reach."
+msgstr ""
+"Менше число — вища пріоритетність. Клієнтські частини намагатимуться "
+"встановити зв’язок із тією доступною для них адресою, у якої нижче число "
+"пріоритетності."
+
+msgid "Target Uniform Resource Identifier"
+msgstr "Універсальний ідентифікатор ресурсу призначення"
+
+msgid "Target Uniform Resource Identifier according to RFC 3986"
+msgstr "Універсальний ідентифікатор ресурсу призначення відповідно до RFC 3986"
 
 #, python-format
 msgid "Nameserver '%(host)s' does not have a corresponding A/AAAA record"
@@ -19863,6 +21299,9 @@ msgstr[0] "встановлено відповідність %(count)d серв�
 msgstr[1] "встановлено відповідність %(count)d серверів DNS"
 msgstr[2] "встановлено відповідність %(count)d серверів DNS"
 
+msgid "IPA DNS Server is not installed"
+msgstr "Сервер DNS IPA не встановлено"
+
 msgid "Display configuration of a DNS server."
 msgstr "Показати налаштування сервера DNS."
 
@@ -19880,12 +21319,6 @@ msgstr "Вилучити запис сервера DNS"
 msgid "Deleted DNS server \"%(value)s\""
 msgstr "Вилучено сервер DNS «%(value)s»"
 
-msgid "Unable to communicate with CMS"
-msgstr "Не вдалося обмінятися даними з CMS"
-
-msgid "find not supported on CAs upgraded from 9 to 10"
-msgstr "знайти непідтримувані у CA після оновлення з 9 до 10"
-
 msgid "Failed to authenticate to CA REST API"
 msgstr ""
 "Не вдалося пройти розпізнавання за допомогою програмного інтерфейсу CA REST"
@@ -19899,8 +21332,91 @@ msgstr ""
 "Відповідь від програмного інтерфейсу REST CA, що не відповідає 2xx: "
 "%(status)d. %(explanation)s"
 
+msgid "Unable to communicate with CMS"
+msgstr "Не вдалося обмінятися даними з CMS"
+
 msgid "Response from CA was not valid JSON"
 msgstr "Відповідь від CA не була коректним кодом JSON"
+
+msgid ""
+"\n"
+"Groups of Sudo Commands\n"
+"\n"
+"Manage groups of Sudo Commands.\n"
+"\n"
+"EXAMPLES:\n"
+"\n"
+" Add a new Sudo Command Group:\n"
+"   ipa sudocmdgroup-add --desc='administrators commands' admincmds\n"
+"\n"
+" Remove a Sudo Command Group:\n"
+"   ipa sudocmdgroup-del admincmds\n"
+"\n"
+" Manage Sudo Command Group membership, commands:\n"
+"   ipa sudocmdgroup-add-member --sudocmds=/usr/bin/less --sudocmds=/usr/bin/"
+"vim admincmds\n"
+"\n"
+" Manage Sudo Command Group membership, commands:\n"
+"   ipa sudocmdgroup-remove-member --sudocmds=/usr/bin/less admincmds\n"
+"\n"
+" Show a Sudo Command Group:\n"
+"   ipa sudocmdgroup-show admincmds\n"
+msgstr ""
+"\n"
+"Групи команд sudo\n"
+"\n"
+"Керування групами команд sudo.\n"
+"\n"
+"ПРИКЛАДИ:\n"
+"\n"
+" Додати нову групу команд sudo:\n"
+"   ipa sudocmdgroup-add --desc='administrators commands' admincmds\n"
+"\n"
+" Вилучити групу команд sudo:\n"
+"   ipa sudocmdgroup-del admincmds\n"
+"\n"
+" Керування участю групи команд sudo, команди:\n"
+"   ipa sudocmdgroup-add-member --sudocmds=/usr/bin/less --sudocmds=/usr/bin/"
+"vim admincmds\n"
+"\n"
+" Керування участю групи команд sudo, команди:\n"
+"   ipa sudocmdgroup-remove-member --sudocmds=/usr/bin/less admincmds\n"
+"\n"
+" Показ групи команд sudo:\n"
+"   ipa sudocmdgroup-show admincmds\n"
+
+msgid "sudo command group"
+msgstr "група команд sudo"
+
+msgid "sudo command groups"
+msgstr "групи команд sudo"
+
+#, python-format
+msgid "Added Sudo Command Group \"%(value)s\""
+msgstr "Додано групу команд sudo «%(value)s»"
+
+#, python-format
+msgid "Deleted Sudo Command Group \"%(value)s\""
+msgstr "Вилучено групу команд sudo «%(value)s»"
+
+#, python-format
+msgid "Modified Sudo Command Group \"%(value)s\""
+msgstr "Змінено групу команд sudo «%(value)s»"
+
+#, python-format
+msgid "%(count)d Sudo Command Group matched"
+msgid_plural "%(count)d Sudo Command Groups matched"
+msgstr[0] "встановлено відповідність %(count)d групи команд sudo"
+msgstr[1] "встановлено відповідність %(count)d груп команд sudo"
+msgstr[2] "встановлено відповідність %(count)d груп команд sudo"
+
+#, python-brace-format
+msgid ""
+"Domain Level cannot be raised to {0}, existing replication conflicts have to "
+"be resolved."
+msgstr ""
+"Рівень домену не може бути піднято до {0}, слід розв’язати наявні конфлікти "
+"реплікації."
 
 msgid "Domain Level cannot be lowered."
 msgstr "Не можна знижувати рівень домену."
@@ -19915,10 +21431,13 @@ msgid ""
 "\n"
 "Groups of users\n"
 "\n"
-"Manage groups of users. By default, new groups are POSIX groups. You\n"
-"can add the --nonposix option to the group-add command to mark a new group\n"
-"as non-POSIX. You can use the --posix argument with the group-mod command\n"
-"to convert a non-POSIX group into a POSIX group. POSIX groups cannot be\n"
+"Manage groups of users, groups, or services. By default, new groups are "
+"POSIX\n"
+"groups. You can add the --nonposix option to the group-add command to mark "
+"a\n"
+"new group as non-POSIX. You can use the --posix argument with the group-mod\n"
+"command to convert a non-POSIX group into a POSIX group. POSIX groups cannot "
+"be\n"
 "converted to non-POSIX groups.\n"
 "\n"
 "Every group must have a description.\n"
@@ -19928,6 +21447,11 @@ msgid ""
 "necessary\n"
 "to supply a GID when creating a group. IPA will generate one automatically\n"
 "if it is not provided.\n"
+"\n"
+"Groups members can be users, other groups, and Kerberos services. In POSIX\n"
+"environments only users will be visible as group members, but nested groups "
+"and\n"
+"groups of services can be used for IPA management purposes.\n"
 "\n"
 "EXAMPLES:\n"
 "\n"
@@ -19954,6 +21478,9 @@ msgid ""
 "\n"
 " Add multiple users to the \"localadmins\" group:\n"
 "   ipa group-add-member --users=test1 --users=test2 localadmins\n"
+"\n"
+" To add Kerberos services to the \"printer admins\" group:\n"
+"   ipa group-add-member --services=CUPS/some.host printeradmins\n"
 "\n"
 " Remove a user from the \"localadmins\" group:\n"
 "   ipa group-remove-member --users=test2 localadmins\n"
@@ -20004,8 +21531,8 @@ msgstr ""
 "\n"
 "Групи користувачів\n"
 "\n"
-"Керування групами користувачів. Типово нові групи є групами POSIX. Ви "
-"можете\n"
+"Керування групами користувачів групами або службами. Типово нові групи є "
+"групами POSIX. Ви можете\n"
 "додати параметр --nonposix до команди group-add з метою позначення нової\n"
 "групи як групи не-POSIX. Ви можете скористатися аргументом --posix команди "
 "group-mod\n"
@@ -20019,6 +21546,10 @@ msgstr ""
 "зміни GID, але ця зміна може вплинути на права доступу до ваших файлів. Для\n"
 "створення групи слід вказати GID. IPA створить одну групу автоматично, якщо\n"
 "таку не вказано.\n"
+"\n"
+"Учасниками груп можуть бути користувачі, інші групи та служби Kerberos. У\n"
+"середовищах POSIX видимими учасниками груп будуть лише користувачі, але\n"
+"для керування IPA можна використовувати вкладені групи та групи служб.\n"
 "\n"
 "ПРИКЛАДИ:\n"
 "\n"
@@ -20045,6 +21576,9 @@ msgstr ""
 "\n"
 " Додати список користувачів до групи \"localadmins\":\n"
 "   ipa group-add-member --users=test1 --users=test2 localadmins\n"
+"\n"
+" Додати служби Kerberos до групи \"printeradmins\":\n"
+"   ipa group-add-member --services=CUPS/some.host printeradmins\n"
 "\n"
 " Вилучення користувача з групи \"localadmins\":\n"
 "   ipa group-remove-member --users=test2 localadmins\n"
@@ -20881,11 +22415,6 @@ msgid "Added host \"%(value)s\""
 msgstr "Додано вузол «%(value)s»"
 
 #, python-format
-msgid "The host was added but the DNS update failed with: %(exc)s"
-msgstr ""
-"Запис вузла було додано, але спроба оновлення DNS зазнала невдачі: %(exc)s"
-
-#, python-format
 msgid "Deleted host \"%(value)s\""
 msgstr "Вилучено вузол «%(value)s»"
 
@@ -21019,7 +22548,7 @@ msgid ""
 "This ID range is then used by the IPA server and the SSSD IPA provider to\n"
 "assign Posix UIDs to users from the trusted domain.\n"
 "\n"
-"If e.g a range for a trusted domain is configured with the following "
+"If e.g. a range for a trusted domain is configured with the following "
 "values:\n"
 " base-id = 1200000\n"
 " range-size = 200000\n"
@@ -21341,12 +22870,8 @@ msgstr "Додано діапазон ідентифікаторів «%(value)s
 msgid "Options dom-sid and dom-name cannot be used together"
 msgstr "Параметри dom-sid і dom-name не можна використовувати разом"
 
-msgid ""
-"SID for the specified trusted domain name could not be found. Please specify "
-"the SID directly using dom-sid option."
-msgstr ""
-"Не вдалося знайти SID для вказаного довіреного домену. Будь ласка, вкажіть "
-"SID безпосередньо за допомогою параметра dom-sid."
+msgid "Specified trusted domain name could not be found."
+msgstr "Не вдалося знайти назву вказаного довіреного домену."
 
 msgid "Options dom-sid/dom-name and rid-base must be used together"
 msgstr "Параметри dom-sid/dom-name і rid-base слід використовувати разом"
@@ -21422,6 +22947,13 @@ msgstr ""
 "Цією командою не можна скористатися для зміни розподілу ідентифікаторів для "
 "локального домену IPA. Щоб дізнатися більше, скористайтеся командою «ipa "
 "help idrange»."
+
+msgid ""
+"SID for the specified trusted domain name could not be found. Please specify "
+"the SID directly using dom-sid option."
+msgstr ""
+"Не вдалося знайти SID для вказаного довіреного домену. Будь ласка, вкажіть "
+"SID безпосередньо за допомогою параметра dom-sid."
 
 msgid "Options dom-sid and secondary-rid-base cannot be used together"
 msgstr "Параметри dom-sid і secondary-rid-base не можна використовувати разом"
@@ -21507,7 +23039,7 @@ msgid "IPA object"
 msgstr "Об’єкт IPA"
 
 msgid ""
-"system IPA objects (e.g system groups, user private groups) cannot be "
+"system IPA objects (e.g. system groups, user private groups) cannot be "
 "overridden"
 msgstr ""
 "системні об’єкти IPA (наприклад системні групи, приватні групи користувачів) "
@@ -21632,7 +23164,7 @@ msgstr[1] ""
 msgstr[2] ""
 "встановлено відповідність %(count)d перевизначень ідентифікаторів групи"
 
-msgid "Your session has expired. Please re-login."
+msgid "Your session has expired. Please log in again."
 msgstr ""
 "Строк роботи у вашому сеансі вичерпано. Будь ласка, увійдіть до системи ще "
 "раз."
@@ -21829,6 +23361,12 @@ msgstr "Назад"
 msgid "Cancel"
 msgstr "Скасувати"
 
+msgid "Clear"
+msgstr "Спорожнити"
+
+msgid "Clear all fields on the page."
+msgstr "Спорожнити усі поля на сторінці."
+
 msgid "Close"
 msgstr "Закрити"
 
@@ -21858,6 +23396,12 @@ msgstr "Приховати"
 
 msgid "Issue"
 msgstr "Створити"
+
+msgid "Match"
+msgstr "Відповідність"
+
+msgid "Match users according to certificate."
+msgstr "Встановити відповідність користувачів за сертифікатом."
 
 msgid "OK"
 msgstr "Гаразд"
@@ -21909,6 +23453,12 @@ msgstr "Оновити"
 
 msgid "View"
 msgstr "Перегляд"
+
+msgid "Customization"
+msgstr "Налаштування"
+
+msgid "Pagination Size"
+msgstr "Розмір сторінки"
 
 msgid "Collapse All"
 msgstr "Згорнути всі"
@@ -22115,8 +23665,9 @@ msgid "PAD"
 msgstr "PAD"
 
 msgid ""
-"<i class=\"fa fa-info-circle\"></i> To login with <strong>username and "
-"password</strong>, enter them in the corresponding fields, then click Login."
+"<i class=\"fa fa-info-circle\"></i> To log in with <strong>username and "
+"password</strong>, enter them in the corresponding fields, then click 'Log "
+"in'."
 msgstr ""
 "<i class=\"fa fa-info-circle\"></i> Щоб увійти за допомогою <strong>імені "
 "користувача і пароля</strong>, вкажіть ці дані у відповідних полях, потім "
@@ -22127,10 +23678,10 @@ msgstr "Вхід до системи від імені"
 
 #, python-brace-format
 msgid ""
-"<i class=\"fa fa-info-circle\"></i> To login with <strong>Kerberos</strong>, "
-"please make sure you have valid tickets (obtainable via kinit) and <a "
-"href='http://${host}/ipa/config/unauthorized.html'>configured</a> the "
-"browser correctly, then click Login."
+"<i class=\"fa fa-info-circle\"></i> To log in with <strong>Kerberos</"
+"strong>, please make sure you have valid tickets (obtainable via kinit) and "
+"<a href='http://${host}/ipa/config/unauthorized.html'>configured</a> the "
+"browser correctly, then click 'Log in'."
 msgstr ""
 "<i class=\"fa fa-info-circle\"></i>Щоб увійти за допомогою <strong>Kerberos</"
 "strong>, будь ласка, переконайтеся, що маєте чинні квитки (ці квитки можна "
@@ -22138,14 +23689,17 @@ msgstr ""
 "<a href='http://${host}/ipa/config/unauthorized.html'>налаштовано</a> "
 "належним чином, а потім натисніть кнопку «Увійти»."
 
-msgid "Login"
+msgid "Loading data"
+msgstr "Завантажуємо дані"
+
+msgid "Log in"
 msgstr "Увійти"
 
-msgid "Logout"
+msgid "Log out"
 msgstr "Вийти"
 
-msgid "Logout error"
-msgstr "Помилка під час виходу"
+msgid "Log out error"
+msgstr "Помилка під час спроби вийти"
 
 msgid "Sync OTP Token"
 msgstr "Синхронізувати жетон OTP"
@@ -22335,9 +23889,6 @@ msgstr "Видано для"
 msgid "Key Compromise"
 msgstr "Компрометація ключа"
 
-msgid "MD5 Fingerprint"
-msgstr "Відбиток MD5"
-
 msgid "No Valid Certificate"
 msgstr "Немає чинних сертифікатів"
 
@@ -22458,6 +24009,40 @@ msgstr "Сертифікат для ${primary_key} ${entity}"
 
 msgid "View Certificate"
 msgstr "Переглянути сертифікат"
+
+msgid "Certificate Data"
+msgstr "Дані сертифіката"
+
+msgid "Certificate For Match"
+msgstr "Сертифікат для відповідності"
+
+msgid "Certificate Mapping Match"
+msgstr "Відповідність за прив’язкою до сертифіката"
+
+msgid "Matched Users"
+msgstr "Відповідні користувачі"
+
+msgid "User Login"
+msgstr "Користувач"
+
+msgid "Add Certificate Mapping Data"
+msgstr "Додати дані прив’язки до сертифіката"
+
+msgid "Configuration string"
+msgstr "Рядок налаштування"
+
+#, python-brace-format
+msgid "Do you want to remove certificate mapping data ${data}?"
+msgstr "Хочете вилучити дані прив’язки до сертифікатів ${data}?"
+
+msgid "Remove Certificate Mapping Data"
+msgstr "Вилучити дані прив’язки до сертифікатів"
+
+msgid "Issuer and subject"
+msgstr "Видавець і призначення"
+
+msgid "Version"
+msgstr "Версія"
 
 msgid "Group Options"
 msgstr "Параметри групи"
@@ -22588,14 +24173,20 @@ msgstr "Параметри групи"
 msgid "External"
 msgstr "Зовнішній"
 
+msgid "Groups"
+msgstr "Групи"
+
+msgid "Group categories"
+msgstr "Категорії груп"
+
 msgid "Change to external group"
 msgstr "Змінити на зовнішню групу"
 
 msgid "Change to POSIX group"
 msgstr "Змінити на групу POSIX"
 
-msgid "Normal"
-msgstr "Звичайний"
+msgid "Non-POSIX"
+msgstr "Не-POSIX"
 
 msgid "POSIX"
 msgstr "POSIX"
@@ -22739,6 +24330,9 @@ msgstr ""
 msgid "Enter trusted user login."
 msgstr "Введіть назву запису довіреного користувача."
 
+msgid "Profile"
+msgstr "Профіль"
+
 msgid "Group to override"
 msgstr "Група для перевизначення"
 
@@ -22816,6 +24410,9 @@ msgstr "Правила квитків Kerberos"
 msgid "Netgroup Settings"
 msgstr "Параметри мережевої групи"
 
+msgid "Netgroups"
+msgstr "Мережеві групи"
+
 msgid "Add OTP Token"
 msgstr "Додати жетон OTP"
 
@@ -22870,6 +24467,27 @@ msgstr "Розбиття за атрибутами"
 
 msgid "Privilege Settings"
 msgstr "Параметри привілеїв"
+
+msgid "Public key:"
+msgstr "Відкритий ключ:"
+
+msgid "Set public key"
+msgstr "Встановити відкритий ключ"
+
+msgid "Show/Set key"
+msgstr "Показати або встановити ключ"
+
+msgid "Modified: key not set"
+msgstr "Змінено: ключ не встановлено"
+
+msgid "Modified"
+msgstr "Змінено"
+
+msgid "New: key not set"
+msgstr "Новий: ключ не встановлено"
+
+msgid "New: key set"
+msgstr "Новий: ключ встановлено"
 
 msgid "Password Policy"
 msgstr "Правила для паролів"
@@ -22934,6 +24552,16 @@ msgstr "Ролі сервера"
 msgid "Server Role"
 msgstr "Роль сервера"
 
+msgid "Warning: Consider service replication"
+msgstr "Попередження: вам варто скористатися реплікацією служб"
+
+msgid ""
+"It is strongly recommended to keep the following services installed on more "
+"than one server:"
+msgstr ""
+"Наполегливо рекомендуємо вам встановити наступні служби одразу на декількох "
+"серверах:"
+
 msgid "Delete Server"
 msgstr "Вилучити сервер"
 
@@ -22971,21 +24599,6 @@ msgstr "Відкритий ключ SSH:"
 msgid "Set SSH key"
 msgstr "Встановити ключ SSH"
 
-msgid "Show/Set key"
-msgstr "Показати або встановити ключ"
-
-msgid "Modified: key not set"
-msgstr "Змінено: ключ не встановлено"
-
-msgid "Modified"
-msgstr "Змінено"
-
-msgid "New: key not set"
-msgstr "Новий: ключ не встановлено"
-
-msgid "New: key set"
-msgstr "Новий: ключ встановлено"
-
 msgid "Are you sure you want to activate selected users?"
 msgstr "Ви справді хочете активувати позначені записи користувачів?"
 
@@ -23018,14 +24631,15 @@ msgid "Are you sure you want to restore selected users?"
 msgstr "Ви справді хочете відновити позначені записи користувачів?"
 
 #, python-brace-format
+msgid "Are you sure you want to restore ${object}?"
+msgstr "Ви справді хочете відновити ${object}?"
+
+#, python-brace-format
 msgid "${count} user(s) restored"
 msgstr "Відновлено ${count} записів користувачів"
 
 msgid "User categories"
 msgstr "Категорії користувачів"
-
-msgid "Groups"
-msgstr "Групи"
 
 msgid "Allow"
 msgstr "Дозволити"
@@ -23166,6 +24780,63 @@ msgstr "Розблокувати"
 msgid "Are you sure you want to unlock user ${object}?"
 msgstr "Ви справді хочете розблокувати користувача ${object}?"
 
+msgid ""
+"Secrets can be added/retrieved to vault only by using vault-archive and "
+"vault-retrieve from CLI."
+msgstr ""
+"Реєстраційні дані можна додавати до сховища або отримувати з нього лише за "
+"допомогою інструментів командного рядка vault-archive і vault-retrieve."
+
+msgid ""
+"Content of 'standard' vaults can be seen by users with higher privileges "
+"(admins)."
+msgstr ""
+"Вміст сховищ типу «стандартне» можуть переглядати користувачі із вищим "
+"рівнем прав доступу (адміністратори)."
+
+msgid "Asymmetric"
+msgstr "Асиметричний"
+
+msgid "Vaults Config"
+msgstr "Налаштування сховища"
+
+msgid "Members"
+msgstr "Учасники"
+
+msgid "My User Vaults"
+msgstr "Сховища користувача"
+
+msgid "Owners"
+msgstr "Власники"
+
+msgid "Service Vaults"
+msgstr "Сховища служб"
+
+msgid "Shared"
+msgstr "Спільне"
+
+msgid "Shared Vaults"
+msgstr "Спільні сховища"
+
+msgid "Standard"
+msgstr "Стандартне"
+
+msgid "Symmetric"
+msgstr "Симетричний"
+
+msgid "Vault Type"
+msgstr "Тип сховища"
+
+msgid ""
+"Only standard vaults can be created in WebUI, use CLI for other types of "
+"vaults."
+msgstr ""
+"За допомогою вебінтерфейсу можна створювати лише стандартні сховища. "
+"Скористайтеся командним інтерфейсом для створення інших типів сховищ."
+
+msgid "User Vaults"
+msgstr "Сховища користувачів"
+
 msgid "Current password is required"
 msgstr "Слід вказати поточний пароль"
 
@@ -23278,7 +24949,7 @@ msgstr "Автоматичне монтування"
 msgid "DNS"
 msgstr "DNS"
 
-msgid "Host Based Access Control"
+msgid "Host-Based Access Control"
 msgstr "Керування доступом на основі вузлів"
 
 msgid "Identity"
@@ -23293,7 +24964,7 @@ msgstr "Мережеві служби"
 msgid "Policy"
 msgstr "Правила"
 
-msgid "Role Based Access Control"
+msgid "Role-Based Access Control"
 msgstr "Керування доступом на основі ролей"
 
 msgid "Sudo"
@@ -23307,6 +24978,9 @@ msgstr "Записи довіри"
 
 msgid "True"
 msgstr "Так"
+
+msgid "API Browser"
+msgstr "Навігатор API"
 
 msgid "First"
 msgstr "Перший"
@@ -23376,6 +25050,9 @@ msgstr ""
 
 msgid "Parse error"
 msgstr "Помилка обробки"
+
+msgid "Must be a positive number"
+msgstr "Має бути додатним числом"
 
 #, python-brace-format
 msgid "'${port}' is not a valid port"
@@ -23796,22 +25473,8 @@ msgstr ""
 msgid "Default group for new users not found"
 msgstr "Типової групи для нових користувачів не знайдено"
 
-#, python-format
-msgid "%(count)d variables"
-msgstr "%(count)d змінних"
-
-#, python-format
-msgid "%(count)d plugin loaded"
-msgid_plural "%(count)d plugins loaded"
-msgstr[0] "завантажено %(count)d додаток"
-msgstr[1] "завантажено %(count)d додатки"
-msgstr[2] "завантажено %(count)d додатків"
-
 msgid "netgroups"
 msgstr "мережеві групи"
-
-msgid "Netgroups"
-msgstr "Мережеві групи"
 
 msgid "Netgroup"
 msgstr "Мережева група"
@@ -23932,6 +25595,9 @@ msgstr "URI"
 #, python-format
 msgid "Added OTP token \"%(value)s\""
 msgstr "Додано жетон OTP «%(value)s»"
+
+msgid "cannot be empty"
+msgstr "не може бути порожнім"
 
 #, python-format
 msgid "Deleted OTP token \"%(value)s\""
@@ -24253,15 +25919,67 @@ msgstr[0] "встановлено відповідність %(count)d запи�
 msgstr[1] "встановлено відповідність %(count)d записів"
 msgstr[2] "встановлено відповідність %(count)d записів"
 
+msgid ""
+"\n"
+"Kerberos PKINIT feature status reporting tools.\n"
+"\n"
+"Report IPA masters on which Kerberos PKINIT is enabled or disabled\n"
+"\n"
+"EXAMPLES:\n"
+" List PKINIT status on all masters:\n"
+"   ipa pkinit-status\n"
+"\n"
+" Check PKINIT status on `ipa.example.com`:\n"
+"   ipa pkinit-status --server ipa.example.com\n"
+"\n"
+" List all IPA masters with disabled PKINIT:\n"
+"   ipa pkinit-status --status='disabled'\n"
+"\n"
+"For more info about PKINIT support see:\n"
+"\n"
+"https://www.freeipa.org/page/V4/Kerberos_PKINIT\n"
+msgstr ""
+"\n"
+"Засоби звітування щодо стану можливості PKINIT Kerberos\n"
+"\n"
+"Звітування щодо того, увімкнено чи вимкнено PKINIT у Kerberos на основних "
+"елементах IPA\n"
+"\n"
+"ПРИКЛАДИ:\n"
+" Вивести список станів PKINIT для усіх основних елементів:\n"
+"   ipa pkinit-status\n"
+"\n"
+" Перевірити стан PKINIT на «ipa.example.com»:\n"
+"   ipa pkinit-status --server ipa.example.com\n"
+"\n"
+" Вивести список усіх основних елементів IPA із вимкненим PKINIT:\n"
+"   ipa pkinit-status --status='disabled'\n"
+"\n"
+"Докладніші дані щодо підтримки PKINIT:\n"
+"\n"
+"https://www.freeipa.org/page/V4/Kerberos_PKINIT\n"
+
 msgid "pkinit"
 msgstr "pkinit"
 
 msgid "PKINIT"
 msgstr "PKINIT"
 
+msgid "PKINIT status"
+msgstr "стан PKINIT"
+
+msgid "Whether PKINIT is enabled or disabled"
+msgstr "Визначає, увімкнено чи вимкнено PKINIT"
+
+msgid "Report PKINIT status on the IPA masters"
+msgstr "Звіт щодо стану PKINIT на основних елементах IPA"
+
 #, python-format
-msgid "Unknown command %s"
-msgstr "Невідома команда, «%s»"
+msgid "%(count)s server matched"
+msgid_plural "%(count)s servers matched"
+msgstr[0] "Встановлено відповідність %(count)s сервера"
+msgstr[1] "Встановлено відповідність %(count)s серверів"
+msgstr[2] "Встановлено відповідність %(count)s серверів"
 
 #, python-format
 msgid ""
@@ -24425,8 +26143,105 @@ msgstr[0] "Встановлено відповідність %(count)d прок�
 msgstr[1] "Встановлено відповідність %(count)d проксі-серверів RADIUS"
 msgstr[2] "Встановлено відповідність %(count)d проксі-серверів RADIUS"
 
+msgid ""
+"\n"
+"Realm domains\n"
+"\n"
+"Manage the list of domains associated with IPA realm.\n"
+"\n"
+"This list is useful for Domain Controllers from other realms which have\n"
+"established trust with this IPA realm. They need the information to know\n"
+"which request should be forwarded to KDC of this IPA realm.\n"
+"\n"
+"Automatic management: a domain is automatically added to the realm domains\n"
+"list when a new DNS Zone managed by IPA is created. Same applies for "
+"deletion.\n"
+"\n"
+"Externally managed DNS: domains which are not managed in IPA server DNS\n"
+"need to be manually added to the list using ipa realmdomains-mod command.\n"
+"\n"
+"EXAMPLES:\n"
+"\n"
+" Display the current list of realm domains:\n"
+"   ipa realmdomains-show\n"
+"\n"
+" Replace the list of realm domains:\n"
+"   ipa realmdomains-mod --domain=example.com\n"
+"   ipa realmdomains-mod --domain={example1.com,example2.com,example3.com}\n"
+"\n"
+" Add a domain to the list of realm domains:\n"
+"   ipa realmdomains-mod --add-domain=newdomain.com\n"
+"\n"
+" Delete a domain from the list of realm domains:\n"
+"   ipa realmdomains-mod --del-domain=olddomain.com\n"
+msgstr ""
+"\n"
+"Домени області\n"
+"\n"
+"Керування списком доменів, пов’язаних з областю IPA.\n"
+"\n"
+"Цей список є корисним для контролерів доменів з інших областей, які\n"
+"мають встановити відносини довіри із цією областю IPA. Цим контролерам\n"
+"потрібні дані щодо того, які запити слід переспрямовувати до KDC цієї\n"
+"області IPA.\n"
+"\n"
+"Автоматичне керування: домен автоматично додається до списку доменів\n"
+"області, коли створюється нова зона DNS, керована IPA. Те саме стосується\n"
+"вилучення.\n"
+"\n"
+"Керована ззовні DNS: домени, які не керуються у DNS сервера IPA, має бути\n"
+"вручну додано до списку за допомогою команди ipa realmdomains-mod.\n"
+"\n"
+"ПРИКЛАДИ:\n"
+"\n"
+" Показати поточний список доменів області:\n"
+"   ipa realmdomains-show\n"
+"\n"
+" Замірити список доменів області:\n"
+"   ipa realmdomains-mod --domain=example.com\n"
+"   ipa realmdomains-mod --domain={example1.com,example2.com,example3.com}\n"
+"\n"
+" Додати домен до списку доменів області:\n"
+"   ipa realmdomains-mod --add-domain=newdomain.com\n"
+"\n"
+" Вилучити домен зі списку доменів області:\n"
+"   ipa realmdomains-mod --del-domain=olddomain.com\n"
+
 msgid "Realm domains"
 msgstr "Домени області"
+
+msgid ""
+"\n"
+"    Modify realm domains\n"
+"\n"
+"    DNS check: When manually adding a domain to the list, a DNS check is\n"
+"    performed by default. It ensures that the domain is associated with\n"
+"    the IPA realm, by checking whether the domain has a _kerberos TXT "
+"record\n"
+"    containing the IPA realm name. This check can be skipped by specifying\n"
+"    --force option.\n"
+"\n"
+"    Removal: when a realm domain which has a matching DNS zone managed by\n"
+"    IPA is being removed, a corresponding _kerberos TXT record in the zone "
+"is\n"
+"    removed automatically as well. Other records in the zone or the zone\n"
+"    itself are not affected.\n"
+"    "
+msgstr ""
+"\n"
+"    Внесення змін до доменів області\n"
+"\n"
+"    Перевірка DNS: при додаванні домену до списку вручну типово\n"
+"    виконується перевірка DNS. Вона дає дані щодо прив'язки домену\n"
+"    до області IPA за рахунок перевірки того, чи містить запис TXT домену у\n"
+"    _kerberos TXT назву області IPA. Цю перевірку можна обійти, вказавши\n"
+"     параметр --force.\n"
+"\n"
+"    Вилучення: коли вилучається домен області, який мав відповідну зону\n"
+"    DNS керовану IPA, також автоматично вилучається відповідний запис\n"
+"    TXT у зоні у _kerberos. Інші записи у зоні та сама зона лишаються\n"
+"    незмінними.\n"
+"    "
 
 #, python-format
 msgid ""
@@ -24535,9 +26350,6 @@ msgstr "Включити до"
 msgid "Help topic"
 msgstr "Тема довідки"
 
-msgid "Version"
-msgstr "Версія"
-
 msgid "Parameters"
 msgstr "Параметри"
 
@@ -24604,11 +26416,19 @@ msgstr "З врахуванням"
 msgid "Positional argument"
 msgstr "Позиційний аргумент"
 
+#, python-format
+msgid "%(metaobject)s: %(oname)s not found"
+msgstr "%(metaobject)s: не знайдено %(oname)s"
+
 msgid "Display information about a command parameter."
 msgstr "Показати інформацію щодо параметра команди."
 
 msgid "Search command parameters."
 msgstr "Шукати параметри команди."
+
+#, python-format
+msgid "%(command_name)s: %(oname)s not found"
+msgstr "%(command_name)s: не знайдено %(oname)s"
 
 msgid "Display information about a command output."
 msgstr "Показати інформацію щодо даних, які виводить команда."
@@ -24653,10 +26473,10 @@ msgstr[2] "встановлено відповідність %(count)d само�
 msgid "HBAC rule and local members cannot both be set"
 msgstr "Не можна одночасно вказувати правило HBAC і локальних учасників"
 
-msgid "Invalid SELinux user name, only a-Z and _ are allowed"
+msgid "Invalid SELinux user name, only a-Z, _ and . are allowed"
 msgstr ""
 "Некоректне ім’я користувача SELinux, у імені можна використовувати лише "
-"символи a-Z і _"
+"символи a-Z, _ та ."
 
 msgid "Invalid MLS value, must match s[0-15](-s[0-15])"
 msgstr ""
@@ -24836,6 +26656,13 @@ msgstr ""
 
 msgid ""
 "Deleting this server is not allowed as it would leave your installation "
+"without a KRA."
+msgstr ""
+"Вилучення цього сервера заборонено, оскільки воно залишить вашу встановлену "
+"систему без KRA."
+
+msgid ""
+"Deleting this server is not allowed as it would leave your installation "
 "without a CA."
 msgstr ""
 "Вилучення цього сервера заборонено, оскільки воно залишить вашу встановлену "
@@ -24860,6 +26687,10 @@ msgstr "Не вдалося вилучити записи назви вузла 
 msgid "Failed to remove server %(master)s from server list: %(err)s"
 msgstr ""
 "Не вдалося вилучити запис сервера %(master)s зі списку серверів: %(err)s"
+
+#, python-format
+msgid "Failed to clean up Custodia keys for %(master)s: %(err)s"
+msgstr "Не вдалося вилучити ключі Custodia для %(master)s: %(err)s"
 
 #, python-format
 msgid "Failed to cleanup server principals/keys: %(err)s"
@@ -25118,11 +26949,20 @@ msgstr ""
 "httpd.keytab\n"
 "\n"
 
+msgid "Trusted to authenticate as user"
+msgstr "Довіра до розпізнавання як користувача"
+
+msgid "The service is allowed to authenticate on behalf of a client"
+msgstr "Службі дозволено проходити розпізнавання від імені клієнта"
+
 msgid "Malformed principal"
 msgstr "Помилкове форматування реєстраційного запису"
 
 msgid "This principal is required by the IPA master"
 msgstr "Цей реєстраційний запис потрібен основному серверу IPA"
+
+msgid "service"
+msgstr "служба"
 
 msgid "services"
 msgstr "служби"
@@ -25142,6 +26982,18 @@ msgstr "Додати нову службу IPA."
 #, python-format
 msgid "Added service \"%(value)s\""
 msgstr "Додано службу «%(value)s»"
+
+msgid "force principal name even if host not in DNS"
+msgstr ""
+"примусове значення назви реєстраційного запису, навіть якщо вузла немає у DNS"
+
+msgid "Skip host check"
+msgstr "Пропустити перевірку вузла"
+
+msgid ""
+"force service to be created even when host object does not exist to manage it"
+msgstr ""
+"примусове створення служби, навіть якщо об'єкта вузла для керування не існує"
 
 #, python-format
 msgid "The host '%s' does not exist to add a service to."
@@ -25259,291 +27111,6 @@ msgid_plural "%(count)d service delegation targets matched"
 msgstr[0] "встановлено відповідність %(count)d призначення делегування служб"
 msgstr[1] "встановлено відповідність %(count)d призначень делегування служб"
 msgstr[2] "встановлено відповідність %(count)d призначень делегування служб"
-
-msgid ""
-"\n"
-"Stageusers\n"
-"\n"
-"Manage stage user entries.\n"
-"\n"
-"Stage user entries are directly under the container: \"cn=stage users,\n"
-"cn=accounts, cn=provisioning, SUFFIX\".\n"
-"Users can not authenticate with those entries (even if the entries\n"
-"contain credentials). Those entries are only candidate to become Active "
-"entries.\n"
-"\n"
-"Active user entries are Posix users directly under the container: "
-"\"cn=accounts, SUFFIX\".\n"
-"Users can authenticate with Active entries, at the condition they have\n"
-"credentials.\n"
-"\n"
-"Deleted user entries are Posix users directly under the container: "
-"\"cn=deleted users,\n"
-"cn=accounts, cn=provisioning, SUFFIX\".\n"
-"Users can not authenticate with those entries, even if the entries contain "
-"credentials.\n"
-"\n"
-"The stage user container contains entries:\n"
-"    - created by 'stageuser-add' commands that are Posix users,\n"
-"    - created by external provisioning system.\n"
-"\n"
-"A valid stage user entry MUST have:\n"
-"    - entry RDN is 'uid',\n"
-"    - ipaUniqueID is 'autogenerate'.\n"
-"\n"
-"IPA supports a wide range of username formats, but you need to be aware of "
-"any\n"
-"restrictions that may apply to your particular environment. For example,\n"
-"usernames that start with a digit or usernames that exceed a certain length\n"
-"may cause problems for some UNIX systems.\n"
-"Use 'ipa config-mod' to change the username format allowed by IPA tools.\n"
-"\n"
-"\n"
-"EXAMPLES:\n"
-"\n"
-" Add a new stageuser:\n"
-"   ipa stageuser-add --first=Tim --last=User --password tuser1\n"
-"\n"
-" Add a stageuser from the deleted users container:\n"
-"   ipa stageuser-add  --first=Tim --last=User --from-delete tuser1\n"
-"\n"
-msgstr ""
-"\n"
-"Користувачі етапу\n"
-"\n"
-"Керування записами користувачів етапу.\n"
-"\n"
-"Записи користувачів етапу перебувають безпосередньо у контейнері:\n"
-"\"cn=stage users, cn=accounts, cn=provisioning, SUFFIX\".\n"
-"Користувач не може пройти розпізнавання за допомогою цих записів\n"
-"(навіть якщо записи містять реєстраційні дані) і є кандидатами на\n"
-"перетворення на активні записи.\n"
-"\n"
-"Записи активних користувачів є користувачами Posix, що перебувають\n"
-"безпосередньо у контейнері: \"cn=accounts, SUFFIX\".\n"
-"Користувач може пройти розпізнавання за допомогою активних записів,\n"
-"якщо для них передбачено реєстраційні дані\n"
-"\n"
-"Вилучені записи користувачів є записами користувачів Posix, що\n"
-"перебувають безпосередньо у контейнері: \"cn=deleted users,\n"
-"cn=accounts, cn=provisioning, SUFFIX\".\n"
-"Користувачі не можуть проходити розпізнавання за допомогою цих\n"
-"записів (навіть якщо записи містять реєстраційні дані)\n"
-"\n"
-"Контейнер користувачів етапу містить записи\n"
-"    - створені командами 'stageuser-add', які є користувачами Posix\n"
-"    - створені зовнішньою системою забезпечення\n"
-"\n"
-"Коректний запис користувача етапу МАЄ відповідати таким вимогам:\n"
-"    - RDN запису має значення 'uid'\n"
-"    - ipaUniqueID має значення 'autogenerate'\n"
-"\n"
-"У IPA передбачено підтримку широкого діапазону форматів імен користувачів,\n"
-"але слід зважати на різноманітні обмеження, які можуть стосуватися "
-"середовища,\n"
-"у якому ви працюєте. Наприклад, імена користувачів, що починаються з цифри,\n"
-"або імена користувачів, довжина яких перевищує певну довжину, можуть\n"
-"призвести до проблем у деяких системах UNIX.\n"
-"Для зміни формату, який дозволено інструментами IPA, скористайтеся командою\n"
-"'ipa config-mod'.\n"
-"\n"
-"\n"
-"ПРИКЛАДИ:\n"
-"\n"
-" Додати нового користувача етапу:\n"
-"   ipa stageuser-add --first=Tim --last=User --password tuser1\n"
-"\n"
-" Додати користувача етапу з контейнера вилучених користувачів\n"
-"   ipa stageuser-add  --first=Tim --last=User --from-delete tuser1\n"
-"\n"
-
-msgid "Stage Users"
-msgstr "Користувачі етапу"
-
-msgid "Stage User"
-msgstr "Користувач етапу"
-
-msgid "stage user"
-msgstr "користувач етапу"
-
-msgid "stage users"
-msgstr "користувачі етапу"
-
-#, python-format
-msgid "Added stage user \"%(value)s\""
-msgstr "Додано користувача етапу «%(value)s»"
-
-msgid "givenname is required"
-msgstr "слід вказати ім’я"
-
-msgid "sn is required"
-msgstr "слід вказати sn"
-
-#, python-format
-msgid "Deleted stage user \"%(value)s\""
-msgstr "Вилучено запис користувача етапу «%(value)s»"
-
-#, python-format
-msgid "Modified stage user \"%(value)s\""
-msgstr "Змінено запис користувача етапу «%(value)s»"
-
-#, python-format
-msgid "%(count)d user matched"
-msgid_plural "%(count)d users matched"
-msgstr[0] "встановлено відповідність %(count)d користувача"
-msgstr[1] "встановлено відповідність %(count)d користувачів"
-msgstr[2] "встановлено відповідність %(count)d користувачів"
-
-#, python-format
-msgid "Activate a stage user \"%(value)s\""
-msgstr "Активувати користувача етапу «%(value)s»"
-
-msgid "Entry RDN is not 'uid'"
-msgstr "RDN запису не належить до «uid»"
-
-#, python-format
-msgid "Entry has no '%(attribute)s'"
-msgstr "У запису немає атрибута «%(attribute)s»"
-
-#, python-format
-msgid "active user with name \"%(user)s\" already exists"
-msgstr "запис активного користувача із іменем «%(user)s» вже існує"
-
-#, python-format
-msgid "Stage user %s activated"
-msgstr "Активовано користувача етапу %s"
-
-msgid "commands for controlling sudo configuration"
-msgstr "команди керування налаштуванням sudo"
-
-msgid ""
-"\n"
-"Sudo Commands\n"
-"\n"
-"Commands used as building blocks for sudo\n"
-"\n"
-"EXAMPLES:\n"
-"\n"
-" Create a new command\n"
-"   ipa sudocmd-add --desc='For reading log files' /usr/bin/less\n"
-"\n"
-" Remove a command\n"
-"   ipa sudocmd-del /usr/bin/less\n"
-"\n"
-msgstr ""
-"\n"
-"Команди sudo\n"
-"\n"
-"Команди, використані як будівельні блоки для sudo\n"
-"\n"
-"ПРИКЛАДИ:\n"
-"\n"
-" Створення запису команди\n"
-"   ipa sudocmd-add --desc='Читання файлів журналу' /usr/bin/less\n"
-"\n"
-" Вилучення команди\n"
-"   ipa sudocmd-del /usr/bin/less\n"
-"\n"
-
-msgid "sudo command"
-msgstr "команда sudo"
-
-msgid "sudo commands"
-msgstr "команди sudo"
-
-msgid "Sudo Commands"
-msgstr "Команди sudo"
-
-#, python-format
-msgid "Added Sudo Command \"%(value)s\""
-msgstr "Додано команду sudo «%(value)s»"
-
-#, python-format
-msgid "Deleted Sudo Command \"%(value)s\""
-msgstr "Вилучено команду sudo «%(value)s»"
-
-#, python-format
-msgid "Modified Sudo Command \"%(value)s\""
-msgstr "Змінено команду sudo «%(value)s»"
-
-#, python-format
-msgid "%(count)d Sudo Command matched"
-msgid_plural "%(count)d Sudo Commands matched"
-msgstr[0] "встановлено відповідність %(count)d команд sudo"
-msgstr[1] "встановлено відповідність %(count)d команд sudo"
-msgstr[2] "встановлено відповідність %(count)d команд sudo"
-
-msgid ""
-"\n"
-"Groups of Sudo Commands\n"
-"\n"
-"Manage groups of Sudo Commands.\n"
-"\n"
-"EXAMPLES:\n"
-"\n"
-" Add a new Sudo Command Group:\n"
-"   ipa sudocmdgroup-add --desc='administrators commands' admincmds\n"
-"\n"
-" Remove a Sudo Command Group:\n"
-"   ipa sudocmdgroup-del admincmds\n"
-"\n"
-" Manage Sudo Command Group membership, commands:\n"
-"   ipa sudocmdgroup-add-member --sudocmds=/usr/bin/less --sudocmds=/usr/bin/"
-"vim admincmds\n"
-"\n"
-" Manage Sudo Command Group membership, commands:\n"
-"   ipa sudocmdgroup-remove-member --sudocmds=/usr/bin/less admincmds\n"
-"\n"
-" Show a Sudo Command Group:\n"
-"   ipa sudocmdgroup-show admincmds\n"
-msgstr ""
-"\n"
-"Групи команд sudo\n"
-"\n"
-"Керування групами команд sudo.\n"
-"\n"
-"ПРИКЛАДИ:\n"
-"\n"
-" Додати нову групу команд sudo:\n"
-"   ipa sudocmdgroup-add --desc='administrators commands' admincmds\n"
-"\n"
-" Вилучити групу команд sudo:\n"
-"   ipa sudocmdgroup-del admincmds\n"
-"\n"
-" Керування участю групи команд sudo, команди:\n"
-"   ipa sudocmdgroup-add-member --sudocmds=/usr/bin/less --sudocmds=/usr/bin/"
-"vim admincmds\n"
-"\n"
-" Керування участю групи команд sudo, команди:\n"
-"   ipa sudocmdgroup-remove-member --sudocmds=/usr/bin/less admincmds\n"
-"\n"
-" Показ групи команд sudo:\n"
-"   ipa sudocmdgroup-show admincmds\n"
-
-msgid "sudo command group"
-msgstr "група команд sudo"
-
-msgid "sudo command groups"
-msgstr "групи команд sudo"
-
-#, python-format
-msgid "Added Sudo Command Group \"%(value)s\""
-msgstr "Додано групу команд sudo «%(value)s»"
-
-#, python-format
-msgid "Deleted Sudo Command Group \"%(value)s\""
-msgstr "Вилучено групу команд sudo «%(value)s»"
-
-#, python-format
-msgid "Modified Sudo Command Group \"%(value)s\""
-msgstr "Змінено групу команд sudo «%(value)s»"
-
-#, python-format
-msgid "%(count)d Sudo Command Group matched"
-msgid_plural "%(count)d Sudo Command Groups matched"
-msgstr[0] "встановлено відповідність %(count)d групи команд sudo"
-msgstr[1] "встановлено відповідність %(count)d груп команд sudo"
-msgstr[2] "встановлено відповідність %(count)d груп команд sudo"
 
 msgid ""
 "\n"
@@ -25684,6 +27251,17 @@ msgstr ""
 "\n"
 " Встановити типовий варіант дій для sudo:\n"
 "   ipa sudorule-add-option defaults --sudooption '!authenticate'\n"
+
+msgid ""
+"\n"
+" Set SELinux type and role transitions on a rule:\n"
+"   ipa sudorule-add-option sysadmin_sudo --sudooption type=unconfined_t\n"
+"   ipa sudorule-add-option sysadmin_sudo --sudooption role=unconfined_r\n"
+msgstr ""
+"\n"
+" Встановити переходи типу і ролі SELinux на правило:\n"
+"   ipa sudorule-add-option sysadmin_sudo --sudooption type=unconfined_t\n"
+"   ipa sudorule-add-option sysadmin_sudo --sudooption role=unconfined_r\n"
 
 msgid "this option has been deprecated."
 msgstr "цей параметр вважається застарілим."
@@ -26055,30 +27633,206 @@ msgstr ""
 "  2. перевірка того, чи немає у сервера перевищення рекомендованої\n"
 "     кількості узгоджень реплікації.\n"
 
-msgid "Non-Active Directory domain"
-msgstr "Домен не-Active Directory"
-
-msgid "RFC4120-compliant Kerberos realm"
-msgstr "Область Kerberos, сумісна з RFC4120"
-
 msgid ""
-"Non-transitive external trust to a domain in another Active Directory forest"
-msgstr "Неперехідна зовнішня довіра до домену у іншому лісі Active Directory"
-
-msgid "Trusting forest"
-msgstr "«Ліс» довіри"
-
-msgid "Trusted forest"
-msgstr "Довірений «ліс»"
-
-msgid "Established and verified"
-msgstr "Встановлено і перевірено"
-
-msgid "Waiting for confirmation by remote side"
-msgstr "Очікуємо на підтвердження з віддаленого боку"
-
-msgid "Unknown"
-msgstr "Невідомо"
+"\n"
+"Cross-realm trusts\n"
+"\n"
+"Manage trust relationship between IPA and Active Directory domains.\n"
+"\n"
+"In order to allow users from a remote domain to access resources in IPA "
+"domain,\n"
+"trust relationship needs to be established. Currently IPA supports only "
+"trusts\n"
+"between IPA and Active Directory domains under control of Windows Server "
+"2008\n"
+"or later, with functional level 2008 or later.\n"
+"\n"
+"Please note that DNS on both IPA and Active Directory domain sides should "
+"be\n"
+"configured properly to discover each other. Trust relationship relies on\n"
+"ability to discover special resources in the other domain via DNS records.\n"
+"\n"
+"Examples:\n"
+"\n"
+"1. Establish cross-realm trust with Active Directory using AD administrator\n"
+"   credentials:\n"
+"\n"
+"   ipa trust-add --type=ad <ad.domain> --admin <AD domain "
+"administrator>            --password\n"
+"\n"
+"2. List all existing trust relationships:\n"
+"\n"
+"   ipa trust-find\n"
+"\n"
+"3. Show details of the specific trust relationship:\n"
+"\n"
+"   ipa trust-show <ad.domain>\n"
+"\n"
+"4. Delete existing trust relationship:\n"
+"\n"
+"   ipa trust-del <ad.domain>\n"
+"\n"
+"Once trust relationship is established, remote users will need to be mapped\n"
+"to local POSIX groups in order to actually use IPA resources. The mapping\n"
+"should be done via use of external membership of non-POSIX group and then\n"
+"this group should be included into one of local POSIX groups.\n"
+"\n"
+"Example:\n"
+"\n"
+"1. Create group for the trusted domain admins' mapping and their local "
+"POSIX\n"
+"group:\n"
+"\n"
+"   ipa group-add --desc='<ad.domain> admins external map'            "
+"ad_admins_external --external\n"
+"   ipa group-add --desc='<ad.domain> admins' ad_admins\n"
+"\n"
+"2. Add security identifier of Domain Admins of the <ad.domain> to the\n"
+"   ad_admins_external group:\n"
+"\n"
+"   ipa group-add-member ad_admins_external --external 'AD\\Domain Admins'\n"
+"\n"
+"3. Allow members of ad_admins_external group to be associated with\n"
+"   ad_admins POSIX group:\n"
+"\n"
+"   ipa group-add-member ad_admins --groups ad_admins_external\n"
+"\n"
+"4. List members of external members of ad_admins_external group to see\n"
+"   their SIDs:\n"
+"\n"
+"   ipa group-show ad_admins_external\n"
+"\n"
+"\n"
+"GLOBAL TRUST CONFIGURATION\n"
+"\n"
+"When IPA AD trust subpackage is installed and ipa-adtrust-install is run, a\n"
+"local domain configuration (SID, GUID, NetBIOS name) is generated. These\n"
+"identifiers are then used when communicating with a trusted domain of the\n"
+"particular type.\n"
+"\n"
+"1. Show global trust configuration for Active Directory type of trusts:\n"
+"\n"
+"   ipa trustconfig-show --type ad\n"
+"\n"
+"2. Modify global configuration for all trusts of Active Directory type and "
+"set\n"
+"   a different fallback primary group (fallback primary group GID is used as "
+"a\n"
+"   primary user GID if user authenticating to IPA domain does not have any\n"
+"   other primary GID already set):\n"
+"\n"
+"   ipa trustconfig-mod --type ad --fallback-primary-group \"another AD group"
+"\"\n"
+"\n"
+"3. Change primary fallback group back to default hidden group (any group "
+"with\n"
+"   posixGroup object class is allowed):\n"
+"\n"
+"   ipa trustconfig-mod --type ad --fallback-primary-group \"Default SMB Group"
+"\"\n"
+msgstr ""
+"\n"
+"Довіра між областями\n"
+"\n"
+"Керування відносинами довіри між доменами IPA і Active Directory.\n"
+"\n"
+"З метою надання доступу користувачам віддаленого домену до ресурсів у "
+"домені\n"
+"IPA слід встановити відносини довіри. У поточній версії у IPA передбачено\n"
+"підтримку довіри лише між доменами IPA і Active Directory під керуванням "
+"Windows\n"
+"Server 2008 або новішої версії з функціональними можливостями рівня 2008 "
+"або\n"
+"новішої версії.\n"
+"\n"
+"Будь ласка, зауважте, що слід належним чином налаштувати DNS на обох "
+"доменах,\n"
+"IPA і Active Directory, щоб домени могли виявити один одного. "
+"Працездатність\n"
+"відносин довіри залежить від можливості виявлення спеціальних ресурсів у\n"
+"іншому домені за допомогою записів DNS.\n"
+"\n"
+"Приклад:\n"
+"\n"
+"1. Встановити довіру між областями з Active Directory за допомогою "
+"реєстраційних\n"
+"   даних адміністратора AD:\n"
+"\n"
+"   ipa trust-add --type=ad <домен.ad> --admin <адміністратор домену AD> --"
+"password\n"
+"\n"
+"2. Показати список всіх наявних відносин довіри:\n"
+"\n"
+"   ipa trust-find\n"
+"\n"
+"3. Показати подробиці щодо певних відносин довіри:\n"
+"\n"
+"   ipa trust-show <домен.ad>\n"
+"\n"
+"4. Вилучити наявні відносини довіри:\n"
+"\n"
+"   ipa trust-del <домен.ad>\n"
+"\n"
+"Щойно відносини довіри буде встановлено, віддалених користувачів слід "
+"прив’язати\n"
+"до локальних груп POSIX, щоб скористатися ресурсами IPA. Прив’язку слід\n"
+"виконати за допомогою використання зовнішньої участі групи не-POSIX, а "
+"потім\n"
+"цю групу має бути включено до однієї з локальних груп POSIX.\n"
+"\n"
+"Приклади:\n"
+"\n"
+"1. Створити групу для прив’язки адміністраторів та їхньої локальної групи "
+"POSIX\n"
+"   довіреного домену:\n"
+"\n"
+"   ipa group-add --desc='<домен.ad> admins external map' ad_admins_external "
+"--external\n"
+"   ipa group-add --desc='<домен.ad> admins' ad_admins\n"
+"\n"
+"2. Додати ідентифікатор безпеки Domain Admins домену <домен.ad> до групи "
+"ad_admins_external:\n"
+"\n"
+"   ipa group-add-member ad_admins_external --external 'AD\\Domain Admins'\n"
+"\n"
+"3. Дозволити прив’язування учасників групи ad_admins_external до групи POSIX "
+"ad_admins:\n"
+"\n"
+"   ipa group-add-member ad_admins --groups ad_admins_external\n"
+"\n"
+"4. Показати список зовнішніх учасників групи ad_admins_external для "
+"перегляду їхніх SID:\n"
+"\n"
+"   ipa group-show ad_admins_external\n"
+"\n"
+"\n"
+"НАЛАШТУВАННЯ ДОВІРИ ЗАГАЛЬНОГО РІВНЯ\n"
+"\n"
+"Якщо встановлено підпакунок довіри AD IPA та запущено ipa-adtrust-install,\n"
+"створюються налаштування локального домену (SID, GUID, назва NetBIOS). "
+"Після\n"
+"цього створені ідентифікатори використовуються для обміну даними з\n"
+"довіреним доменом певного типу.\n"
+"\n"
+"1. Показати налаштування довіри загального рівня для типів довіри Active "
+"Directory:\n"
+"\n"
+"   ipa trustconfig-show --type ad\n"
+"\n"
+"2. Змінити загальні налаштування для всіх довір типу Active Directory і\n"
+"   встановити іншу резервну основну групу (GID резервної основної групи\n"
+"   використовується як GID основного користувача, якщо користувача\n"
+"   розпізнано у домені IPA, але він не має жодного вже встановленого\n"
+"   основного GID):\n"
+"\n"
+"   ipa trustconfig-mod --type ad --fallback-primary-group \"another AD group"
+"\"\n"
+"\n"
+"3. Повернути для резервної основної групи значення типової прихованої групи\n"
+"   (будь-якої групи, у якій дозволено клас об’єктів posixGroup):\n"
+"\n"
+"   ipa trustconfig-mod --type ad --fallback-primary-group \"Default SMB Group"
+"\"\n"
 
 #, python-format
 msgid ""
@@ -26122,9 +27876,52 @@ msgstr "Довіра"
 msgid "UPN suffixes"
 msgstr "Суфікси UPN"
 
-#, python-format
-msgid "invalid SID: %(value)s"
-msgstr "некоректний SID: %(value)s"
+#, python-brace-format
+msgid "invalid SID: {SID}"
+msgstr "некоректний SID: {SID}"
+
+msgid ""
+"\n"
+"Add new trust to use.\n"
+"\n"
+"This command establishes trust relationship to another domain\n"
+"which becomes 'trusted'. As result, users of the trusted domain\n"
+"may access resources of this domain.\n"
+"\n"
+"Only trusts to Active Directory domains are supported right now.\n"
+"\n"
+"The command can be safely run multiple times against the same domain,\n"
+"this will cause change to trust relationship credentials on both\n"
+"sides.\n"
+"\n"
+"Note that if the command was previously run with a specific range type,\n"
+"or with automatic detection of the range type, and you want to configure a\n"
+"different range type, you may need to delete first the ID range using\n"
+"ipa idrange-del before retrying the command with the desired range type.\n"
+"    "
+msgstr ""
+"\n"
+"Додати новий запис довіри для використання.\n"
+"\n"
+"За допомогою цієї команди можна встановити відносини довіри з\n"
+"іншим доменом, який після цього вважається «довіреним». У результаті\n"
+"користувачі довіреного домену зможуть отримувати доступ до ресурсів\n"
+"цього домену.\n"
+"\n"
+"У поточній версії передбачено підтримку лише відносин довіри з доменами\n"
+"Active Directory.\n"
+"\n"
+"Команду можна безпечно запускати декілька разів для одного і того самого\n"
+"домену, такий запуск призводить до зміни у реєстраційних записах відносин\n"
+"довіри з обох боків.\n"
+"\n"
+"Зауважте, що якщо команда раніше виконувалася із вказаним типом діапазону\n"
+"або автоматичним визначенням типу діапазону, і ви хочете налаштувати\n"
+"інший тип діапазону, ймовірно, вам доведеться вилучити першй діапазон "
+"ідентифікаторів\n"
+"за допомогою ipa idrange-del, перш ніж ви зможете повторити команду із "
+"бажаним типом.\n"
+"   "
 
 #, python-brace-format
 msgid "Type of trusted domain ID range, one of {vals}"
@@ -26160,9 +27957,6 @@ msgstr "тип довіри"
 
 msgid "only \"ad\" is supported"
 msgstr "передбачено підтримку лише «ad»"
-
-msgid "domain"
-msgstr "домен"
 
 msgid ""
 "Cannot establish a trust to AD deployed in the same domain as IPA. Such "
@@ -26243,9 +28037,9 @@ msgstr ""
 "іншого типу. Будь ласка, вилучіть попередній діапазон вручну або не "
 "визначайте тип у примусовому порядку за допомогою параметра --range-type."
 
-#, python-format
-msgid "Unable to resolve domain controller for '%s' domain. "
-msgstr "Не вдалося визначити контролер домену для домену «%s». "
+#, python-brace-format
+msgid "Unable to resolve domain controller for {domain} domain. "
+msgstr "Не вдалося визначити контролер домену для домену {domain}. "
 
 msgid ""
 "Forward policy is defined for it in IPA DNS, perhaps forwarder points to "
@@ -26254,25 +28048,25 @@ msgstr ""
 "Для нього у DNS IPA визначено правила переспрямовування. Можливо, "
 "переспрямовувач вказує не помилковий вузол?"
 
-#, python-format
+#, python-brace-format
 msgid ""
 "IPA manages DNS, please verify your DNS configuration and make sure that "
-"service records of the '%(domain)s' domain can be resolved. Examples how to "
+"service records of the '{domain}' domain can be resolved. Examples how to "
 "configure DNS with CLI commands or the Web UI can be found in the "
 "documentation. "
 msgstr ""
 "IPA керує DNS. Будь ласка, переконайтеся, що поточні налаштування DNS "
-"уможливлюють визначення адрес службових записів домену «%(domain)s». "
-"Приклади налаштовування DNS за допомогою командного інтерфейсу або "
-"вебінтерфейсу наведено у документації. "
+"уможливлюють визначення адрес службових записів домену «{domain}». Приклади "
+"налаштовування DNS за допомогою командного інтерфейсу або вебінтерфейсу "
+"наведено у документації. "
 
-#, python-format
+#, python-brace-format
 msgid ""
 "Since IPA does not manage DNS records, ensure DNS is configured to resolve "
-"'%(domain)s' domain from IPA hosts and back."
+"'{domain}' domain from IPA hosts and back."
 msgstr ""
 "Оскільки IPA не керує записами DNS, слід налаштувати DNS так, щоб система "
-"визначала адресу домену «%(domain)s» за даними щодо вузлів IPA, і навпаки."
+"визначала адресу домену «{domain}» за даними щодо вузлів IPA, і навпаки."
 
 msgid "Unable to verify write permissions to the AD"
 msgstr "Не вдалося перевірити права доступу на запис до AD"
@@ -26380,12 +28174,6 @@ msgid ""
 msgstr ""
 "Список довірених доменів успішно оновлено. Для отримання поточного списку "
 "цих доменів скористайтеся командою trustdomain-find."
-
-msgid "List of trust domains successfully refreshed"
-msgstr "Список довірених доменів успішно оновлено"
-
-msgid "No new trust domains were found"
-msgstr "Нових довірених доменів не знайдено"
 
 #, python-format
 msgid "Enabled trust domain \"%(value)s\""
@@ -27085,6 +28873,318 @@ msgstr "виконувати цю дію заборонено: %s"
 msgid "No such virtual command"
 msgstr "Такої віртуальної команди не передбачено"
 
+msgid ""
+"\n"
+"Return information about currently authenticated identity\n"
+"\n"
+"Who am I command returns information on how to get\n"
+"more details about the identity authenticated for this\n"
+"request. The information includes:\n"
+"\n"
+" * type of object\n"
+" * command to retrieve details of the object\n"
+" * arguments and options to pass to the command\n"
+"\n"
+"The information is returned as a dictionary. Examples below use\n"
+"'key: value' output for illustrative purposes.\n"
+"\n"
+"EXAMPLES:\n"
+"\n"
+" Look up as IPA user:\n"
+"   kinit admin\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: user\n"
+"   command: user_show/1\n"
+"   arguments: admin\n"
+"   ------------------------------------------\n"
+"\n"
+" Look up as a user from a trusted domain:\n"
+"   kinit user@AD.DOMAIN\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: idoverrideuser\n"
+"   command: idoverrideuser_show/1\n"
+"   arguments: ('default trust view', 'user@ad.domain')\n"
+"   ------------------------------------------\n"
+"\n"
+" Look up as a host:\n"
+"   kinit -k\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: host\n"
+"   command: host_show/1\n"
+"   arguments: ipa.example.com\n"
+"   ------------------------------------------\n"
+"\n"
+" Look up as a Kerberos service:\n"
+"   kinit -k -t /path/to/keytab HTTP/ipa.example.com\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: service\n"
+"   command: service_show/1\n"
+"   arguments: HTTP/ipa.example.com\n"
+"   ------------------------------------------\n"
+msgstr ""
+"\n"
+"Повернути дані щодо поточного розпізнаного профілю\n"
+"\n"
+"Команда визначення профілю повертає дані щодо того, як\n"
+"отримати більше даних про профіль, розпізнаний для\n"
+"цього запиту. Дані:\n"
+"\n"
+" * тип об’єкта\n"
+" * команда для отримання подробиць щодо об’єкта\n"
+" * аргументи та параметри, які слід передати команді\n"
+"\n"
+"Дані повертаються у форматі словника. Нижче, як приклад,\n"
+"наведено виведення у форматі «ключ: значення».\n"
+"\n"
+"Приклади:\n"
+"\n"
+" Пошук від імені користувача IPA:\n"
+"   kinit admin\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: user\n"
+"   command: user_show/1\n"
+"   arguments: admin\n"
+"   ------------------------------------------\n"
+"\n"
+" Пошук від імені користувача довіреного домену:\n"
+"   kinit user@AD.DOMAIN\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: idoverrideuser\n"
+"   command: idoverrideuser_show/1\n"
+"   arguments: ('default trust view', 'user@ad.domain')\n"
+"   ------------------------------------------\n"
+"\n"
+" Пошук від імені вузла:\n"
+"   kinit -k\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: host\n"
+"   command: host_show/1\n"
+"   arguments: ipa.example.com\n"
+"   ------------------------------------------\n"
+"\n"
+" Пошук від імені служби Kerberos:\n"
+"   kinit -k -t /path/to/keytab HTTP/ipa.example.com\n"
+"   ipa console\n"
+"   >> api.Command.whoami()\n"
+"   ------------------------------------------\n"
+"   object: service\n"
+"   command: service_show/1\n"
+"   arguments: HTTP/ipa.example.com\n"
+"   ------------------------------------------\n"
+
+msgid "Describe currently authenticated identity."
+msgstr "Описати поточний розпізнаний профіль."
+
+msgid "Object class name"
+msgstr "Назва класу об’єктів"
+
+msgid "Function to get details"
+msgstr "Функція, подробиці щодо якої слід отримати"
+
+msgid "Arguments to details function"
+msgstr "Аргументи до функції details"
+
+msgid "Cannot query Directory Manager with API"
+msgstr ""
+"Не вдалося опитати засіб керування каталогом за допомогою програмного "
+"інтерфейсу"
+
+msgid ""
+"\n"
+"Classes to manage trust joins using DCE-RPC calls\n"
+"\n"
+"The code in this module relies heavily on samba4-python package\n"
+"and Samba4 python bindings.\n"
+msgstr ""
+"\n"
+"Класи для керування довіреними приєднаннями за допомогою викликів DCE-RPC\n"
+"\n"
+"Код цього модуля жорстко залежить від вмісту пакунка samba4-python\n"
+"та обгорток для мови Python у Samba4.\n"
+
+msgid "CIFS server denied your credentials"
+msgstr "Ваші реєстраційні дані відхилено сервером CIFS"
+
+msgid "communication with CIFS server was unsuccessful"
+msgstr "спроба обмінятися даними з сервером CIFS зазнала невдачі"
+
+msgid "AD domain controller"
+msgstr "Контролер домену AD"
+
+msgid "unsupported functional level"
+msgstr "непідтримуваний функціональний рівень"
+
+msgid ""
+"AD domain controller complains about communication sequence. It may mean "
+"unsynchronized time on both sides, for example"
+msgstr ""
+"Домен AD скаржиться на послідовність команд встановлення зв’язку. Це, "
+"наприклад, може означати розсинхронізацію часу між комп’ютерами, які "
+"обмінюються даними."
+
+msgid "Cannot find specified domain or server name"
+msgstr "Не вдалося знайти домену або сервера з вказаною назвою"
+
+msgid ""
+"AD DC was unable to reach any IPA domain controller. Most likely it is a DNS "
+"or firewall issue"
+msgstr ""
+"AD DC не вдалося отримати доступ до жодного з контролерів домену IPA. "
+"Найімовірніше, цю помилку пов’язано із проблемами з DNS або брандмауером"
+
+msgid "At least the domain or IP address should be specified"
+msgstr "Слід вказати принаймні домен або IP-адресу"
+
+#, python-format
+msgid ""
+"CIFS server communication error: code \"%(num)s\", message \"%(message)s"
+"\" (both may be \"None\")"
+msgstr ""
+"Помилка обміну даними з сервером CIFS: код «%(num)s», повідомлення "
+"«%(message)s» (обидва значення можуть бути «None»)"
+
+msgid "no trusted domain is configured"
+msgstr "Не налаштовано жодного довіреного домену"
+
+msgid "domain is not configured"
+msgstr "домен не налаштовано"
+
+msgid "SID is not valid"
+msgstr "SID не є чинним"
+
+msgid "SID does not match exactlywith any trusted domain's SID"
+msgstr "SID не збігається точно з будь-яким з SID довірених доменів"
+
+msgid "SID does not match any trusted domain"
+msgstr "SID не відповідає жодному з довірених доменів"
+
+msgid "Trust setup"
+msgstr "Налаштування довіри"
+
+msgid "Our domain is not configured"
+msgstr "Наш домен не налаштовано"
+
+msgid "No trusted domain is not configured"
+msgstr "Не налаштовано жодного довіреного домену"
+
+msgid "trusted domain object"
+msgstr "об’єкт довіреного домену"
+
+msgid "domain is not trusted"
+msgstr "домен не є довіреним"
+
+msgid "no trusted domain matched the specified flat name"
+msgstr "вказаній простій назві не відповідає жоден довірений домен"
+
+msgid "trusted domain object not found"
+msgstr "об’єкт довіреного домену не знайдено"
+
+msgid "SSSD was unable to resolve the object to a valid SID"
+msgstr "SSSD не вдалося визначити за об’єктом коректний SID"
+
+msgid "Ambiguous search, user domain was not specified"
+msgstr "Неоднозначні параметри пошуку: не вказано домену користувача"
+
+msgid "Trusted domain did not return a unique object"
+msgstr "Довіреним доменом не повернуто унікального об’єкта"
+
+msgid "Trusted domain did not return a valid SID for the object"
+msgstr "Довіреним доменом не повернуто коректного SID об’єкта"
+
+msgid "trusted domain user not found"
+msgstr "не знайдено користувача довіреного домену"
+
+msgid "Cannot retrieve trusted domain GC list"
+msgstr "Не вдалося отримати список GC довіреного домену"
+
+msgid "CIFS credentials object"
+msgstr "Об’єкт реєстраційних даних CIFS"
+
+#, python-format
+msgid "CIFS server %(host)s denied your credentials"
+msgstr "Ваші реєстраційні дані відхилено сервером CIFS %(host)s"
+
+#, python-format
+msgid "Cannot establish LSA connection to %(host)s. Is CIFS server running?"
+msgstr ""
+"Не вдалося встановити LSA-з’єднання з %(host)s. Чи запущено сервер CIFS?"
+
+#, python-format
+msgid ""
+"the IPA server and the remote domain cannot share the same NetBIOS name: %s"
+msgstr ""
+"сервер IPA і віддалений домен не можуть використовувати спільно ту саму "
+"назву NetBIOS: %s"
+
+#, python-brace-format
+msgid ""
+"There is already a trust to {ipa_domain} with unsupported type {trust_type}. "
+"Please remove it manually on AD DC side."
+msgstr ""
+"Відносини довіри із {ipa_domain} вже встановлено із непідтримуваним типом "
+"{trust_type}. Будь ласка, вилучте запис цих відносин вручну на боці AD DC."
+
+#, python-format
+msgid ""
+"IPA master denied trust validation requests from AD DC %(count)d times. Most "
+"likely AD DC contacted a replica that has no trust information replicated "
+"yet. Additionally, please check that AD DNS is able to resolve %(records)s "
+"SRV records to the correct IPA server."
+msgstr ""
+"Основний вузол IPA відмовив у запитах щодо затвердження довіри від AD DC "
+"%(count)d разів. Найімовірніше, AD DC встановив зв’язок із реплікою, на якій "
+"ще не виконано реплікацію даних щодо довіри. Крім того, будь ласка, "
+"перевірте, чи може DNS AD визначати за записами SRV %(records)s коректний "
+"сервер IPA."
+
+msgid "Credentials"
+msgstr "Реєстраційні дані"
+
+msgid "Missing credentials for cross-forest communication"
+msgstr "Пропущено реєстраційні дані для обміну даними між лісами"
+
+msgid "Trusting forest"
+msgstr "«Ліс» довіри"
+
+msgid "Trusted forest"
+msgstr "Довірений «ліс»"
+
+msgid "Established and verified"
+msgstr "Встановлено і перевірено"
+
+msgid "Waiting for confirmation by remote side"
+msgstr "Очікуємо на підтвердження з віддаленого боку"
+
+msgid "Unknown"
+msgstr "Невідомо"
+
+msgid "Non-Active Directory domain"
+msgstr "Домен не-Active Directory"
+
+msgid "RFC4120-compliant Kerberos realm"
+msgstr "Область Kerberos, сумісна з RFC4120"
+
+msgid ""
+"Non-transitive external trust to a domain in another Active Directory forest"
+msgstr "Неперехідна зовнішня довіра до домену у іншому лісі Active Directory"
+
+msgid "Non-transitive external trust to an RFC4120-compliant Kerberos realm"
+msgstr "Неперехідна зовнішня довіра до сумісної із RFC4120 області Kerberos"
+
 msgid "Request must be a dict"
 msgstr "Запит має належати до типу словника (dict)"
 
@@ -27114,10 +29214,8 @@ msgstr "для усіх основних серверів має бути уві
 msgid "must have %(role)s role enabled"
 msgstr "має бути увімкнено роль %(role)s"
 
-msgid "could not allocate unique new session_id"
-msgstr ""
-"не вдалося встановити унікальне нове значення ідентифікатора сеансу "
-"(session_id)"
+msgid "must be enabled only on a single master"
+msgstr "має бути увімкнено лише на одному основному"
 
 #, python-format
 msgid ""
@@ -27146,582 +29244,23 @@ msgid "Topology does not allow server %(server)s to replicate with servers:"
 msgstr ""
 "Топологія не дозволяє серверу %(server)s виконувати реплікацію із серверами:"
 
-#, c-format
-msgid "cannot open configuration file %s\n"
-msgstr "не вдалося відкрити файл налаштувань %s\n"
-
-#, c-format
-msgid "cannot stat() configuration file %s\n"
-msgstr "не вдалося обробити функцією stat() файл налаштування %s\n"
-
-#, c-format
-msgid "out of memory\n"
-msgstr "не вистачає пам'яті\n"
-
-#, c-format
-msgid "read error\n"
-msgstr "помилка читання\n"
-
-#, c-format
-msgid "Kerberos context initialization failed: %1$s (%2$d)\n"
-msgstr "Невдала спроба ініціалізації контексту Kerberos: %1$s (%2$d)\n"
-
-#, c-format
-msgid "Unable to parse principal: %1$s (%2$d)\n"
-msgstr "Не вдалося обробити реєстраційний запис: %1$s (%2$d)\n"
-
-#, c-format
-msgid "No keys accepted by KDC\n"
-msgstr "Жоден з ключів не прийнято KDC\n"
-
-#, c-format
-msgid "Out of memory \n"
-msgstr "Не вистачає пам'яті \n"
-
-#, c-format
-msgid "Unable to set LDAP_OPT_X_TLS_CERTIFICATE\n"
-msgstr "Не вдалося встановити LDAP_OPT_X_TLS_CERTIFICATE\n"
-
-#, c-format
-msgid "Unable to init for ldaps(636) connection\n"
-msgstr "Не вдалося ініціалізуватися для з’єднання ldaps(636)\n"
-
-#, c-format
-msgid "Unable to set LDAP_OPT_X_TLS\n"
-msgstr "Не вдалося встановити LDAP_OPT_X_TLS\n"
-
-#, c-format
-msgid "Unable to init for ldap(389) connection\n"
-msgstr "Не вдалося ініціалізуватися для з’єднання ldap(389)\n"
-
-#, c-format
-msgid "Unable to initialize ldap library!\n"
-msgstr "Не вдалося ініціалізувати бібліотеку ldap!\n"
-
-#, c-format
-msgid "Unable to set LDAP_OPT_X_SASL_NOCANON\n"
-msgstr "Не вдалося встановити LDAP_OPT_X_SASL_NOCANON\n"
-
-#, c-format
-msgid "Unable to set LDAP_OPT_PROTOCOL_VERSION\n"
-msgstr "Не вдалося встановити LDAP_OPT_PROTOCOL_VERSION\n"
-
-#, c-format
-msgid "Simple bind failed\n"
-msgstr "Невдала спроба простого прив’язування\n"
-
-#, c-format
-msgid "Operation failed: %s\n"
-msgstr "Невдала спроба виконання дії: %s\n"
-
-#, c-format
-msgid "Failed to get result: %s\n"
-msgstr "Не вдалося отримати результат: %s\n"
-
-#, c-format
-msgid "Timeout exceeded."
-msgstr "Перевищено обмеження за часом."
-
-#, c-format
-msgid "Failed to parse extended result: %s\n"
-msgstr "Не вдалося обробити розширений результат: %s\n"
-
-#, c-format
-msgid "Failed to parse result: %s\n"
-msgstr "Не вдалося обробити результат: %s\n"
-
-#, c-format
-msgid "Missing reply control list!\n"
-msgstr "Немає списку керування відповідями!\n"
-
-#, c-format
-msgid "Missing reply control!\n"
-msgstr "Немає керування відповіддю!\n"
-
-#, c-format
-msgid "Out of Memory!\n"
-msgstr "Не вистачає пам'яті!\n"
-
-#, c-format
-msgid "Failed to create control!\n"
-msgstr "Не вдалося створити керування!\n"
-
-#, c-format
-msgid "Failed to bind to server!\n"
-msgstr "Не вдалося прив’язати до сервера!\n"
-
-#, c-format
-msgid "Failed to get keytab!\n"
-msgstr "Не вдалося отримати таблицю ключів!\n"
-
-#, c-format
-msgid "ber_init() failed, Invalid control ?!\n"
-msgstr "Спроба виконання ber_init() зазнала невдачі. Некоректне керування?!\n"
-
-#, c-format
-msgid "ber_scanf() failed, unable to find kvno ?!\n"
-msgstr "помилка ber_scanf(), не вдалося знайти kvno?!\n"
-
-#, c-format
-msgid "Failed to retrieve encryption type type #%d\n"
-msgstr "Не вдалося отримати дані щодо типу шифрування №%d\n"
-
-#, c-format
-msgid "Failed to retrieve encryption type %1$s (#%2$d)\n"
-msgstr "Не вдалося отримати дані щодо типу шифрування %1$s (№%2$d)\n"
-
-#, c-format
-msgid "Failed to retrieve any keys"
-msgstr "Не вдалося отримати жодного ключа"
-
-msgid "Failed to decode control reply!\n"
-msgstr "Не вдалося декодувати контрольну відповідь!\n"
-
-msgid "New Principal Password"
-msgstr "Новий пароль реєстраційного запису"
-
-msgid "Verify Principal Password"
-msgstr "Перевірка пароля реєстраційного запису"
-
-#, c-format
-msgid "Failed to open config file %s\n"
-msgstr "Не вдалося відкрити файл налаштувань %s\n"
-
-#, c-format
-msgid "Failed to parse config file %s\n"
-msgstr "Не вдалося обробити файл налаштувань %s\n"
-
-msgid "Print as little as possible"
-msgstr "Виводити мінімум даних"
-
-msgid "Output only on errors"
-msgstr "Виводити лише повідомлення про помилки"
-
-msgid "Contact this specific KDC Server"
-msgstr "Встановити зв’язок з вказаним сервером KDC"
-
-msgid "Server Name"
-msgstr "Назва сервера"
-
-msgid "The principal to get a keytab for (ex: ftp/ftp.example.com@EXAMPLE.COM)"
-msgstr ""
-"Реєстраційний запис, для якого слід отримати таблицю ключів (приклад: ftp/"
-"ftp.example.com@EXAMPLE.COM)"
-
-msgid "Kerberos Service Principal Name"
-msgstr "Назва реєстраційного запису служби Kerberos"
-
-msgid "File were to store the keytab information"
-msgstr "Файл, у якому зберігатимуться дані таблиці ключів"
-
-msgid "Keytab File Name"
-msgstr "Назва файла таблиці ключів"
-
-msgid "Encryption types to request"
-msgstr "Типи шифрування, запит щодо яких слід надсилати"
-
-msgid "Comma separated encryption types list"
-msgstr "Список типів шифрування, відокремлених комами"
-
-msgid "Show the list of permitted encryption types and exit"
-msgstr "Показати список дозволених типів шифрування і завершити роботу"
-
-msgid "Permitted Encryption Types"
-msgstr "Дозволені типи шифрування"
-
-msgid "Asks for a non-random password to use for the principal"
-msgstr ""
-"Запитати невипадковий пароль, який слід використати для реєстраційного запису"
-
-msgid "LDAP DN"
-msgstr "DN LDAP"
-
-msgid "DN to bind as if not using kerberos"
-msgstr ""
-"DN, до якого слід виконати прив’язку, якщо не використовується kerberos"
-
-msgid "LDAP password"
-msgstr "Пароль LDAP"
-
-msgid "password to use if not using kerberos"
-msgstr "пароль, який слід використати, якщо не використовується kerberos"
-
-msgid "Retrieve current keys without changing them"
-msgstr "Отримувати поточні ключі без внесення до них змін"
-
-#, c-format
-msgid "Kerberos context initialization failed\n"
-msgstr "Невдала спроба ініціалізації контексту Kerberos\n"
-
-#, c-format
-msgid "No system preferred enctypes ?!\n"
-msgstr "Немає основних системних типів шифрування?!\n"
-
-#, c-format
-msgid "Supported encryption types:\n"
-msgstr "Підтримувані типи шифрування:\n"
-
-#, c-format
-msgid "Warning: failed to convert type (#%d)\n"
-msgstr "Попередження: не вдалося виконати перетворення типу (№%d)\n"
-
-#, c-format
-msgid "Bind password required when using a bind DN.\n"
-msgstr "У разі використання прив’язки DN слід вказати пароль прив’язки.\n"
-
-#, c-format
-msgid "Server name not provided and unavailable\n"
-msgstr "Не надано назви сервера, сервер недоступний\n"
-
-#, c-format
-msgid "Incompatible options provided (-r and -P)\n"
-msgstr "Вказано несумісні параметри (-r і -P)\n"
-
-#, c-format
-msgid ""
-"Warning: salt types are not honored with randomized passwords (see opt. -P)\n"
-msgstr ""
-"Попередження: для випадкових паролів типи солі (salt) не мають значення "
-"(див. параметр -P)\n"
-
-#, c-format
-msgid "Invalid Service Principal Name\n"
-msgstr "Некоректна назва реєстраційного запису служби\n"
-
-#, c-format
-msgid "Kerberos Credential Cache not found. Do you have a Kerberos Ticket?\n"
-msgstr ""
-"Не знайдено кешу реєстраційних даних Kerberos. Чи є у вас квиток Kerberos?\n"
-
-#, c-format
-msgid ""
-"Kerberos User Principal not found. Do you have a valid Credential Cache?\n"
-msgstr ""
-"Не знайдено реєстраційного запису користувача Kerberos. Ви маєте ви "
-"коректний кеш реєстраційних даних?\n"
-
-#, c-format
-msgid "Failed to open Keytab\n"
-msgstr "Не вдалося відкрити таблицю ключів\n"
-
-#, c-format
-msgid "Retrying with pre-4.0 keytab retrieval method...\n"
-msgstr ""
-"Повторюємо спробу з використанням способу отримання сховища ключів, який "
-"використовувався до версії 4.0…\n"
-
-#, c-format
-msgid "Failed to create key material\n"
-msgstr "Не вдалося створити вихідні дані для ключа\n"
-
-#, c-format
-msgid "Failed to get keytab\n"
-msgstr "Не вдалося отримати таблицю ключів\n"
-
-#, c-format
-msgid "Failed to add key to the keytab\n"
-msgstr "Не вдалося додати ключ до таблиці ключів\n"
-
-#, c-format
-msgid "Failed to close the keytab\n"
-msgstr "Не вдалося закрити таблицю ключів\n"
-
-#, c-format
-msgid "Keytab successfully retrieved and stored in: %s\n"
-msgstr "Таблицю ключів успішно отримати і збережено до: %s\n"
-
-#, c-format
-msgid "No permission to join this host to the IPA domain.\n"
-msgstr "Немає дозволу на долучення цього вузла до домену IPA.\n"
-
-#, c-format
-msgid "No write permissions on keytab file '%s'\n"
-msgstr "Немає дозволу на запис до файла таблиці ключів «%s»\n"
-
-#, c-format
-msgid "access() on %1$s failed: errno = %2$d\n"
-msgstr "Невдала спроба виконання access() для %1$s: номер помилки = %2$d\n"
-
-#, c-format
-msgid "Out of memory!"
-msgstr "Не вистачає пам'яті!"
-
-#, c-format
-msgid "Unable to initialize connection to ldap server: %s"
-msgstr "Не вдалося ініціалізувати з’єднання з сервером LDAP: %s"
-
-#, c-format
-msgid "Unable to enable SSL in LDAP\n"
-msgstr "Не вдалося увімкнути SSL у LDAP\n"
-
-#, c-format
-msgid "Unable to set LDAP version\n"
-msgstr "Не вдалося встановити версію LDAP\n"
-
-#, c-format
-msgid "Bind failed: %s\n"
-msgstr "Невдала спроба прив’язки: %s\n"
-
-#, c-format
-msgid "Search for %1$s on rootdse failed with error %2$d\n"
-msgstr ""
-"Спроба пошуку %1$s у rootdse завершилася невдало з повідомленням про помилку "
-"%2$d\n"
-
-#, c-format
-msgid "No values for %s"
-msgstr "Немає значень %s"
-
-#, c-format
-msgid "Search for IPA namingContext failed with error %d\n"
-msgstr "Спроба пошуку namingContext IPA завершилася помилкою %d\n"
-
-#, c-format
-msgid "IPA namingContext not found\n"
-msgstr "namingContext IPA не знайдено\n"
-
-#, c-format
-msgid "Out of memory!\n"
-msgstr "Не вистачає пам'яті!\n"
-
-#, c-format
-msgid "Search for ipaCertificateSubjectBase failed with error %d"
-msgstr ""
-"Спроба пошуку ipaCertificateSubjectBase завершилася невдало з повідомлення "
-"про помилку %d"
-
-#, c-format
-msgid "Unable to determine root DN of %s\n"
-msgstr "Не вдалося визначити кореневий DN %s\n"
-
-#, c-format
-msgid "Incorrect password.\n"
-msgstr "Некоректний пароль.\n"
-
-#, c-format
-msgid "Unable to determine certificate subject of %s\n"
-msgstr "Не вдалося визначити призначення сертифіката %s\n"
-
-#, c-format
-msgid "Enrollment failed. %s\n"
-msgstr "Помилка реєстрування. %s\n"
-
-#, c-format
-msgid "principal not found in XML-RPC response\n"
-msgstr "реєстраційного запису не знайдено у XML-RPC відповіді\n"
-
-#, c-format
-msgid "Host is already joined.\n"
-msgstr "Вузол вже приєднано.\n"
-
-#, c-format
-msgid "Unable to determine IPA server from %s\n"
-msgstr "Не вдалося визначити сервер IPA з %s\n"
-
-#, c-format
-msgid "The hostname must be fully-qualified: %s\n"
-msgstr "Назву вузла слід вказувати повністю: %s\n"
-
-#, c-format
-msgid "Unable to join host: Kerberos context initialization failed\n"
-msgstr ""
-"Не вдалося долучити вузол: невдала спроба ініціалізації контексту Kerberos\n"
-
-#, c-format
-msgid "Error resolving keytab: %s.\n"
-msgstr "Помилка при визначенні адрес таблиці ключів: %s.\n"
-
-#, c-format
-msgid "Error getting default Kerberos realm: %s.\n"
-msgstr "Помилка під час отримання типової області дії Kerberos: %s.\n"
-
-#, c-format
-msgid "Error parsing \"%1$s\": %2$s.\n"
-msgstr "Помилка під час обробки «%1$s»: %2$s.\n"
-
-#, c-format
-msgid "Error obtaining initial credentials: %s.\n"
-msgstr "Помилка під час отримання початкових реєстраційних даних: %s.\n"
-
-#, c-format
-msgid "Unable to generate Kerberos Credential Cache\n"
-msgstr "Не вдалося створити кеш реєстраційних даних Kerberos\n"
-
-#, c-format
-msgid "Error storing creds in credential cache: %s.\n"
-msgstr "Помилка під час спроби збереження реєстраційних даних у кеші: %s.\n"
-
-#, c-format
-msgid "Unenrollment successful.\n"
-msgstr "Успішне скасування реєстрації.\n"
-
-#, c-format
-msgid "Unenrollment failed.\n"
-msgstr "Спроба скасування реєстрації зазнала невдачі.\n"
-
-#, c-format
-msgid "result not found in XML-RPC response\n"
-msgstr "у відповіді XML-RPC не знайдено результату\n"
-
-#, c-format
-msgid "The hostname must not be: %s\n"
-msgstr "Назва вузла не повинна бути такою: %s\n"
-
-#, c-format
-msgid "Unable to join host: Kerberos Credential Cache not found\n"
-msgstr ""
-"Не вдалося долучити вузол: не знайдено кешу реєстраційних даних Kerberos\n"
-
-#, c-format
-msgid ""
-"Unable to join host: Kerberos User Principal not found and host password not "
-"provided.\n"
-msgstr ""
-"Не вдалося долучити вузол: не знайдено реєстраційного запису користувача "
-"Kerberos і не вказано пароля вузла.\n"
-
-#, c-format
-msgid "fork() failed\n"
-msgstr "невдала спроба виконання fork()\n"
-
-#, c-format
-msgid "ipa-getkeytab not found\n"
-msgstr "Не знайдено ipa-getkeytab\n"
-
-#, c-format
-msgid "ipa-getkeytab has bad permissions?\n"
-msgstr "Помилкові права доступу до ipa-getkeytab?\n"
-
-#, c-format
-msgid "executing ipa-getkeytab failed, errno %d\n"
-msgstr "спроба виконання ipa-getkeytab зазнала невдачі, номер помилки %d\n"
-
-#, c-format
-msgid "child exited with %d\n"
-msgstr "дочірній процес завершив роботу з повідомленням %d\n"
-
-#, c-format
-msgid "Certificate subject base is: %s\n"
-msgstr "Базовий об’єкт сертифікації: %s\n"
-
-msgid "Print the raw XML-RPC output in GSSAPI mode"
-msgstr "Вивести дані XML-RPC без обробки у режимі GSSAPI"
-
-msgid "Quiet mode. Only errors are displayed."
-msgstr "«Мовчазний» режим. Буде показано лише повідомлення про помилки."
-
-msgid "Unenroll this host from IPA server"
-msgstr "Скасувати реєстрацію цього вузла на сервері IPA"
-
-msgid "Hostname of this server"
-msgstr "Назва вузла цього сервера"
-
-msgid "hostname"
-msgstr "назва вузла"
-
-msgid "IPA Server to use"
-msgstr "Сервер IPA, який слід використовувати"
-
-msgid "Specifies where to store keytab information."
-msgstr "Визначає, де слід зберігати дані таблиці ключів."
-
-msgid "filename"
-msgstr "назва файла"
-
-msgid "Force the host join. Rejoin even if already joined."
-msgstr ""
-"Долучити вузол у примусовому режимі. Повторне долучення виконуватиметься, "
-"навіть якщо вузол вже долучено."
-
-msgid "LDAP password (if not using Kerberos)"
-msgstr "Пароль LDAP (якщо не використовується Kerberos)"
-
-msgid "password"
-msgstr "пароль"
-
-msgid "LDAP basedn"
-msgstr "Базовий DN LDAP"
-
-msgid "basedn"
-msgstr "Базовий DN"
-
-#, c-format
-msgid "Unable to parse principal name\n"
-msgstr "Не вдалося обробити назву реєстраційного запису\n"
-
-#, c-format
-msgid "krb5_parse_name %1$d: %2$s\n"
-msgstr "krb5_parse_name %1$d: %2$s\n"
-
-#, c-format
-msgid "Removing principal %s\n"
-msgstr "Вилучення реєстраційного запису %s\n"
-
-#, c-format
-msgid "Failed to open keytab\n"
-msgstr "Не вдалося відкрити таблицю ключів\n"
-
-#, c-format
-msgid "principal not found\n"
-msgstr "реєстраційного запису не знайдено\n"
-
-#, c-format
-msgid "krb5_kt_get_entry %1$d: %2$s\n"
-msgstr "krb5_kt_get_entry %1$d: %2$s\n"
-
-#, c-format
-msgid "Unable to remove entry\n"
-msgstr "Не вдалося вилучити запис\n"
-
-#, c-format
-msgid "kvno %d\n"
-msgstr "kvno %d\n"
-
-#, c-format
-msgid "krb5_kt_remove_entry %1$d: %2$s\n"
-msgstr "krb5_kt_remove_entry %1$d: %2$s\n"
-
-#, c-format
-msgid "Unable to parse principal\n"
-msgstr "Не вдалося обробити реєстраційний запис\n"
-
-#, c-format
-msgid "krb5_unparse_name %1$d: %2$s\n"
-msgstr "krb5_unparse_name %1$d: %2$s\n"
-
-#, c-format
-msgid "realm not found\n"
-msgstr "область не знайдено\n"
-
-msgid "Print debugging information"
-msgstr "Вивести діагностичні дані"
-
-msgid "Debugging output"
-msgstr "Діагностична інформація"
-
-msgid ""
-"The principal to remove from the keytab (ex: ftp/ftp.example.com@EXAMPLE.COM)"
-msgstr ""
-"Реєстраційні записи, які слід вилучити із таблиці ключів (приклад: ftp/ftp."
-"example.com@EXAMPLE.COM)"
-
-msgid "The keytab file to remove the principcal(s) from"
-msgstr "Файл таблиці ключів, звідки слід вилучити реєстраційні записи"
-
-msgid "Remove all principals in this realm"
-msgstr "Вилучити всі реєстраційні записи у цій області"
-
-#, c-format
-msgid "Failed to open keytab '%1$s': %2$s\n"
-msgstr "Не вдалося відкрити таблицю ключів «%1$s»: %2$s\n"
-
-#, c-format
-msgid "Closing keytab failed\n"
-msgstr "Спроба закриття таблиці ключів зазнала невдачі\n"
-
-#, c-format
-msgid "krb5_kt_close %1$d: %2$s\n"
-msgstr "krb5_kt_close %1$d: %2$s\n"
+#, python-format
+msgid "must equal %r"
+msgstr "має дорівнювати %r"
+
+msgid "Hello world"
+msgstr "Привіт, світе"
+
+#, python-format
+msgid "%s: RADIUS proxy server not found"
+msgstr "%s: проксі-сервер RADIUS не знайдено"
+
+#, python-format
+msgid "RADIUS proxy server with name \"%s\" already exists"
+msgstr "Проксі-сервер RADIUS із назвою «%s» вже існує"
+
+msgid "must be at least 1"
+msgstr "має бути принаймні 1"
 
 msgid "Out of memory\n"
 msgstr "Не вистачає пам'яті\n"

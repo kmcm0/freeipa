@@ -20,6 +20,7 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Build script for FreeIPA Web UI
+set -o errexit
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -31,6 +32,5 @@ if [[ ! $profile ]] ; then
     exit 1
 fi
 
-RHINO="java -Xss${JAVA_STACK_SIZE:-512k} -classpath /usr/share/java/js.jar  org.mozilla.javascript.tools.shell.Main"
-$RHINO $DIR/build/build.js baseUrl=$DIR/build load=build profile=$DIR/../src/$profile.profile.js
+node $DIR/build/build.js load=build profile=$DIR/../src/$profile.profile.js
 exit $?

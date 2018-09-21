@@ -15,16 +15,22 @@ app_DATA =				\
 	index.html 			\
 	ie.css				\
 	ipa.css				\
-	reset_password.js		\
 	reset_password.html		\
 	sync_otp.html		\
 	$(NULL)
 
 EXTRA_DIST =                            \
+        doc                             \
+        jsl.conf                        \
+        less                            \
+        README-LICENSE.txt              \
+        test                            \
+        util                            \
         $(app_DATA)                     \
         $(NULL)
 
-MAINTAINERCLEANFILES =                  \
-        *~                              \
-        Makefile.in
-	$(NULL)
+install-data-hook:
+	$(INSTALL) -d -m 755 $(DESTDIR)$(appdir)/js/plugins
+
+clean-local:
+	rm -rf package-lock.json node_modules

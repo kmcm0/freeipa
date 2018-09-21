@@ -18,19 +18,24 @@
 #
 
 import collections
+import gzip
+import io
+import logging
 import xml.dom.minidom
+import zlib
 
-import nss.nss as nss
 import six
 # pylint: disable=import-error
 from six.moves.urllib.parse import urlencode
 # pylint: enable=import-error
 
+# pylint: disable=ipa-forbidden-import
 from ipalib import api, errors
+from ipalib.util import create_https_connection
 from ipalib.errors import NetworkError
 from ipalib.text import _
-from ipapython import nsslib, ipautil
-from ipapython.ipa_log_manager import root_logger
+# pylint: enable=ipa-forbidden-import
+from ipapython import ipautil
 
 # Python 3 rename. The package is available in "six.moves.http_client", but
 # pylint cannot handle classes from that alias
@@ -43,14 +48,29 @@ except ImportError:
 if six.PY3:
     unicode = str
 
+logger = logging.getLogger(__name__)
+
 Profile = collections.namedtuple('Profile', ['profile_id', 'description', 'store_issued'])
 
 INCLUDED_PROFILES = {
     Profile(u'caIPAserviceCert', u'Standard profile for network services', True),
     Profile(u'IECUserRoles', u'User profile that includes IECUserRoles extension from request', True),
+    Profile(u'KDCs_PKINIT_Certs',
+            u'Profile for PKINIT support by KDCs',
+            False),
     }
 
 DEFAULT_PROFILE = u'caIPAserviceCert'
+KDC_PROFILE = u'KDCs_PKINIT_Certs'
+
+
+if six.PY3:
+    gzip_decompress = gzip.decompress  # pylint: disable=no-member
+else:
+    # note: gzip.decompress available in Python >= 3.2
+    def gzip_decompress(data):
+        with gzip.GzipFile(fileobj=io.BytesIO(data)) as f:
+            return f.read()
 
 
 def error_from_xml(doc, message_template):
@@ -117,7 +137,9 @@ def ca_status(ca_host=None):
     if ca_host is None:
         ca_host = api.env.ca_host
     status, _headers, body = http_request(
-        ca_host, 8080, '/ca/admin/ca/getStatus')
+        ca_host, 8080, '/ca/admin/ca/getStatus',
+        # timeout: CA sometimes forgot to answer, we have to try again
+        timeout=api.env.http_timeout)
     if status == 503:
         # Service temporarily unavailable
         return status
@@ -127,7 +149,8 @@ def ca_status(ca_host=None):
     return _parse_ca_status(body)
 
 
-def https_request(host, port, url, secdir, password, nickname,
+def https_request(
+        host, port, url, cafile, client_certfile, client_keyfile,
         method='POST', headers=None, body=None, **kw):
     """
     :param method: HTTP request method (defalut: 'POST')
@@ -141,16 +164,13 @@ def https_request(host, port, url, secdir, password, nickname,
     """
 
     def connection_factory(host, port):
-        no_init = secdir == nsslib.current_dbdir
-        conn = nsslib.NSSConnection(host, port, dbdir=secdir, no_init=no_init,
-                                    tls_version_min=api.env.tls_version_min,
-                                    tls_version_max=api.env.tls_version_max)
-        conn.set_debuglevel(0)
-        conn.connect()
-        conn.sock.set_client_auth_data_callback(
-            nsslib.client_auth_data_callback,
-            nickname, password, nss.get_default_certdb())
-        return conn
+        return create_https_connection(
+            host, port,
+            cafile=cafile,
+            client_certfile=client_certfile,
+            client_keyfile=client_keyfile,
+            tls_version_min=api.env.tls_version_min,
+            tls_version_max=api.env.tls_version_max)
 
     if body is None:
         body = urlencode(kw)
@@ -159,9 +179,10 @@ def https_request(host, port, url, secdir, password, nickname,
         method=method, headers=headers)
 
 
-def http_request(host, port, url, **kw):
+def http_request(host, port, url, timeout=None, **kw):
     """
     :param url: The path (not complete URL!) to post to.
+    :param timeout: Timeout in seconds for waiting for reply.
     :param kw: Keyword arguments to encode into POST body.
     :return:   (http_status, http_headers, http_body)
                 as (integer, dict, str)
@@ -169,26 +190,35 @@ def http_request(host, port, url, **kw):
     Perform an HTTP request.
     """
     body = urlencode(kw)
+    if timeout is None:
+        conn_opt = {}
+    else:
+        conn_opt = {"timeout": timeout}
+
     return _httplib_request(
-        'http', host, port, url, httplib.HTTPConnection, body)
+        'http', host, port, url, httplib.HTTPConnection, body,
+        connection_options=conn_opt)
 
 
 def _httplib_request(
         protocol, host, port, path, connection_factory, request_body,
-        method='POST', headers=None):
+        method='POST', headers=None, connection_options=None):
     """
     :param request_body: Request body
     :param connection_factory: Connection class to use. Will be called
         with the host and port arguments.
     :param method: HTTP request method (default: 'POST')
+    :param connection_options: a dictionary that will be passed to
+        connection_factory as keyword arguments.
 
     Perform a HTTP(s) request.
     """
-    if isinstance(host, unicode):
-        host = host.encode('utf-8')
-    uri = '%s://%s%s' % (protocol, ipautil.format_netloc(host, port), path)
-    root_logger.debug('request %s %s', method, uri)
-    root_logger.debug('request body %r', request_body)
+    if connection_options is None:
+        connection_options = {}
+
+    uri = u'%s://%s%s' % (protocol, ipautil.format_netloc(host, port), path)
+    logger.debug('request %s %s', method, uri)
+    logger.debug('request body %r', request_body)
 
     headers = headers or {}
     if (
@@ -198,19 +228,26 @@ def _httplib_request(
         headers['content-type'] = 'application/x-www-form-urlencoded'
 
     try:
-        conn = connection_factory(host, port)
+        conn = connection_factory(host, port, **connection_options)
         conn.request(method, uri, body=request_body, headers=headers)
         res = conn.getresponse()
 
         http_status = res.status
-        http_headers = res.msg.dict
+        http_headers = res.msg
         http_body = res.read()
         conn.close()
     except Exception as e:
+        logger.debug("httplib request failed:", exc_info=True)
         raise NetworkError(uri=uri, error=str(e))
 
-    root_logger.debug('response status %d',    http_status)
-    root_logger.debug('response headers %s',   http_headers)
-    root_logger.debug('response body %r',      http_body)
+    encoding = res.getheader('Content-Encoding')
+    if encoding == 'gzip':
+        http_body = gzip_decompress(http_body)
+    elif encoding == 'deflate':
+        http_body = zlib.decompress(http_body)
+
+    logger.debug('response status %d',    http_status)
+    logger.debug('response headers %s',   http_headers)
+    logger.debug('response body (decoded): %r', http_body)
 
     return http_status, http_headers, http_body

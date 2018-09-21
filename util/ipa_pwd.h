@@ -22,6 +22,9 @@
 
 #pragma once
 
+#include <stdint.h>
+#include <time.h> /* for time_t */
+
 /* 90 days default pwd max lifetime */
 #define IPAPWD_DEFAULT_PWDLIFE (90 * 24 *3600)
 #define IPAPWD_DEFAULT_MINLEN 0
@@ -74,3 +77,5 @@ int ipapwd_generate_new_history(char *password,
                                 int *new_pwd_hlen);
 
 int encode_nt_key(char *newPasswd, uint8_t *nt_key);
+
+bool ipapwd_fips_enabled(void);
